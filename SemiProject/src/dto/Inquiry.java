@@ -11,6 +11,7 @@ public class Inquiry {
 	private String inqcontent;
 	
 	
+	
 	@Override
 	public String toString() {
 		return "Inquiry [inquiryno=" + inquiryno + ", inqsort=" + inqsort + ", createDate=" + createDate + ", title="

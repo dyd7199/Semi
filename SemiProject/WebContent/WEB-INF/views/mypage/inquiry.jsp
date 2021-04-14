@@ -151,7 +151,6 @@ td:nth-child(2n) {
 
 
 
-
 <div class="inq_container">
 
 <h2>1 : 1 문의하기</h2>

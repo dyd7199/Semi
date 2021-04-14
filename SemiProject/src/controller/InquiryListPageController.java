@@ -22,6 +22,7 @@ public class InquiryListPageController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquirylist.jsp").forward(req, resp);
 	
 	
+		
 	}
 
 }
