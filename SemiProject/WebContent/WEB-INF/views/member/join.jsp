@@ -1,6 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	// 포커스
+	$("#userid").focus();
+	// input 태그 초점 없을때
+	$("input").blur(function () {
+		console.log("blur!!!")
+		
+		var reg;
+		var msg;
+		var tag;
+		
+		// 정규식 검증
+		if($(this).is($("#userid"))){
+			reg = /^[A-Za-z0-9]{6,}$/
+			msg = "영어 대소문자 숫자로 6글자 이상"
+			tag = "#userid"
+			
+		} else if($(this).is($("#userpw"))){
+			reg = /^[A-Za-z0-9]{8,}$/
+			msg = "영어 대소문자 숫자로 8글자 이상"
+			tag = "#userpw"
+		} else if($(this).is($("#username"))) {
+			reg = /^[가-힣]{2,}$/
+			msg = "한글2글자 이상"
+			tag = "#username"
+		} else if($(this).is($("#phoneno"))) {
+			reg = /^[0-9]+$/
+			msg = "숫자만 입력하세요!"
+			tag = "#phoneno"
+		} 
+		
+		
+		// 비밀번호 확인
+		if($(this).is($("#userpwcheck")) && $("#userpw").val() != $("#userpwcheck").val()){
+			$(this).next().html("비밀번호가 맞지 않습니다.")
+		} else {
+			$(this).next().html("")
+		}
+		
+	
+		if(!reg.test($(tag).val())){
+			$(this).next().html(msg)
+		} else {
+			$(this).next().html("")
+		}
+		
+		
+		
+		
+		
+		
+	})
+})
+</script>
+
+
 <style>
 .totallogin {
 margin-top: 250px;
@@ -9,6 +68,10 @@ margin-left: 355px;
 }
 h1,hr{
 	margin-right: 355px;
+}
+.font-red{
+	color: red;
+	font-size: 5px;
 }
 
 
@@ -24,16 +87,20 @@ h1,hr{
     <label for="userid" class="col-sm-2 control-label">아이디</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" id="userid" name="userid" placeholder="ID">
+    	<span class="font-red"></span>
+
     </div>
   </div>
   <div class="form-group">
     <label for="userpwcheck" class="col-sm-2 control-label">비밀번호</label>
     <div class="col-sm-3 form-inline">
       <input type="password" class="form-control" id="userpw" name="userpw" placeholder="Password">
+    	<span class="font-red"></span>
     </div>
      <label for="userpwcheck" class="col-sm-2 control-label">비밀번호 확인</label>
     <div class="col-sm-3 form-inline">
       <input type="password" class="form-control" id="userpwcheck" name="userpwcheck" placeholder="Password">
+    	<span class="font-red"></span>
     </div>
   </div>
  
@@ -52,18 +119,20 @@ h1,hr{
     <label for="username" class="col-sm-2 control-label">이름</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" id="username" name="username" placeholder="name">
+   		<span class="font-red"></span>
     </div>
   </div>
    <div class="form-group">
     <label for="phoneno" class="col-sm-2 control-label">전화번호</label>
     <div class="col-sm-3">
       <input type="text" class="form-control" id="phoneno" name="phoneno" placeholder="phoneno">
+   		<span class="font-red"></span>
     </div>
   </div>
   <div class="form-group">
     <label for="phoneno" class="col-sm-2 control-label">생년월일</label>
     <div class="col-sm-5 form-inline">
-     <select class="form-control">
+     <select class="form-control" id="year" name="year">
 		  <option>2010</option>
 		  <option>2009</option>
 		  <option>2008</option>
@@ -95,7 +164,7 @@ h1,hr{
 		  <option>1981</option>
 		  <option>1980</option>
 	 </select>
-	 <select class="form-control">
+	 <select class="form-control" id="month" name="month">
 		  <option>01</option>
 		  <option>02</option>
 		  <option>03</option>
@@ -109,7 +178,7 @@ h1,hr{
 		  <option>11</option>
 		  <option>12</option>
 	 </select>
-	 <select class="form-control">
+	 <select class="form-control" id="day" name="day">
 		  <option>01</option>
 		  <option>02</option>
 		  <option>03</option>
@@ -147,10 +216,11 @@ h1,hr{
     
   </div>
   <div class="form-group">
-    <label for="phoneno" class="col-sm-2 control-label">생년월일</label>
+    <label for="phoneno" class="col-sm-2 control-label">성별</label>
     <div class="col-sm-5 form-inline">
-     <select class="form-control">
-		  <option>2010</option>
+     <select class="form-control" id="gender">
+		  <option>남</option>
+		  <option>여</option>
 	 </select>
  </div>
 </div>
@@ -162,18 +232,6 @@ h1,hr{
   </div>
 </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

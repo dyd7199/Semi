@@ -21,7 +21,13 @@ public class JoinPageController extends HttpServlet {
 		System.out.println("/member/join [GET]");
 		// 회원가입폼으로
 		req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
-	
+
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("/member/join [POST]");
+		
+		System.out.println(req.getParameter("year"));
 	}
 
 }
