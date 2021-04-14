@@ -68,6 +68,7 @@ public class LoginPageController extends HttpServlet {
 		} else {
 			System.out.println(member);
 			System.out.println("로그인 실패");
+			resp.sendRedirect("/member/login");
 		}
 
 		
