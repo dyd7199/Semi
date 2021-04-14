@@ -108,11 +108,11 @@ h1,hr{
   <div class="form-group">
     <label for="email1" class="col-sm-2 control-label">이메일</label>
     <div class="col-sm-2 form-inline">
-      <input type="email" class="form-control" id="email1" name="email1" placeholder="email">
+      <input type="text" class="form-control" id="email1" name="email1" placeholder="email">
     </div>
     <label for="email2" class="col-sm-2 control-label">@</label>
     <div class="col-sm-3 form-inline">
-      <input type="email" class="form-control" id="email2" name="email2" placeholder="도메인/선택">
+      <input type="text" class="form-control" id="email2" name="email2" placeholder="도메인/선택">
 	</div>
   </div>
     <div class="form-group">
@@ -121,7 +121,14 @@ h1,hr{
       <input type="text" class="form-control" id="username" name="username" placeholder="name">
    		<span class="font-red"></span>
     </div>
+    
   </div>
+  <div class="form-group">
+    <label for="nick" class="col-sm-2 control-label">닉네임</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="nick" name="nick" placeholder="nick">
+    </div>
+   </div>
    <div class="form-group">
     <label for="phoneno" class="col-sm-2 control-label">전화번호</label>
     <div class="col-sm-3">
@@ -211,14 +218,13 @@ h1,hr{
 		  <option>30</option>
 		  <option>31</option>
 	 </select>
-	 
     </div>
-    
   </div>
+  
   <div class="form-group">
     <label for="phoneno" class="col-sm-2 control-label">성별</label>
     <div class="col-sm-5 form-inline">
-     <select class="form-control" id="gender">
+     <select class="form-control" id="gender" name="gender">
 		  <option>남</option>
 		  <option>여</option>
 	 </select>

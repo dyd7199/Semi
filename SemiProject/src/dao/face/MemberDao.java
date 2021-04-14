@@ -15,4 +15,6 @@ public interface MemberDao {
 
 	Member selectMemberByUserid(Connection conn, Member member);
 
+	int insertByMemberInfo(Connection conn, Member member);
+
 }

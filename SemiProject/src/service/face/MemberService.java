@@ -21,5 +21,17 @@ public interface MemberService {
 	public boolean login(Member member);
 
 	public Member info(Member member);
+	/**
+	 * 회원가입 정보저장
+	 * @param req
+	 * @return
+	 */
+	public Member getJoinMember(HttpServletRequest req);
+
+	/**
+	 * 저장된 회원정보 가입
+	 * @param member - 저장된 회원정보
+	 */
+	public void join(Member member);
 
 }

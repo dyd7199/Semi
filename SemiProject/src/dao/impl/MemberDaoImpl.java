@@ -87,5 +87,40 @@ public class MemberDaoImpl implements MemberDao {
 
 		return res;
 	}
+	
+
+	@Override
+	public int insertByMemberInfo(Connection conn, Member member) {
+		
+		String sql ="INSERT INTO user_table( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
+		sql += " VALUES(seq_user.nextval,?,?,?,?,?,?,?,?,?)";
+		
+		
+		int res = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUserid());
+			ps.setString(2, member.getUsername());
+			ps.setString(3, member.getUserpw());
+			ps.setString(4, member.getUserbirth());
+			ps.setString(5, member.getPhoneno());
+			ps.setString(6, member.getNick());
+			ps.setString(7, member.getEmail());
+			ps.setString(8, member.getGender());
+			ps.setString(9, member.getGrade());
+			
+			res = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 
 }
