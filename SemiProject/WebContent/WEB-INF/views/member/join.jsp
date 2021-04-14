@@ -50,12 +50,91 @@ $(document).ready(function () {
 			$(this).next().html("")
 		}
 		
+	}) // $("input").blur(function () end
+	
+	$("#joinform").submit(function () {
+		console.log("submit이벤트 발생")
+		// return false;
 		
+		var idReg = /^[A-Za-z0-9]{6,}$/ 
+		var pwReg = /^[A-Za-z0-9]{8,}$/
+		var nameReg = /^[가-힣]{2,}$/
+		var phonenoReg = /^[0-9]+$/
+		
+		// id검증
+		if(!idReg.test($("#userid").val())){
+			alert("아이디를!")
+			
+			$("#userid").val("")
+			$("#userid").focus()
+			return false;
+		}
+		
+		// pw검증
+		if(!pwReg.test($("#userpw").val())){
+			alert("비밀번호를 확인하세요!")
+			
+			$("#userpw").val("")
+			$("#userpw").focus()
+			return false;
+		}
+		
+		// pw확인 검증
+		if($("#userpw").val() != $("#userpwcheck").val()){
+			alert("비밀번호가 같지 않습니다.")
+			
+			$("#userpwcheck").val("")
+			$("#userpwcheck").focus()
+			return false;
+		}
+		
+		// 이메일 검증 확인
+		if($("#email1").val() =="" || $("#email2").val() == ""){
+			alert("이메일을 확인해주세요!")
+			
+			$("#email1").val("")
+			$("#email1").focus()
+			return false;
+		}
+		
+		// 이름 검증
+		if(!nameReg.test($("#username").val())){
+			alert("이름을 확인해주세요!")
+			
+			$("#username").val("")
+			$("#username").focus()
+			return false;
+		}
+		
+		// 닉네임 검증
+		if($("#nick").val()==""){
+			alert("닉네임을 확인해주세요!")
+			
+			$("#nick").val("")
+			$("#nick").focus()
+			return false;
+		}
+		
+		// 전화번호 검증
+		if(!phonenoReg.test($("#phoneno").val())){
+			alert("전화번호를 확인해주세요!")
+			
+			$("#phoneno").val("")
+			$("#phoneno").focus()
+			return false;
+		}
+		
+	})// $("#joinform").submit(function () end
+	
+	$("#idoverlap").click(function () {
 		
 		
 		
 		
 	})
+	
+	
+	
 })
 </script>
 
@@ -82,13 +161,16 @@ h1,hr{
 <h1>회원가입</h1>
 <hr>
 
-<form class="form-horizontal" action="/member/join" method="post">
+<form id="joinform"class="form-horizontal" action="/member/join" method="post">
   <div class="form-group">
     <label for="userid" class="col-sm-2 control-label">아이디</label>
-    <div class="col-sm-3">
+    <div class="col-sm-3 form-inline">
       <input type="text" class="form-control" id="userid" name="userid" placeholder="ID">
     	<span class="font-red"></span>
 
+    </div>
+    <div class="col-sm-3 form-inline">
+      <input type="button" class="btn btn-default" id="idoverlap" value="중복확인">
     </div>
   </div>
   <div class="form-group">
@@ -125,8 +207,11 @@ h1,hr{
   </div>
   <div class="form-group">
     <label for="nick" class="col-sm-2 control-label">닉네임</label>
-    <div class="col-sm-3">
+    <div class="col-sm-3 form-inline">
       <input type="text" class="form-control" id="nick" name="nick" placeholder="nick">
+    </div>
+    <div class="col-sm-3 form-inline">
+      <input type="button" class="btn btn-default" id="nickoverlap" value="중복확인">
     </div>
    </div>
    <div class="form-group">
