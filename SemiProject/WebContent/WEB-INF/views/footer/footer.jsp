@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 
     
-    
        <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">

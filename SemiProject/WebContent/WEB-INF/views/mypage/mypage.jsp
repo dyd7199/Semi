@@ -5,15 +5,22 @@
 
 
 <style>
-    body {
-        margin:20px auto;
-        padding: 0;
-        font-size:0.9em;
-        padding-top: 80px;
+body { 
+    margin:20px auto; 
+    padding: 0; 
+    padding-top: 80px; 
 }
     ul#navi {
         width: 200px;
         text-indent: 10px;
+        margin:20px auto;
+        padding: 0;
+        font-size:0.9em;
+        padding-top: 80px;
+        
+        background: #f4f4f4;
+/*     	float: left; */
+    	min-height: 800px;
         
 }
     ul#navi, ul#navi ul {
