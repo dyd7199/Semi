@@ -18,6 +18,7 @@ public class InquiryPageController extends HttpServlet {
 		System.out.println("/mypage/inq [GET]");
 		
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquiry.jsp").forward(req, resp);
+
 	}
 
 }

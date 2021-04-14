@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class InquiryListPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -20,6 +22,7 @@ public class InquiryListPageController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquirylist.jsp").forward(req, resp);
 	
 	
+		
 	}
 
 }
