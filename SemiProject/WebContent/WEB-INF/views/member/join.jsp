@@ -128,7 +128,7 @@ $(document).ready(function () {
 	
 	$("#idoverlap").click(function () {
 		
-		
+		$(location).attr("herf","")
 		
 		
 	})
