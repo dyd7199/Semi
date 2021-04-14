@@ -3,7 +3,6 @@
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 
-
 <style>
 body { 
     margin:20px auto; 
@@ -78,7 +77,7 @@ body {
         <li class="group">
             <div class="title">MyPage</div>
             <ul class="sub">
-                <li><a href="#">찜한식당</a></li>
+                <li><a href="#">찜한 식당</a></li>
                 <li><a href="#">최근 본 식당</a></li>
                 <li><a href="#">내가 작성한 후기</a></li>
                 <li><a href="#">내가 작성한 레시피</a></li>
