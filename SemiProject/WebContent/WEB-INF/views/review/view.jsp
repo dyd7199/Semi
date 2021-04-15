@@ -46,34 +46,36 @@ $(document).ready(function() {
 });
 </script>
 </head>
+<style>
+
+</style>
 <body>
+<br>
 <div class="text-center">	
 	<button id="btnList" class="btn btn-primary">목록</button>
 	<button id="btnUpdate" class="btn btn-info">수정</button>
 	<button id="btnDelete" class="btn btn-danger">삭제</button>
 </div>
+<br>
 <div class="container">
 <table class="table table-bordered">
 <tr>
-<td class="info">글번호</td><td colspan="3"><%=r.getReviewno() %></td>
+<td class="info" style="background-color: #FAA600; width: 100px;">글번호</td><td colspan="3"><%=r.getReviewno() %></td>
 </tr>
 <tr>
-<td class="info">제목</td><td colspan="3"><%=r.getTitle() %></td>
+<td class="info" style="background-color: #FAA600;">제목</td><td colspan="3"><%=r.getTitle() %></td>
 </tr>
 <tr>
-<td class="info">회원번호</td><td><%=r.getUserno() %></td>
+<td class="info" style="background-color: #FAA600;">회원번호</td><td><%=r.getUserno() %></td>
 <%-- <td class="info">닉네임</td><td><%=request.getAttribute("nick") %></td> --%>
 </tr>
 <tr>
-<td class="info">작성일</td><td colspan="3"><%=r.getCreate_date()%></td>
+<td class="info" style="background-color: #FAA600;">작성일</td><td colspan="3"><%=r.getCreate_date()%></td>
 </tr>
 <tr>
-<td class="info">작성일</td><td colspan="3"><%=r.getCreate_date()%></td>
+<td class="info" style="background-color: #FAA600;">별점</td><td colspan="3"><%=r.getStar_score() %></td>
 </tr>
-<tr>
-<td class="info">별점</td><td colspan="3"><%=r.getStar_score() %></td>
-</tr>
-<tr><td class="info"  colspan="4">본문</td></tr>
+<tr><td class="info" style="background-color: #FAA600;"  colspan="4">본문</td></tr>
 <tr><td colspan="4"><%=r.getInq_content() %></td></tr>
 
 </table>
