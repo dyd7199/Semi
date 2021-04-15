@@ -6,6 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- jQuery 2.2.4 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- 스마트에디터 2 -->
 <script type="text/javascript"
  src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -15,7 +24,6 @@ function submitContents( elClickedObj ) {
 	
 	//에디터의 내용을 #content에 반영한다
 	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-	
 	try {
 		// <form>태그의 submit 수행
 		elClickedObj.form.submit();
@@ -55,9 +63,15 @@ $(document).ready(function() {
 <body>
 <div class="container">
 
-<h3>게시글 쓰기</h3>
+
+<h3  style="text-align:center">리뷰 수정</h3>
 <hr>
 
+<div class="text-center">	
+	<button type="button" id="btnUpdate" class="btn btn-info">수정</button>
+	<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+</div>
+<br>
 <div>
 <form action="/board/update" method="post" enctype="multipart/form-data">
 <input type="hidden" name="boardno" value="<%=r.getReviewno() %>" />
@@ -69,6 +83,8 @@ $(document).ready(function() {
 <tr><td colspan="2"><textarea id="content" name="content"><%=r.getInq_content() %></textarea></td></tr>
 </table>
 </form>
+</div>
+
 </div>
 </div>
 
