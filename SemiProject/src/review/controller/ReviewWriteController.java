@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
 
-/**
- * Servlet implementation class ReviewWriteController
- */
 @WebServlet("/review/write")
 public class ReviewWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,6 +36,6 @@ public class ReviewWriteController extends HttpServlet {
 			reviewService.write(req);
 			
 			//목록으로 리다이렉션
-			resp.sendRedirect("/board/list");
+			resp.sendRedirect("/review/list");
 		}
 }
