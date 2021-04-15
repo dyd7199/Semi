@@ -44,7 +44,6 @@ public interface MemberService {
 	 * @param parameter
 	 * @return
 	 */
-	public int nickcheck(String nick);
 
 	public int nickcheck(String nick);
 
