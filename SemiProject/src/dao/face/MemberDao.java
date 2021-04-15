@@ -17,4 +17,19 @@ public interface MemberDao {
 
 	int insertByMemberInfo(Connection conn, Member member);
 
+	/**
+	 * id로 id가 있는지 조회 있으면  중복
+	 * @param connection
+	 * @param userid
+	 * @return
+	 */
+	int selectById(Connection conn, String userid);
+	/**
+	 * nick로 nick이 있는지 조회 있으면 중복
+	 * @param connection
+	 * @param nick
+	 * @return
+	 */
+	int selectByNick(Connection conn, String nick);
+
 }
