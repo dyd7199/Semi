@@ -154,4 +154,32 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+
+	@Override
+	public int selectByNick(Connection conn, String nick) {
+		String sql ="";
+		sql +=" SELECT COUNT(*) CNT FROM user_table";
+		sql +="	WHERE nick = ?";
+		int res = -1;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, nick);
+			
+			rs = ps.executeQuery();
+			
+			
+			while (rs.next()) {
+				res = rs.getInt("cnt");
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

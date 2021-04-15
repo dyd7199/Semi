@@ -27,22 +27,22 @@ public class JoinIdCheckController extends HttpServlet {
 		resp.setContentType("application/json; charset=utf-8");
 		System.out.println(req.getParameter("id"));
 		
-		
-		int cnt = memberService.idcheck(req.getParameter("id"));
-		
+		int cnt = 0;
+		if(req.getParameter("id") == "" || req.getParameter("id") == null) {
+			cnt = 2;
+		} else {
+			
+			// 닉네임 중복검사
+			cnt = memberService.idcheck(req.getParameter("id"));
+		}
 		System.out.println(cnt);
 		
-//		req.setAttribute("cnt", cnt);
         
         //타입을 json으로 바꿔줘야됨
-//        resp.setContentType("application/json");
-//        resp.setCharacterEncoding("UTF-8");
         Gson gson = new Gson();
         
-        
-        
         String res = gson.toJson(cnt);
-        
+        // ajax로 리턴해줌
         resp.getWriter().write(res);
 		
 	}

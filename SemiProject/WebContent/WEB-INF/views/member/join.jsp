@@ -33,19 +33,17 @@ $(document).ready(function () {
 			reg = /^[0-9]+$/
 			msg = "숫자만 입력하세요!"
 			tag = "#phoneno"
+		} else if($(this).is($("#userpwcheck"))){
+			if($("#userpw").val() != $("#userpwcheck").val()){
+				$(this).next().html("비밀번호가 맞지 않습니다.")
+			} else {
+				$(this).next().html("")
+			}
+			return false;
 		} else {
 			return false;
 		}
 		
-		
-		// 비밀번호 확인
-		if($(this).is($("#userpwcheck")) && $("#userpw").val() != $("#userpwcheck").val()){
-			$(this).next().html("비밀번호가 맞지 않습니다.")
-		} else {
-			$(this).next().html("")
-		}
-		
-	console.log("reg", reg)
 		if(!reg.test($(tag).val())){
 			$(this).next().html(msg)
 		} else {
@@ -65,7 +63,7 @@ $(document).ready(function () {
 		
 		// id검증
 		if(!idReg.test($("#userid").val())){
-			alert("아이디를!")
+			alert("아이디를 입력해주세요!")
 			
 			$("#userid").val("")
 			$("#userid").focus()
@@ -141,8 +139,11 @@ $(document).ready(function () {
 				 console.log(data)
 				 if(data == 1){
 					 alert("아이디가 중복되었습니다.")
-				 } else {
+					 
+				 } else if(data==0){
 					 alert("사용가능한 아이디입니다.")
+				 } else if (data == 2){
+					 alert("아이디를 입력하세요!")
 				 }
 			 }
 		})
@@ -150,7 +151,30 @@ $(document).ready(function () {
 		
 		
 	})//$("#idoverlap").click(function () end
-	
+	$("#nickoverlap").click(function () {
+		
+		var userid = $("#userid").val();
+		
+		$.ajax({
+	         type : 'POST',
+	         data : {"nick": $("#nick").val()},
+	         url : "/join/nickcheck",
+	         dataType : "json",
+			 success : function (data) {
+				 console.log(data)
+				 if(data == 1){
+					 alert("닉네임이 중복되었습니다.")
+				 } else if(data == 0){
+					 alert("사용가능한 닉네임 입니다.")
+				 } else if(data == 2){
+					 alert("닉네임을 입력하세요!")
+				 }
+			 }
+		})
+		
+		
+		
+	})//$("#idoverlap").click(function () end
 	
 	
 })
@@ -334,11 +358,13 @@ h1,hr{
  </div>
 </div>
  
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-3 radio-inline">
-      <button type="submit" class="btn btn-default">Sign in</button>
+  <div class="form-group form-inline">
+    <div class="col-sm-offset-2 col-sm-3 radio-inline ">
+      <button type="submit" class="btn btn-default">가입</button>
+      <button type="submit" class="btn btn-default" >취소</button>
     </div>
   </div>
+  
 </form>
 </div>
 

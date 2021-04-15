@@ -39,5 +39,11 @@ public interface MemberService {
 	 * @return
 	 */
 	public int idcheck(String usrid);
+	/**
+	 * 닉네임 중복 체크
+	 * @param parameter
+	 * @return
+	 */
+	public int nickcheck(String nick);
 
 }

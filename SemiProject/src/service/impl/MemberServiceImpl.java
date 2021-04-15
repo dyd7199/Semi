@@ -98,5 +98,10 @@ public class MemberServiceImpl implements MemberService {
 	public int idcheck(String userid) {
 		return memberDao.selectById(JDBCTemplate.getConnection(),userid);
 	}
+	@Override
+	public int nickcheck(String nick) {
+		
+		return memberDao.selectByNick(JDBCTemplate.getConnection(),nick);
+	}
 
 }
