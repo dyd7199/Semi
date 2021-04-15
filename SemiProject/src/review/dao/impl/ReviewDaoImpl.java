@@ -18,8 +18,9 @@ public class ReviewDaoImpl implements ReviewDao {
 	private ResultSet rs = null; //SQL조회 결과 객체
 	@Override
 	public int selectCntAll(Connection conn) {
+		System.out.println("selectCntAll() 호출");
 		String sql = "";
-		sql += "SELECT count(*) cnt FROM board";
+		sql += "SELECT count(*) cnt FROM review";
 		
 		//총 게시글 수
 		int cnt = 0;
@@ -31,6 +32,9 @@ public class ReviewDaoImpl implements ReviewDao {
 			while(rs.next()) {
 				cnt = rs.getInt(1);
 			}
+			
+			//cnt 확인
+			System.out.println(cnt);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +114,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				viewReview.setTitle(rs.getString("title"));
 				viewReview.setInq_content(rs.getString("inq_content"));
 				viewReview.setCreate_date(rs.getDate("create_date"));
-				viewReview.setStar_score(rs.getInt("star_sore"));
+				viewReview.setStar_score(rs.getInt("star_score"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,17 +130,14 @@ public class ReviewDaoImpl implements ReviewDao {
 		//다음 게시글 번호 조회 쿼리
 		String sql = "";
 		sql += "INSERT INTO review(reviewno, title, userno, inq_content, star_score)";
-		sql += " VALUES (?, ?, ?, ?, ?)";
+		sql += " VALUES (board_seq.nextval, ?, board_seq.nextval, ?, 5)";
 		int res = 0;
 		
 		//DB작업
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1, review.getReviewno());
-				ps.setString(2, review.getTitle());
-				ps.setInt(3, review.getUserno());
-				ps.setString(4, review.getInq_content());
-				ps.setInt(5, review.getStar_score());
+				ps.setString(1, review.getTitle());
+				ps.setString(2, review.getInq_content());
 				
 				res = ps.executeUpdate();
 			} catch (SQLException e) {

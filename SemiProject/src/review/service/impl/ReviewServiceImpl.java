@@ -17,6 +17,7 @@ public class ReviewServiceImpl implements ReviewService {
 		
 	@Override
 	public Paging getPaging(HttpServletRequest req) {
+		System.out.println("getPaging() 호출");
 		//전달파라미터 curPage 파싱
 		String param = req.getParameter("curPage");
 		int curPage = 0;
@@ -64,9 +65,11 @@ public class ReviewServiceImpl implements ReviewService {
 
 		review.setTitle( req.getParameter("title") );
 		review.setInq_content( req.getParameter("inq_content") );
-
-
-		review.setUserno((int) req.getSession().getAttribute("userno"));
+		System.out.println(review.getTitle());
+		System.out.println(review.getInq_content());
+		
+		
+//		review.setUserno(req.getParameter("userno"));
 
 		if(review.getTitle()==null || "".equals(review.getTitle())) {
 			review.setTitle("(제목없음)");
