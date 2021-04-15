@@ -34,4 +34,6 @@ public interface MemberService {
 	 */
 	public void join(Member member);
 
+	public int nickcheck(String nick);
+
 }
