@@ -33,5 +33,11 @@ public interface MemberService {
 	 * @param member - 저장된 회원정보
 	 */
 	public void join(Member member);
+	/**
+	 * 아이디 중복 체크
+	 * @param parameter
+	 * @return
+	 */
+	public int idcheck(String usrid);
 
 }

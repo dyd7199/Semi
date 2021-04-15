@@ -33,7 +33,9 @@ $(document).ready(function () {
 			reg = /^[0-9]+$/
 			msg = "숫자만 입력하세요!"
 			tag = "#phoneno"
-		} 
+		} else {
+			return false;
+		}
 		
 		
 		// 비밀번호 확인
@@ -43,7 +45,7 @@ $(document).ready(function () {
 			$(this).next().html("")
 		}
 		
-	
+	console.log("reg", reg)
 		if(!reg.test($(tag).val())){
 			$(this).next().html(msg)
 		} else {
@@ -128,10 +130,26 @@ $(document).ready(function () {
 	
 	$("#idoverlap").click(function () {
 		
-		$(location).attr("herf","")
+		var userid = $("#userid").val();
+		
+		$.ajax({
+	         type : 'POST',
+	         data : {"id": $("#userid").val()},
+	         url : "/join/idcheck",
+	         dataType : "json",
+			 success : function (data) {
+				 console.log(data)
+				 if(data == 1){
+					 alert("아이디가 중복되었습니다.")
+				 } else {
+					 alert("사용가능한 아이디입니다.")
+				 }
+			 }
+		})
 		
 		
-	})
+		
+	})//$("#idoverlap").click(function () end
 	
 	
 	

@@ -123,4 +123,35 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+
+	@Override
+	public int selectById(Connection conn, String userid) {
+		String sql ="";
+		sql +=" SELECT COUNT(*) CNT FROM user_table";
+		sql +="	WHERE userid = ?";
+		int res = -1;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userid);
+			
+			rs = ps.executeQuery();
+			
+			
+			while (rs.next()) {
+				res = rs.getInt("cnt");
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return res;
+	}
+
 }
