@@ -1,8 +1,8 @@
 package service.impl;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-import org.apache.tomcat.dbcp.dbcp2.Jdbc41Bridge;
+import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
 import dao.face.MemberDao;
@@ -43,6 +43,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		return memberDao.selectMemberByUserid(JDBCTemplate.getConnection(),member);
+	}
+	
+	
+	@Override
+	public List<Member> getUserdata() {
+		
+		return memberDao.getAllUser(JDBCTemplate.getConnection());
 	}
 
 }

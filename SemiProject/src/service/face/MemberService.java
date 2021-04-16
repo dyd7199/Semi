@@ -1,5 +1,7 @@
 package service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
@@ -21,5 +23,7 @@ public interface MemberService {
 	public boolean login(Member member);
 
 	public Member info(Member member);
+
+	public List<Member> getUserdata();
 
 }
