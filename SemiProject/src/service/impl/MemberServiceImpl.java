@@ -2,7 +2,6 @@ package service.impl;
 
 import java.util.List;
 
-
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,8 +60,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public Member getJoinMember(HttpServletRequest req) {
-		
-		
 		
 		
 		Member member = new Member();

@@ -203,7 +203,6 @@ public class MemberDaoImpl implements MemberDao {
 		return member;
 	}
 
-
 	@Override
 	public int selectById(Connection conn, String userid) {
 		String sql ="";

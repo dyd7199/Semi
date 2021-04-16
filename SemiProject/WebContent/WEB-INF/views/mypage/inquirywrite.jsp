@@ -5,11 +5,34 @@
 
 <%	Inquiry write = ((Inquiry) request.getAttribute("write")); %>
 
+<!-- 스마트에디터 2 -->
+<script type="text/javascript" src="../Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+<!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
+<script type="text/javascript">
+function submitContents (elClickedObj) {
+	
+	//에디터의 내용을 #content에 반영한다
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		//	<form>태그의 submit 수행
+		elClickedObj.form.submit();
+	} catch(e) {}
+	
+}
+</script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
 	//작성하기 버튼
 	$("#btnWriteInq").click(function() {
+		
+		//스마트에디터의 내용을 <textarea>에 적용하는 함수를 호출한다
+		submitContents($("#btnWriteInq"))
+		
+		//<form> submit
 		$("form").submit();
 	});
 	
@@ -104,7 +127,7 @@ ul.sub li:hover {
 
 textarea {
 	width: 100%;
-	height: 100px;
+	height: 200px;
 }
 
 td:nth-child(2n) {
@@ -211,5 +234,18 @@ td:nth-child(2n) {
 
 <div class="clearfix"></div>
 
+
+
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame( {
+	oAppRef: oEditors,
+	elPlaceHolder: "content", //에디터가 적용될 <textarea>의 id를 입력
+	sSkinURI: "/Resources/se2/SmartEditor2Skin.html",
+	fCreator: "createSEditor2"
+	
+})
+
+</script>
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
