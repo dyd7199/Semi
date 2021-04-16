@@ -27,10 +27,7 @@ public interface MemberDao {
 	List<Member> getAllUser(Connection conn);
 
 	Member getUserno(Connection conn, Member m);
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	/**
 	 * id로 id가 있는지 조회 있으면  중복
 	 * @param connection
@@ -45,8 +42,6 @@ public interface MemberDao {
 	 * @return
 	 */
 	int selectByNick(Connection conn, String nick);
-<<<<<<< HEAD
-=======
 
 	/**
 	 * 유저정보 조회
@@ -55,6 +50,5 @@ public interface MemberDao {
 	 * @return
 	 */
 	Member selectByUserInfo(Connection connection, Member member);
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 
 }

@@ -1,11 +1,7 @@
 package service.impl;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
 
-
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,27 +49,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.selectMemberByUserid(JDBCTemplate.getConnection(),member);
 	}
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	@Override
 	public List<Member> getUserdata() {
 		
 		return memberDao.getAllUser(JDBCTemplate.getConnection());
-<<<<<<< HEAD
-	}
-=======
 
 	}
 	
 	
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	@Override
 	public Member getJoinMember(HttpServletRequest req) {
-		
-		
 		
 		
 		Member member = new Member();
@@ -122,8 +107,6 @@ public class MemberServiceImpl implements MemberService {
 	public int nickcheck(String nick) {
 		
 		return memberDao.selectByNick(JDBCTemplate.getConnection(),nick);
-<<<<<<< HEAD
-=======
 	}
 	@Override
 	public Member saveLoinId(Object userid) {
@@ -138,7 +121,6 @@ public class MemberServiceImpl implements MemberService {
 	public Member getuserInfo(Member member) {
 		// TODO Auto-generated method stub
 		return memberDao.selectByUserInfo(JDBCTemplate.getConnection(), member);
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	}
 
 }

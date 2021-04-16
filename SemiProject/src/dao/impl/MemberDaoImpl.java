@@ -260,8 +260,6 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return res;
-<<<<<<< HEAD
-=======
 	}
 
 
@@ -271,7 +269,6 @@ public class MemberDaoImpl implements MemberDao {
 		
 		
 		return null;
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	}
 
 }
