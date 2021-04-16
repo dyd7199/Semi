@@ -1,22 +1,24 @@
 <%@page import="dto.Inquiry"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%	List<Inquiry> list = (List) request.getAttribute("inquiryList"); %>
+<%	Inquiry inq = (Inquiry) request.getAttribute("viewInq"); %>
 
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	$("#btnWriteInq").click(function() {
-		$(location).attr("href", "/mypage/inqwrite");
+	//목록 버튼 클릭 시
+	$("#btnListInq").click(function() {
+		$(location).attr("href", "/mypage/inqlist");
 	});
 	
+	//삭제 버튼 클릭 시
+	$("#btnDelete").click(function() {
+	});
 });
 </script>
-
 
 <style>
 body {
@@ -82,7 +84,7 @@ ul.sub li:hover {
 }
 
 
-.inqList_container {
+.inqView_container {
 	width: 80%;
 	padding: 30px;
 	
@@ -132,49 +134,49 @@ ul.sub li:hover {
 
 
 
-<div class="inqList_container">
+<div class="inqView_container">
 
-<h2>내 문의내역</h2>
+<h2>문의내용 상세보기</h2>
 <br><br>
 
 <div>
-<table class="table table-striped table-hover table-condensed">
+<table>
 <tr>
-	<th>문의번호</th>
-	<th>제목</th>
-	<th>작성자</th>
-	<th>작성일</th>
+	<td>글번호</td><td><%=inq.getInquiryno() %></td>
+	<td>문의종류</td><td><%=inq.getInqsort() %></td>
 </tr>
-
-<%	for(int i = 0; i < list.size(); i++) { %>
 <tr>
-	<td><%=list.get(i).getInquiryno() %></td>
-	<td>
-		<a href="/mypage/inqview?inquiryno=<%=list.get(i).getInquiryno() %>">
-		<%=list.get(i).getTitle() %>
-		</a>
-	</td>
-	<td><%=list.get(i).getUserno() %></td>
-	<td><%=list.get(i).getCreateDate() %></td>
+	<td>작성자</td><td><%=inq.getUserno() %></td>
+	<td>작성일자</td><td><%=inq.getCreateDate() %></td>
 </tr>
-<%	} %>
+<tr>
+	<td>제목</td><td><%=inq.getTitle() %></td>
+</tr>
+<tr>
+	<td>내용</td>
+</tr>
+<tr>
+	<td><%=inq.getInqcontent() %></td>
+</tr>
 </table>
 </div>
 
 
 <div>
-	<button type="button" id="btnWriteInq" class="btn btn-info">1:1 문의 작성하기</button>
+	<button type="button" id="btnListInq" class="btn btn-default">목록으로</button>
+	<button type="button" id="btnDeleteInq" class="btn btn-danger">삭제</button>
 </div>
 
 
-<!-- .inqList_container end -->
+<!-- .inqView_container end -->
 </div>
 
 <div class="clearfix"></div>
 
 
 
-<%@include file="/WEB-INF/views/mypage/inquiryPaging.jsp" %>
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
+
+
 
