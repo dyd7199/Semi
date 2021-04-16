@@ -1,6 +1,9 @@
+<%@page import="dto.Inquiry"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
+
+<%	Inquiry write = ((Inquiry) request.getAttribute("write")); %>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -8,19 +11,19 @@ $(document).ready(function() {
 	//작성하기 버튼
 	$("#btnWriteInq").click(function() {
 		$("form").submit();
-	})
+	});
 	
 	//취소 버튼
 	$("#btnCancel").click(function() {
 		$(location).attr("href", "/mypage/inqlist");
-	})
+	});
 	
-})
+});
 
 </script>
 
 
-<style>
+<style type="text/css">
 body { 
     margin:20px auto; 
     padding: 0; 
@@ -135,7 +138,7 @@ td:nth-child(2n) {
     <li class="group">
         <div class="title">MY 활동</div>
         <ul class="sub">
-            <li><a href="/mypage/inq">문의하기</a></li>                
+            <li><a href="/mypage/inqwrite">문의하기</a></li>                
             <li><a href="/mypage/inqlist">문의내역 확인</a></li>  
         </ul>
     </li>        
@@ -157,12 +160,12 @@ td:nth-child(2n) {
 <br><br>
 
 <div>
-<form action="/mypage/inq" method="post">
+<form action="/mypage/inqwrite" method="post">
 
 <table class="table">
 <tr>
 	<td class="active">문의번호</td>
-	<td><%=session.getAttribute("inquiry_no") %></td>
+	<td><%=write.getInquiryno() %></td>
 </tr>
 <tr>
 	<td class="active">문의종류</td>
