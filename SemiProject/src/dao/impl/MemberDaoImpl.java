@@ -96,7 +96,6 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int insertByMemberInfo(Connection conn, Member member) {
 		
-<<<<<<< HEAD
 		String sql ="INSERT INTO webuser( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
 		sql += " VALUES(seq_user.nextval,?,?,?,?,?,?,?,?,?)";
 		
@@ -108,7 +107,7 @@ public class MemberDaoImpl implements MemberDao {
 			ps.setString(1, member.getUserid());
 			ps.setString(2, member.getUsername());
 			ps.setString(3, member.getUserpw());
-			ps.setDate(4, (Date) member.getUserbirth());
+			ps.setString(4, member.getUserbirth());
 			ps.setString(5, member.getPhoneno());
 			ps.setString(6, member.getNick());
 			ps.setString(7, member.getEmail());
@@ -155,7 +154,7 @@ public class MemberDaoImpl implements MemberDao {
 				m.setUserid( rs.getString("userid"));
 				m.setUserpw( rs.getString("userpw"));
 				m.setUsername( rs.getString("username"));
-				m.setUserbirth( rs.getDate("userbirth"));
+				m.setUserbirth( rs.getString("userbirth"));
 				m.setPhoneno( rs.getString("phoneno"));
 				m.setNick( rs.getString("nick"));
 				m.setGrade( rs.getString("grade"));
@@ -203,38 +202,7 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		
 		return member;
-=======
-		String sql ="INSERT INTO user_table( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
-		sql += " VALUES(seq_user.nextval,?,?,?,?,?,?,?,?,?)";
-		
-		
-		int res = 0;
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			ps.setString(1, member.getUserid());
-			ps.setString(2, member.getUsername());
-			ps.setString(3, member.getUserpw());
-			ps.setString(4, member.getUserbirth());
-			ps.setString(5, member.getPhoneno());
-			ps.setString(6, member.getNick());
-			ps.setString(7, member.getEmail());
-			ps.setString(8, member.getGender());
-			ps.setString(9, member.getGrade());
-			
-			res = ps.executeUpdate();
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(ps);
-		}
-		
-		return res;
 	}
-
 
 	@Override
 	public int selectById(Connection conn, String userid) {
@@ -292,7 +260,6 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return res;
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	}
 
 }
