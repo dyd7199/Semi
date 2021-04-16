@@ -23,6 +23,31 @@ public interface MemberService {
 	public boolean login(Member member);
 
 	public Member info(Member member);
+	/**
+	 * 회원가입 정보저장
+	 * @param req
+	 * @return
+	 */
+	public Member getJoinMember(HttpServletRequest req);
+
+	/**
+	 * 저장된 회원정보 가입
+	 * @param member - 저장된 회원정보
+	 */
+	public void join(Member member);
+	/**
+	 * 아이디 중복 체크
+	 * @param parameter
+	 * @return
+	 */
+	public int idcheck(String usrid);
+	/**
+	 * 닉네임 중복 체크
+	 * @param parameter
+	 * @return
+	 */
+
+	public int nickcheck(String nick);
 
 	public List<Member> getUserdata();
 

@@ -19,6 +19,7 @@ public interface MemberDao {
 	int insertByMemberInfo(Connection conn, Member member);
 
 	/**
+<<<<<<< HEAD
 	 * 모든 회원정보 조회
 	 * 
 	 * @param connection
@@ -28,5 +29,20 @@ public interface MemberDao {
 
 	Member getUserno(Connection conn, Member m);
 
+=======
+	 * id로 id가 있는지 조회 있으면  중복
+	 * @param connection
+	 * @param userid
+	 * @return
+	 */
+	int selectById(Connection conn, String userid);
+	/**
+	 * nick로 nick이 있는지 조회 있으면 중복
+	 * @param connection
+	 * @param nick
+	 * @return
+	 */
+	int selectByNick(Connection conn, String nick);
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 
 }
