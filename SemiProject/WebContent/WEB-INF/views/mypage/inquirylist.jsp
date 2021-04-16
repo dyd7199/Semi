@@ -1,6 +1,21 @@
+<%@page import="dto.Inquiry"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%	List<Inquiry> list = (List) request.getAttribute("inquiryList"); %>
+
 <%@include file="/WEB-INF/views/header/header.jsp" %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$("#btnWriteInq").click(function() {
+		$(location).attr("href", "/mypage/inqwrite");
+	});
+	
+});
+</script>
 
 
 <style>
@@ -102,7 +117,7 @@ ul.sub li:hover {
     <li class="group">
         <div class="title">MY 활동</div>
         <ul class="sub">
-            <li><a href="/mypage/inq">문의하기</a></li>                
+            <li><a href="/mypage/inqwrite">문의하기</a></li>                
             <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
         </ul>
     </li>        
@@ -122,6 +137,7 @@ ul.sub li:hover {
 <h2>내 문의내역</h2>
 <br><br>
 
+<div>
 <table class="table table-striped table-hover table-condensed">
 <tr>
 	<th>문의번호</th>
@@ -129,7 +145,26 @@ ul.sub li:hover {
 	<th>작성자</th>
 	<th>작성일</th>
 </tr>
+
+<%	for(int i = 0; i < list.size(); i++) { %>
+<tr>
+	<td><%=list.get(i).getInquiryno() %></td>
+	<td>
+		<a href="/mypage/inqview?inquiryno=<%=list.get(i).getInquiryno() %>">
+		<%=list.get(i).getTitle() %>
+		</a>
+	</td>
+	<td><%=list.get(i).getUserno() %></td>
+	<td><%=list.get(i).getCreateDate() %></td>
+</tr>
+<%	} %>
 </table>
+</div>
+
+
+<div>
+	<button type="button" id="btnWriteInq" class="btn btn-info">1:1 문의 작성하기</button>
+</div>
 
 
 <!-- .inqList_container end -->
@@ -138,4 +173,8 @@ ul.sub li:hover {
 <div class="clearfix"></div>
 
 
+
+<%@include file="/WEB-INF/views/mypage/inquiryPaging.jsp" %>
+
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
+

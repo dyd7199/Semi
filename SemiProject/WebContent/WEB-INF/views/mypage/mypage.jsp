@@ -93,7 +93,7 @@ body {
         <li class="group">
             <div class="title">MY 활동</div>
             <ul class="sub">
-                <li><a href="/mypage/inq">문의하기</a></li>                
+                <li><a href="/mypage/inqwrite">문의하기</a></li>                
                 <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
             </ul>
         </li>        

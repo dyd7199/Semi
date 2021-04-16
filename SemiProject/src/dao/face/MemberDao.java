@@ -1,6 +1,7 @@
 package dao.face;
 
 import java.sql.Connection;
+import java.util.List;
 
 import dto.Member;
 
@@ -18,6 +19,17 @@ public interface MemberDao {
 	int insertByMemberInfo(Connection conn, Member member);
 
 	/**
+<<<<<<< HEAD
+	 * 모든 회원정보 조회
+	 * 
+	 * @param connection
+	 * @return 회원 테이블 전체 데이터
+	 */
+	List<Member> getAllUser(Connection conn);
+
+	Member getUserno(Connection conn, Member m);
+
+=======
 	 * id로 id가 있는지 조회 있으면  중복
 	 * @param connection
 	 * @param userid
@@ -31,6 +43,7 @@ public interface MemberDao {
 	 * @return
 	 */
 	int selectByNick(Connection conn, String nick);
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 
 	/**
 	 * 유저정보 조회

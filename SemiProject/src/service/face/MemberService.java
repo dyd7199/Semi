@@ -1,5 +1,7 @@
 package service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
@@ -58,5 +60,7 @@ public interface MemberService {
 	 * @return
 	 */
 	public Member getuserInfo(Member member);
+
+	public List<Member> getUserdata();
 
 }
