@@ -51,4 +51,14 @@ public interface MemberDao {
 	 */
 	Member selectByUserInfo(Connection connection, Member member);
 
+	/**
+	 * 유저정보 업데이트
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	int updateByNickEmail(Connection connection, Member member);
+
+	int delete(Connection connection, Object userid);
+
 }

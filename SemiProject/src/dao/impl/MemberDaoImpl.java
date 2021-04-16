@@ -1,7 +1,6 @@
 package dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +20,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member selectMemberByUserid(Connection conn, Member member) {
 		String sql = "";
-		sql += "SELECT * FROM webuser";
+		sql += "SELECT * FROM user_table";
 		sql += " WHERE 1=1 AND userid = ?";
 
 		Member res = null;
@@ -60,7 +59,7 @@ public class MemberDaoImpl implements MemberDao {
 
 		String sql="";
 
-		sql += "SELECT count(*) cnt FROM webuser";
+		sql += "SELECT count(*) cnt FROM user_table";
 		sql += " WHERE userid = ? AND userpw = ?";
 
 		int res = 0;
@@ -96,7 +95,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int insertByMemberInfo(Connection conn, Member member) {
 		
-		String sql ="INSERT INTO webuser( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
+		String sql ="INSERT INTO user_table( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
 		sql += " VALUES(seq_user.nextval,?,?,?,?,?,?,?,?,?)";
 		
 		
@@ -133,7 +132,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		//SQL 구문 생성
 		String sql = "";
-		sql += "SELECT*FROM webuser";
+		sql += "SELECT*FROM user_table";
 		
 		//리턴값 담을 리스트 객체 생성
 		List<Member> list = new ArrayList<>();
@@ -178,7 +177,7 @@ public class MemberDaoImpl implements MemberDao {
 	public Member getUserno(Connection conn, Member m) {
 		
 		String sql ="";
-		sql += "SELECT * FROM webuser";
+		sql += "SELECT * FROM user_table";
 		sql += "	WHERE userid = ?";
 		
 		Member member = new Member();
@@ -226,8 +225,10 @@ public class MemberDaoImpl implements MemberDao {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
 		}
 		
 		
@@ -257,19 +258,122 @@ public class MemberDaoImpl implements MemberDao {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
 		}
 		return res;
 	}
 
 
 	@Override
-	public Member selectByUserInfo(Connection connection, Member member) {
+	public Member selectByUserInfo(Connection conn, Member member) {
 		String sql ="";
+		sql += "SELECT * FROM user_table";
+		sql += " WHERE userid = ?";
+		
+		Member res = null;
 		
 		
-		return null;
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUserid());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = new Member();
+				
+				res.setUserid(rs.getString("userid"));
+				res.setUserno(rs.getInt("userno"));
+				res.setUserpw(rs.getString("userpw"));
+				res.setEmail(rs.getString("email"));
+				res.setUsername(rs.getString("username"));
+				res.setNick(rs.getString("nick"));
+				res.setPhoneno(rs.getString("phoneno"));
+				res.setGender(rs.getString("gender"));
+				res.setGrade(rs.getString("grade"));
+				res.setUserbirth(rs.getString("userbirth"));
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		
+		return res;
+	}
+
+
+	@Override
+	public int updateByNickEmail(Connection conn, Member member) {
+		
+		String sql = "";
+		sql += "UPDATE user_table SET nick = ?,email = ?";
+		sql += " WHERE userid = ?";
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getNick());
+			ps.setString(2, member.getEmail());
+			ps.setString(3, member.getUserid());
+			
+			res = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+			JDBCTemplate.close(ps);
+			
+			
+		}
+		
+		
+		
+		
+		
+		return res;
+	}
+
+
+	@Override
+	public int delete(Connection conn, Object userid) {
+		
+		String sql="";
+		sql +="DELETE FROM user_table";
+		sql +=" WHERE userid = ?";
+		int res = -1;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, (String)userid);
+			
+			res = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
 	}
 
 }

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import common.JDBCTemplate;
 import dao.face.MemberDao;
@@ -122,8 +123,39 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public Member getuserInfo(Member member) {
-		// TODO Auto-generated method stub
 		return memberDao.selectByUserInfo(JDBCTemplate.getConnection(), member);
 	}
+	@Override
+	public Member getUpdateMember(HttpServletRequest req) {
+
+		Member member = new Member();
+		
+		HttpSession session = req.getSession();
+		
+		member.setNick(req.getParameter("nick"));
+		member.setEmail(req.getParameter("email"));
+		member.setUserid( (String)req.getSession().getAttribute("userid"));
+		
+		
+		return member;
+	}
+	@Override
+	public void updateMemberInfo(Member member) {
+		if(memberDao.updateByNickEmail(JDBCTemplate.getConnection(), member) > 0) {
+			JDBCTemplate.commit(JDBCTemplate.getConnection());
+		} else {
+			JDBCTemplate.rollback(JDBCTemplate.getConnection());
+		}
+	}
+	@Override
+	public void secession(Object userid) {
+		if(memberDao.delete(JDBCTemplate.getConnection(), userid) > 0) {
+			JDBCTemplate.commit(JDBCTemplate.getConnection());
+		} else {
+			JDBCTemplate.rollback(JDBCTemplate.getConnection());
+		}
+	}
+	
+	
 
 }

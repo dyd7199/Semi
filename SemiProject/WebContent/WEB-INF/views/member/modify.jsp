@@ -4,16 +4,14 @@
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 <% Member info = (Member)request.getAttribute("info"); %>
-<% boolean check = true; %>
 <script type="text/javascript">
 $(document).ready(function () {
 	$("#cancleBtn").click(function () {
 		history.back();
 	})
 	
-	$("#secessionBtn").click(function () {
-		alert("정말 탈퇴하시겠습니까?")
-	})
+	$("#nickInput").focus();
+	
 	
 	
 	
@@ -41,11 +39,16 @@ $(document).ready(function () {
 
 <div class="session">
 <h1>회원정보 수정 / 탈퇴</h1><br><br>
-<form method = "post" action = "/member/secession" name = "userinput" >
+<form method = "post" action = "/member/update"  >
 <table width = "600" border = "1" cellspacing = "0" cellpadding = "3" align = "center" class="table table-boardered">
 <tr class="active">
       <td colspan = "2" height = "39" align = "center">
             <font size = "+1"><b>회원 정보 수정</b></font>
+      </td>
+</tr>
+<tr>
+      <td colspan = "2" class = "normal" align = "center">
+            회원의 정보를 수정합니다.
       </td>
 </tr>
 
@@ -58,13 +61,18 @@ $(document).ready(function () {
 <tr>
       <td width = "200">이름</td>
       <td width = "400">
+<!--             <input type = "text" name = "name" size = "15" -->
+<%--                   maxlength = "20" value = "<%= info.getUsername() %>"> --%>
+
 			<%=info.getUsername() %>
       </td>
 </tr>
 <tr>
       <td width = "200">닉네임</td>
        <td width = "400">
-			<%=info.getNick() %>
+                   <input type = "text" name = "nick" size = "15"
+                  maxlength = "20" value = "<%= info.getNick() %>" id="nick" />
+
       </td>
 </tr>
 
@@ -82,7 +90,8 @@ $(document).ready(function () {
              else
              {
        %>
-            <%=info.getEmail() %>
+                 <input type = "text" name = "email" size = "15"
+                  maxlength = "20" value = "<%= info.getEmail() %>">
        <%
              }
        %>
@@ -113,8 +122,7 @@ $(document).ready(function () {
                  
 
 </table>
-            <input type = "button" class="btn btn-default" name = "modify" value = "수  정" id="modifyBtn" onclick = "location.href='/member/chg?check=<%=check%>'">
-            <input type = "submit" class="btn btn-default" value = "탈  퇴" id="secessionBtn"/>
+            <input type = "submit" class="btn btn-default" name = "modify" value = "저  장" id="modifyBtn">
             <input type = "button" class="btn btn-default" value = "취  소" id="cancleBtn"/>
 </form>
 
