@@ -33,6 +33,7 @@ public class MemberDaoImpl implements MemberDao {
 				res.setUserid(rs.getString("userid"));
 				res.setUserpw(rs.getString("userpw"));
 				res.setNick(rs.getString("nick"));
+				res.setUserno(rs.getInt("userno"));
 			}
 
 

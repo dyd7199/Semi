@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
+
 <script type="text/javascript">
 $(document).ready(function () {
 	
