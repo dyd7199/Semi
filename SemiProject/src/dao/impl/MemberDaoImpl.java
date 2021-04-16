@@ -183,4 +183,13 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+
+	@Override
+	public Member selectByUserInfo(Connection connection, Member member) {
+		String sql ="";
+		
+		
+		return null;
+	}
+
 }

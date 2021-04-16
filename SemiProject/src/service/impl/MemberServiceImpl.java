@@ -87,7 +87,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public void join(Member member) {
-		// TODO Auto-generated method stub
 		if(memberDao.insertByMemberInfo(JDBCTemplate.getConnection(), member)>0) {
 			JDBCTemplate.commit(JDBCTemplate.getConnection());
 		} else {
@@ -102,6 +101,20 @@ public class MemberServiceImpl implements MemberService {
 	public int nickcheck(String nick) {
 		
 		return memberDao.selectByNick(JDBCTemplate.getConnection(),nick);
+	}
+	@Override
+	public Member saveLoinId(Object userid) {
+		
+		Member member = new Member();
+		member.setUserid((String)userid);
+		
+		
+		return member;
+	}
+	@Override
+	public Member getuserInfo(Member member) {
+		// TODO Auto-generated method stub
+		return memberDao.selectByUserInfo(JDBCTemplate.getConnection(), member);
 	}
 
 }

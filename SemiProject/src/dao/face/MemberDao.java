@@ -32,4 +32,12 @@ public interface MemberDao {
 	 */
 	int selectByNick(Connection conn, String nick);
 
+	/**
+	 * 유저정보 조회
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	Member selectByUserInfo(Connection connection, Member member);
+
 }
