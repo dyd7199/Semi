@@ -260,6 +260,18 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return res;
+<<<<<<< HEAD
+=======
+	}
+
+
+	@Override
+	public Member selectByUserInfo(Connection connection, Member member) {
+		String sql ="";
+		
+		
+		return null;
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 	}
 
 }

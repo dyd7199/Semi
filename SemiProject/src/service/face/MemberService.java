@@ -48,6 +48,18 @@ public interface MemberService {
 	 */
 
 	public int nickcheck(String nick);
+	/**
+	 * 유저 아이디 저장
+	 * @param attribute
+	 * @return
+	 */
+	public Member saveLoinId(Object attribute);
+	/**
+	 * 유저 정보 get
+	 * @param member
+	 * @return
+	 */
+	public Member getuserInfo(Member member);
 
 	public List<Member> getUserdata();
 
