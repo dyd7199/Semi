@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -93,6 +94,10 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			JDBCTemplate.rollback(JDBCTemplate.getConnection());
 		}
+	}
+	@Override
+	public List<Member> getUserdata() {
+		return memberDao.getAllUser(JDBCTemplate.getConnection());
 	}
 
 }

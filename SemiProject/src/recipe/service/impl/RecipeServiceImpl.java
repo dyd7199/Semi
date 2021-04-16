@@ -1,0 +1,98 @@
+package recipe.service.impl;
+
+import java.sql.Connection;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import common.JDBCTemplate;
+import dao.face.MemberDao;
+import dao.impl.MemberDaoImpl;
+import dto.Member;
+import dto.Recipe;
+import recipe.dao.face.RecipeDao;
+import recipe.dao.impl.RecipeDaoImpl;
+import recipe.service.face.RecipeService;
+import review.util.Paging;
+
+public class RecipeServiceImpl implements RecipeService {
+
+	private RecipeDao recipeDao = new RecipeDaoImpl();
+	private MemberDao memberDao = new MemberDaoImpl();
+	
+	@Override
+	public Paging getPaging(HttpServletRequest req) {
+		
+		//전달파라미터 curPage 파싱
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param != null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+		}
+		
+		//Board 테이블의 총 게시글 수를 조회한다
+		int totalCount = recipeDao.selectCntAll(JDBCTemplate.getConnection());
+		
+		//Paging객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;
+	}
+	
+	@Override
+	public List<Recipe> getRecipeList(Paging paging) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return recipeDao.selectAll(conn, paging);
+	}
+
+
+	@Override
+	public Recipe getRecipe(int post) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if( recipeDao.updateViews(conn, post) >= 0) {
+			JDBCTemplate.commit(conn);
+		}
+		
+		
+		return recipeDao.selectByPostno(conn, post);
+	}
+
+	@Override
+	public void write(HttpServletRequest req) {
+
+		Connection conn = JDBCTemplate.getConnection();
+
+		Recipe recipe = new Recipe();
+
+		recipe.setTitle( req.getParameter("title") );
+		recipe.setInq_content( req.getParameter("content") );
+
+		//작성자id 처리
+		Member m = new Member();
+		
+		m.setUserid((String) req.getSession().getAttribute("userid"));
+		
+		Member member = new Member();
+		
+		member.setUserno(memberDao.getUserno(conn, m).getUserno());
+		
+
+		if(recipe.getTitle()==null || "".equals(recipe.getTitle())) {
+			recipe.setTitle("(제목없음)");
+		}
+
+		if( recipeDao.insert(conn, recipe, member) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+
+
+
+}

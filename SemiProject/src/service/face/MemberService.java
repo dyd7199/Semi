@@ -1,5 +1,7 @@
 package service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
@@ -33,5 +35,12 @@ public interface MemberService {
 	 * @param member - 저장된 회원정보
 	 */
 	public void join(Member member);
+
+	/**
+	 * 모든 회원정보 조회
+	 * 
+	 * @return 회원정보 테이블 전체 데이터
+	 */
+	public List<Member> getUserdata();
 
 }

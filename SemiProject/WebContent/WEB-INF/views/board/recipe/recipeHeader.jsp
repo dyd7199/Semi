@@ -7,6 +7,7 @@
 <html lang="en">
 
 
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -59,6 +60,25 @@
 			text-align: center;
 		}
 		
+		#area {
+			width: 1200px;
+			height: 1200px;
+			margin: 0;
+		}
+		
+		table {
+			margin: 0 auto;
+		}
+		
+		#detail{
+			margin-top: 100px;
+		}
+		
+		tr, th, td {
+			border: 1px solid #ccc;
+			text-align: center;
+		
+		}
 		
 		</style>
 		    
@@ -69,7 +89,7 @@
     
     <body id="page-top" class="bodysize">
         <!-- Navigation-->
-        <nav class="navbar2 navbar-expand-lg bg-oranged text-uppercase fixed-top" id="mainNav">
+        <nav class="navbar2 navbar-expand-lg bg-oranged text-uppercase " id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="/">맛객</a>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,4 +111,5 @@
                 </div>
             </div>
         </nav>
+
        
