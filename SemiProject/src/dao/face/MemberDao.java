@@ -28,8 +28,7 @@ public interface MemberDao {
 	List<Member> getAllUser(Connection conn);
 
 	Member getUserno(Connection conn, Member m);
-
-=======
+	/**
 	 * id로 id가 있는지 조회 있으면  중복
 	 * @param connection
 	 * @param userid
@@ -43,7 +42,6 @@ public interface MemberDao {
 	 * @return
 	 */
 	int selectByNick(Connection conn, String nick);
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 
 	/**
 	 * 유저정보 조회
