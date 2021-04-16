@@ -32,6 +32,9 @@ public class ReviewWriteController extends HttpServlet {
 	
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			//인코딩
+			req.setCharacterEncoding("UTF-8");
+			
 			//작성글 삽입
 			reviewService.write(req);
 			
