@@ -3,17 +3,23 @@
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 
-
 <style>
-    body {
-        margin:20px auto;
-        padding: 0;
-        font-size:0.9em;
-        padding-top: 80px;
+body { 
+    margin:20px auto; 
+    padding: 0; 
+    padding-top: 80px; 
 }
     ul#navi {
         width: 200px;
         text-indent: 10px;
+        margin:20px auto;
+        padding: 0;
+        font-size:0.9em;
+        padding-top: 80px;
+        
+        background: #f4f4f4;
+/*     	float: left; */
+    	min-height: 800px;
         
 }
     ul#navi, ul#navi ul {
@@ -71,7 +77,7 @@
         <li class="group">
             <div class="title">MyPage</div>
             <ul class="sub">
-                <li><a href="#">찜한식당</a></li>
+                <li><a href="#">찜한 식당</a></li>
                 <li><a href="#">최근 본 식당</a></li>
                 <li><a href="#">내가 작성한 후기</a></li>
                 <li><a href="#">내가 작성한 레시피</a></li>
@@ -87,8 +93,8 @@
         <li class="group">
             <div class="title">MY 활동</div>
             <ul class="sub">
-                <li><a href="#">문의하기</a></li>                
-                <li><a href="#">문의내역 확인</a></li>    
+                <li><a href="/mypage/inq">문의하기</a></li>                
+                <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
             </ul>
         </li>        
     	<li class="group">
