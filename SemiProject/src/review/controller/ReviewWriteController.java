@@ -39,6 +39,6 @@ public class ReviewWriteController extends HttpServlet {
 			reviewService.write(req);
 			
 			//목록으로 리다이렉션
-			resp.sendRedirect("/review/list");
+			resp.sendRedirect("/review/info");
 		}
 }

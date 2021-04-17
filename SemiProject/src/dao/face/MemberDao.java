@@ -1,6 +1,7 @@
 package dao.face;
 
 import java.sql.Connection;
+import java.util.List;
 
 import dto.Member;
 
@@ -16,5 +17,48 @@ public interface MemberDao {
 	Member selectMemberByUserid(Connection conn, Member member);
 
 	int insertByMemberInfo(Connection conn, Member member);
+
+	/**
+	 * 모든 회원정보 조회
+	 * 
+	 * @param connection
+	 * @return 회원 테이블 전체 데이터
+	 */
+	List<Member> getAllUser(Connection conn);
+
+	Member getUserno(Connection conn, Member m);
+
+	/**
+	 * id로 id가 있는지 조회 있으면  중복
+	 * @param connection
+	 * @param userid
+	 * @return
+	 */
+	int selectById(Connection conn, String userid);
+	/**
+	 * nick로 nick이 있는지 조회 있으면 중복
+	 * @param connection
+	 * @param nick
+	 * @return
+	 */
+	int selectByNick(Connection conn, String nick);
+
+	/**
+	 * 유저정보 조회
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	Member selectByUserInfo(Connection connection, Member member);
+
+	/**
+	 * 유저정보 업데이트
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	int updateByNickEmail(Connection connection, Member member);
+
+	int delete(Connection connection, Object userid);
 
 }

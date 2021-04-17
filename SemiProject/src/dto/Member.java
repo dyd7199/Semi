@@ -14,6 +14,7 @@ public class Member {
 	private String email;
 	private String gender;
 	private String grade;
+	
 	@Override
 	public String toString() {
 		return "Member [userno=" + userno + ", userid=" + userid + ", username=" + username + ", userpw=" + userpw

@@ -63,6 +63,8 @@ public class LoginPageController extends HttpServlet {
 			session.setAttribute("login", login);
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("usernick", member.getNick());
+			session.setAttribute("userno", member.getUserno());
+			
 			//메인페이지로
 			resp.sendRedirect("/");
 		} else {
@@ -71,6 +73,8 @@ public class LoginPageController extends HttpServlet {
 			resp.sendRedirect("/member/login");
 		}
 
+		
+		
 		
 		
 		

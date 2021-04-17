@@ -124,7 +124,8 @@ button {
 	<td>
 	<details style="width: 60%;"><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
 	<td style="width: 10%;"><%=list.get(i).getCreate_date() %></td>
-	<td><a href="/review/update?reviewno=<%=list.get(i).getReviewno() %>"><button class="btn btn-warning" type="button" id="btnUpdate">수정</button></a>
+	
+	<td><button onclick="window.open('review/update?reviewno=<%=list.get(i).getReviewno() %>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
 	<a href="/review/delete?reviewno=<%=list.get(i).getReviewno() %>"><button class="btn btn-warning" type="button" id="btnDelete">삭제</button></a>
 	&nbsp;&nbsp;
 	<img id="star" src="/resources/se2/img/star<%=list.get(i).getStar_score() %>.png">

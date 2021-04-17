@@ -1,5 +1,7 @@
 package service.face;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
@@ -33,5 +35,55 @@ public interface MemberService {
 	 * @param member - 저장된 회원정보
 	 */
 	public void join(Member member);
+	/**
+	 * 아이디 중복 체크
+	 * @param parameter
+	 * @return
+	 */
+	public int idcheck(String usrid);
+	/**
+	 * 닉네임 중복 체크
+	 * @param parameter
+	 * @return
+	 */
+
+	public int nickcheck(String nick);
+	/**
+	 * 유저 아이디 저장
+	 * @param attribute
+	 * @return
+	 */
+	public Member saveLoinId(Object attribute);
+	/**
+	 * 유저 정보 불러오기
+	 * @param member
+	 * @return
+	 */
+	public Member getuserInfo(Member member);
+
+	public List<Member> getUserdata();
+
+	/**
+	 * 수정 정보 저장 객체
+	 * @param req
+	 * @return
+	 */
+	public Member getUpdateMember(HttpServletRequest req);
+
+	/**
+	 * 유저 정보 수정
+	 * @param member
+	 */
+	public void updateMemberInfo(Member member);
+
+	/**
+	 * 유저 정보 삭제
+	 * @param attribute
+	 */
+	public void secession(Object attribute);
+
+	
+	
+	
 
 }
