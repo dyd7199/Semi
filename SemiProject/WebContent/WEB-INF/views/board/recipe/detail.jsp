@@ -6,20 +6,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+
 <% Recipe recipe = (Recipe) request.getAttribute("Recipe"); %>
 <% List<Member> mList = (List) request.getAttribute("mList"); %>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
-</script>
 
-</head>
-<body>
 
 <div id="content">
 <table id="detail" class="table" style="marget-top: 200px;">
@@ -51,10 +43,8 @@
 </table>
 <hr>
 
-<<<<<<< HEAD
-<button onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>";'>수정</button>
-<button itd="btnUpdate" name="userno" onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>";'>수정</button>
-<button>삭제</button>
+<button id="btnUpdate" name="update" onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>";'>수정</button>
+<button id="btnDelete" name="delete" onclick='location.href="/recipe/delete?userno=<%=recipe.getUserno() %>&postno=<%=recipe.getPostno() %>";'>삭제</button>
 <button id="btnList" name="btnReturn" onclick='location.href="/recipe/list";'>목록으로</button>
 
 </div>

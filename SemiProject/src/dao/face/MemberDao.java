@@ -13,7 +13,8 @@ public interface MemberDao {
 	 * @return - 정보가 있으면 TRUE, 없으면 FALSE
 	 */
 	int selectCntMemberUseridUserpw(Connection conn, Member member);
-
+	
+	
 	Member selectMemberByUserid(Connection conn, Member member);
 
 	int insertByMemberInfo(Connection conn, Member member);
@@ -26,6 +27,14 @@ public interface MemberDao {
 	 */
 	List<Member> getAllUser(Connection conn);
 
+	/**
+	 * 레시피 작성에 필요한 userno를 매개변수 userid를 담고있는 Member m을 통해
+	 * 가져온다
+	 * 
+	 * @param conn
+	 * @param m userid를 담고있는 Member 객체
+	 * @return 레시피 데이터에 들어갈 작성자의 userno
+	 */
 	Member getUserno(Connection conn, Member m);
 
 	/**

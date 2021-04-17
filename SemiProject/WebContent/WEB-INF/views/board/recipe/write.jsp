@@ -1,5 +1,3 @@
-
-    
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
     
 <!-- 스마트에디터 2 -->

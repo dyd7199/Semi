@@ -166,10 +166,8 @@ public class MemberServiceImpl implements MemberService {
 		int userno2 = Integer.parseInt(req.getParameter("userno"));
 		
 		if( userno1.equals(userno2) ) {
-			System.out.println("유저번호 일치");
 			return true;
 		} else {
-			System.out.println("유저번호 불일치");
 			return false;
 		}
 		

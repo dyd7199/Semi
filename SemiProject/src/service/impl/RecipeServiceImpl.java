@@ -102,6 +102,8 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		return recipeDao.getDataByUserno(conn, userno);
 	}
+	
+	
 	public Recipe getRecipeByUserno(HttpServletRequest req) {
 
 		Connection conn = JDBCTemplate.getConnection();
@@ -109,6 +111,44 @@ public class RecipeServiceImpl implements RecipeService {
 		int userno = Integer.parseInt( req.getParameter("userno") );
 		
 		return recipeDao.getRecipeByUserno(conn, userno);
+	}
+
+	@Override
+	public void Updatedata(HttpServletRequest req) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if( recipeDao.UpdateRecipe(conn, req) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+
+	@Override
+	public Recipe getRecipeDataFromReq(HttpServletRequest req) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int postno = Integer.parseInt(req.getParameter("postno"));
+		
+		return recipeDao.getRecipeDataFromReq(conn, postno);
+	}
+
+	@Override
+	public void deleteRecipe(HttpServletRequest req) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if( recipeDao.deleteRecipe(conn, req) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		
+		
 	}
 
 

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import common.JDBCTemplate;
 import common.Paging;
 import dao.face.RecipeDao;
@@ -226,7 +228,6 @@ public class RecipeDaoImpl implements RecipeDao {
 				
 			}
 			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -268,22 +269,94 @@ public class RecipeDaoImpl implements RecipeDao {
 		return recipe;
 	}
 
+	@Override
+	public int UpdateRecipe(Connection conn, HttpServletRequest req) {
+		
+		String sql = "";
+		sql += "UPDATE recipe SET title = ?, inq_content = ?";
+		sql += "	WHERE postno = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, req.getParameter("title"));
+			ps.setString(2, req.getParameter("content"));
+			ps.setInt(3, Integer.parseInt(req.getParameter("postno")));
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+	@Override
+	public Recipe getRecipeDataFromReq(Connection conn, int postno) {
+		
+		String sql = "";
+		sql += "SELECT * FROM recipe";
+		sql += "	WHERE postno = ?";
+		
+		//반환 Recipe 객체 생성
+		Recipe recipe = new Recipe();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, postno);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				recipe.setCreate_date( rs.getDate("create_date"));
+				recipe.setInq_content( rs.getString("inq_content"));
+				recipe.setPostno( rs.getInt("postno"));
+				recipe.setTitle( rs.getString("title"));
+				recipe.setUserno( rs.getInt("userno"));
+				recipe.setViews( rs.getInt("views"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return recipe;
+	}
+
+	@Override
+	public int deleteRecipe(Connection conn, HttpServletRequest req) {
+		
+		String sql = "";
+		sql += "DELETE FROM recipe";
+		sql += "	WHERE postno = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, Integer.parseInt(req.getParameter("postno")));
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

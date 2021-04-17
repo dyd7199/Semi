@@ -61,6 +61,11 @@ public interface MemberService {
 	 */
 	public Member getuserInfo(Member member);
 
+	/**
+	 * 레시피 게시글에 보여질 모든 회원정보 데이터
+	 * 
+	 * @return 모든 회원정보 데이터
+	 */
 	public List<Member> getUserdata();
 
 	/**

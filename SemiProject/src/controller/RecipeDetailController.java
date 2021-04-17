@@ -27,6 +27,9 @@ public class RecipeDetailController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//받는 값을 utf-8로 인코딩
+		req.setCharacterEncoding("UTF-8");
+
 		//전달 파라미터 객체 생성
 		String postno = req.getParameter("postno");
 
@@ -44,9 +47,6 @@ public class RecipeDetailController extends HttpServlet {
 
 		//세션에 속성값으로 mList 설정
 		req.setAttribute("mList", mList);
-		
-		//첨부파일 정보 생성
-		
 		
 		//JSP로 연결
 		req.getRequestDispatcher("/WEB-INF/views/board/recipe/detail.jsp")
