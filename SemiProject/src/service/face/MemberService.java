@@ -82,6 +82,14 @@ public interface MemberService {
 	 */
 	public void secession(Object attribute);
 
+	/**
+	 * session으로부터 받은 회원번호와 레시피 작성자의 회원번호를 비교
+	 * 
+	 * @param req
+	 * @return 일치할 경우 true, 불일치할 경우 false 반환
+	 */
+	public boolean UsernoChk(HttpServletRequest req);
+
 	
 	
 	

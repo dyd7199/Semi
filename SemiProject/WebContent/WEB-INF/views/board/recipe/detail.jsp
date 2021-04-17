@@ -48,7 +48,7 @@
 </table>
 <hr>
 
-<button onclick='location.href="/recipe/update";'>수정</button>
+<button onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>";'>수정</button>
 <button>삭제</button>
 <button onclick='location.href="/recipe/list";'>목록으로</button>
 

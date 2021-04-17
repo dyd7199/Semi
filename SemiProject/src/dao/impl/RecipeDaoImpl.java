@@ -186,6 +186,46 @@ public class RecipeDaoImpl implements RecipeDao {
 		return res;
 	}
 
+	@Override
+	public Recipe getDataByUserno(Connection conn, String userno) {
+		
+		String sql = "";
+		sql += "SELECT * FROM recipe";
+		sql += "	WHERE userno = ?";
+		
+		//결과정보를 담을 recipe객체
+		Recipe recipe = new Recipe();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, Integer.parseInt(userno) );
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				recipe.setCreate_date( rs.getDate("create_date") );
+				recipe.setInq_content( rs.getString("inq_content") );
+				recipe.setPostno( rs.getInt("postno") );
+				recipe.setTitle( rs.getString("title") );
+				recipe.setUserno( rs.getInt("userno") );
+				recipe.setViews( rs.getInt("views") );
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return recipe;
+	}
+
 }
 
 

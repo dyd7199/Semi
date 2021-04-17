@@ -25,6 +25,15 @@ public interface RecipeDao {
 
 	int insert(Connection conn, Recipe recipe, Member member);
 
+	/**
+	 * 레시피 상세보기에서 얻은 userno로 해당 recipe의 모든 정보를 가져온다
+	 * 
+	 * @param conn
+	 * @param userno
+	 * @return 해당 레시피 게시글의 모든 정보
+	 */
+	Recipe getDataByUserno(Connection conn, String userno);
+
 
 
 }
