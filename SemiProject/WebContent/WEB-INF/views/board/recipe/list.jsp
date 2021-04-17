@@ -1,5 +1,5 @@
-<%@page import="dto.Member"%>
 <%@page import="java.util.List"%>
+<%@page import="dto.Member"%>
 <%@page import="dto.Recipe"%>
     
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
@@ -48,7 +48,7 @@
 </div>
 
 <div>
-<button style="float: right;" onclick='location.href="/recipe/write";'>글쓰기</button>
+<button class="btn btn-default" style="float: right;" onclick='location.href="/recipe/write";'>글쓰기</button>
 </div>
 
 <%@ include file="/WEB-INF/views/board/recipe/paging.jsp" %>

@@ -1,5 +1,5 @@
-<%@page import="dto.Member"%>
 <%@page import="java.util.List"%>
+<%@page import="dto.Member"%>
 <%@page import="dto.Recipe"%>
 
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
@@ -15,6 +15,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+</script>
+
 </head>
 <body>
 
@@ -48,9 +51,9 @@
 </table>
 <hr>
 
-<button onclick='location.href="/recipe/update";'>수정</button>
+<button itd="btnUpdate" name="userno" onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>";'>수정</button>
 <button>삭제</button>
-<button onclick='location.href="/recipe/list";'>목록으로</button>
+<button id="btnList" name="btnReturn" onclick='location.href="/recipe/list";'>목록으로</button>
 
 </div>
 

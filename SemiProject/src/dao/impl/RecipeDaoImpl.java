@@ -50,8 +50,13 @@ public class RecipeDaoImpl implements RecipeDao {
 		
 		//SQL 구문 생성
 		String sql = "";
-		sql += "SELECT * FROM recipe";
-		sql += "	ORDER BY postno DESC";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, R.* FROM (";
+		sql += "		SELECT * FROM recipe";
+		sql += "			ORDER BY postno DESC";
+		sql += "	) R	 ";
+		sql += " ) RECIPE";
+		sql += " WHERE rnum BETWEEN ? AND ?";
 		
 		//결과값 담을 List객체 생성
 		List<Recipe> list = new ArrayList<>();
@@ -59,6 +64,9 @@ public class RecipeDaoImpl implements RecipeDao {
 		try {
 			//DB 객체 생성
 			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
 			
 			//SQL구문 수행
 			rs = ps.executeQuery();
@@ -90,7 +98,7 @@ public class RecipeDaoImpl implements RecipeDao {
 	}
 
 	@Override
-	public Recipe selectByPostno(Connection conn, int post) {
+	public Recipe selectByPostno(Connection conn, String postno) {
 		
 		//SQL구문 생성
 		String sql = "";
@@ -105,7 +113,7 @@ public class RecipeDaoImpl implements RecipeDao {
 			ps = conn.prepareStatement(sql);
 			
 			// postno 값 대입
-			ps.setInt(1, post);			
+			ps.setInt(1, Integer.parseInt(postno) );			
 			
 			//SQL쿼리 수행
 			rs = ps.executeQuery();
@@ -123,6 +131,8 @@ public class RecipeDaoImpl implements RecipeDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			
 		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
@@ -133,7 +143,7 @@ public class RecipeDaoImpl implements RecipeDao {
 	}
 
 	@Override
-	public int updateViews(Connection conn, int post) {
+	public int updateViews(Connection conn, String postno) {
 
 		String sql = "";
 		sql += "UPDATE recipe";
@@ -145,12 +155,14 @@ public class RecipeDaoImpl implements RecipeDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, post);
+			ps.setInt(1, Integer.parseInt(postno) );
 			
 			res = ps.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			
 		} finally {
 			JDBCTemplate.close(ps);
 		}
@@ -186,6 +198,55 @@ public class RecipeDaoImpl implements RecipeDao {
 		return res;
 	}
 
+	@Override
+	public Recipe getRecipeByUserno(Connection conn, int userno) {
+		
+		String sql = "";
+		sql += "SELECT * FROM recipe";
+		sql += "	WHERE userno = ?";
+		
+		Recipe recipe = new Recipe();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				recipe.setPostno( rs.getInt("postno") );
+				recipe.setCreate_date( rs.getDate("create_date") );
+				recipe.setTitle( rs.getString("title") );
+				recipe.setUserno( rs.getInt("userno") );
+				recipe.setInq_content( rs.getString("inq_content") );
+				recipe.setViews( rs.getInt("views") );
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return recipe;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

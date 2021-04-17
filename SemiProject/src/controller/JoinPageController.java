@@ -44,11 +44,11 @@ public class JoinPageController extends HttpServlet {
 
 
 		// 회원가입 정보 저장
-//		Member member = memberService.getJoinMember(req);
+		Member member = memberService.getJoinMember(req);
 		// [TEST]
 //		System.out.println(member);
 		
-//		memberService.join(member);
+		memberService.join(member);
 		
 
 		req.getRequestDispatcher("/WEB-INF/views/member/joinsuccess.jsp").forward(req, resp);

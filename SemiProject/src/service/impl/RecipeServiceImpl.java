@@ -36,17 +36,6 @@ public class RecipeServiceImpl implements RecipeService {
 		//Paging객체 생성
 		Paging paging = new Paging(totalCount, curPage);
 		
-		System.out.println("현재 페이지 : " + paging.getCurPage());
-		System.out.println("화면에 보여질 페이지 수 : " + paging.getPageCount());
-		System.out.println("화면에 보여질 게시글 수 : " + paging.getListCount());
-		System.out.println("총 페이지 수 : " + paging.getTotalPage());
-		System.out.println("페이지네이션의 시작 번호 : " + paging.getStartPage());
-		System.out.println("페이지네이션의 끝 번호 : " + paging.getEndPage());
-		System.out.println("화면에 보여질 게시글 시작번호 : " + paging.getStartNo());
-		System.out.println("화면에 보여질 게시글 끝번호 : " + paging.getEndNo());
-		System.out.println("총 게시글 수 : " + paging.getTotalCount());
-		
-		
 		return paging;
 	}
 	
@@ -60,16 +49,18 @@ public class RecipeServiceImpl implements RecipeService {
 
 
 	@Override
-	public Recipe getRecipe(int post) {
+	public Recipe getRecipe(String postno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		if( recipeDao.updateViews(conn, post) >= 0) {
+		if( recipeDao.updateViews(conn, postno) >= 0) {
 			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
 		}
 		
 		
-		return recipeDao.selectByPostno(conn, post);
+		return recipeDao.selectByPostno(conn, postno);
 	}
 
 	@Override
@@ -102,6 +93,16 @@ public class RecipeServiceImpl implements RecipeService {
 			JDBCTemplate.rollback(conn);
 		}
 		
+	}
+
+	@Override
+	public Recipe getRecipeByUserno(HttpServletRequest req) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int userno = Integer.parseInt( req.getParameter("userno") );
+		
+		return recipeDao.getRecipeByUserno(conn, userno);
 	}
 
 
