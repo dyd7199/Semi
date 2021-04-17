@@ -49,16 +49,18 @@ public class RecipeServiceImpl implements RecipeService {
 
 
 	@Override
-	public Recipe getRecipe(int post) {
+	public Recipe getRecipe(String postno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		if( recipeDao.updateViews(conn, post) >= 0) {
+		if( recipeDao.updateViews(conn, postno) >= 0) {
 			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
 		}
 		
 		
-		return recipeDao.selectByPostno(conn, post);
+		return recipeDao.selectByPostno(conn, postno);
 	}
 
 	@Override
@@ -99,6 +101,14 @@ public class RecipeServiceImpl implements RecipeService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		return recipeDao.getDataByUserno(conn, userno);
+	}
+	public Recipe getRecipeByUserno(HttpServletRequest req) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int userno = Integer.parseInt( req.getParameter("userno") );
+		
+		return recipeDao.getRecipeByUserno(conn, userno);
 	}
 
 

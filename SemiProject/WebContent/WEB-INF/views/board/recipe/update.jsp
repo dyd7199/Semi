@@ -1,5 +1,6 @@
 
     
+<<<<<<< HEAD
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
     
 <!-- 스마트에디터 2 -->
@@ -68,6 +69,77 @@ $(document).ready(function() {
 	</tr>
 	<tr>		
 		<td colspan="2"><textarea id="content" name="content"></textarea></td>
+<%@page import="dto.Recipe"%>
+<%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
+    
+    
+<!-- 스마트에디터 2 -->
+<script type="text/javascript"
+ src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+ 
+<!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
+<script type="text/javascript">
+function submitContents( elClickedObj ) {
+	
+	//에디터의 내용을 #content에 반영한다
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		// <form>태그의 submit 수행
+		elClickedObj.form.submit();
+	} catch(e) {}
+	
+}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	//작성버튼 동작
+	$("#btnWrite").click(function() {
+		
+		//스마트 에디터의 내용을 <textarea>에 적용하는 함수를 호출한다
+		submitContents( $("#btnWrite") )
+		
+		//<form> submit
+		$("form").submit();
+	});
+	
+	//취소버튼 동작
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
+});
+</script>
+ 
+<% Recipe recipe = (Recipe) request.getAttribute("recipe"); %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
+<h1>레시피 쓰기</h1><br>
+
+<hr><br>
+
+<div id="area">
+<form action="/recipe/write" method="post" >
+<table>
+
+	<tr>
+		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
+	</tr>
+	<tr>
+		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
+	</tr>
+	<tr>
+		<td>제목</td><td><input type="text" name="title" value="<%=recipe.getTitle() %>" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">내용</td>
+	</tr>
+	<tr>		
+		<td colspan="2"><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
 	</tr>
 
 </table>

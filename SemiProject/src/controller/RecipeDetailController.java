@@ -29,12 +29,9 @@ public class RecipeDetailController extends HttpServlet {
 		
 		//전달 파라미터 객체 생성
 		String postno = req.getParameter("postno");
-		
-		//글번호에 해당하는 상세 글보기에 필요한 데이터 얻기
-		int post = Integer.parseInt(postno);
-		
+
 		//글번호에 해당하는 글 상세데이터 객체 생성
-		Recipe recipe = recipeService.getRecipe(post);
+		Recipe recipe = recipeService.getRecipe(postno);
 		
 		//세션에 속성값으로 Recipe 설정
 		req.setAttribute("Recipe", recipe);

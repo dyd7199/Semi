@@ -1,5 +1,6 @@
 package service.impl;
 
+
 import java.util.List;
 
 import java.io.UnsupportedEncodingException;
@@ -50,6 +51,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.selectMemberByUserid(JDBCTemplate.getConnection(),member);
 	}
+	
+	
 	@Override
 	public List<Member> getUserdata() {
 		
@@ -58,6 +61,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
+
 	@Override
 	public Member getJoinMember(HttpServletRequest req) {
 		
