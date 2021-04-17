@@ -77,7 +77,7 @@ $(document).ready(function() {
 		showStarValue(idx);
 		
 		$("#star").val( $("#grade").text() );
-		
+		$("form").submit();
 		
 	})
 	
@@ -127,109 +127,17 @@ function showStarValue(val) {
 	
 	$(".star-value").html(val);
 	
+
 }
 </script>
 
 </head>
 
 <body>
-  <div class="container">
-     <h2 style="text-align:center">리뷰 작성</h2>
-<br>
-<h5 style="color: #808080; font-family:'바탕';">&nbsp;당 식당에 대한 평가를 별점으로 나타내주세요 </h5>
-<div class="star-box">
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-<span class="star star_left"></span>
-<span class="star star_right"></span>
-</div>
-    <hr>
-<div>
-<form action="/review/write" method="post" enctype="multipart/form-data">
-<div Class="star-value" id="grade">0</div>
-<input type="hidden" id="star" name="star_score" value=""/>
+<form action="/star" method="post" id="form2">
+<div class="star-value" id="grade">0</div>
 
- <table class="table table-bordered">
-   <tr>
-	<td class="info" style="background-color: #FAA600; width: 100px;">회원번호</td>
-    <td>
- 	<%=session.getAttribute("userno") %>
-    </td>
-	</tr>
-	<tr>
-    <td class="info" style="background-color: #FAA600;">제목</td>
-     <td><input type="text" name="title" style="width:100%" /></td>
-	</tr>
-     <tr>
-     <td class="info" style="background-color: #FAA600;" colspan="2">본문</td>
-       </tr>
-      <tr>
-	<td colspan="2"><textarea id="inq_content" name="inq_content"></textarea></td>
-      </tr>
-</table>
-첨부파일 <input type="file" name="file" />
-
-      </form>
-       </div>
- <div class="text-center">
-      <button type="button" id="btnWrite" class="btn btn-warning">작성</button>
-      <button type="button" id="btnCancel" class="btn btn-default">취소</button>
-        </div>
-        </div>
- <script type="text/javascript">
-            
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-oAppRef: oEditors,
-elPlaceHolder: "inq_content", //에디터가 적용될 <textarea>의 id를 입력
-sSkinURI: "/resources/se2/SmartEditor2Skin.html",
-fCreator: "createSEditor2"
- })
-
-            
-
-function submitContents(elClickedObj) {
-  //에디터의 내용을 #content에 반영한다
-    oEditors.getById["inq_content"].exec("UPDATE_CONTENTS_FIELD", []);
-
-    console.log(3);
-        try {
-            // <form>태그의 submit 수행
-            elClickedObj.form.submit();
-                } catch (e) { }
-
-            }
-
-            console.log(4);
-            $(document).ready(function () {
-
-                console.log(5);
-                //작성버튼 동작
-                $("#btnWrite").click(function () {
-                    //스마트 에디터의 내용을 <textarea>에 적용하는 함수를 호출한다
-                    console.log(6);
-                    submitContents($("#btnWrite"))
-                    //<form> submit
-                    
-                    
-                    $("form").submit();
-                        opener.location.reload();
-
-                });
-
-                //취소버튼 동작
-                $("#btnCancel").click(function () {
-                    console.log(7);
-                    history.go(-1);
-                });
-            });
-        </script>
-    </body>
-
-    </html>
+<input type="hidden" id="star" name="star" value="" />
+</form>
+</body>
+</html>
