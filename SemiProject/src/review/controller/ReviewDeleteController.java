@@ -25,8 +25,10 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		reviewService.delete(review);
 		
 		//목록으로 리다이렉트
-		resp.sendRedirect("/board/list");	
+		resp.sendRedirect("/review/list");	
 				
+		
+		
 				
 	
 	}

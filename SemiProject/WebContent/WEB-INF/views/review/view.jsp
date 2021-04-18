@@ -1,8 +1,10 @@
+<%@page import="review.dto.BoardFile"%>
 <%@page import="review.dto.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%	Review r = (Review) request.getAttribute("viewReview"); %>
+<%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
 
 <!DOCTYPE html>
 <html>
@@ -51,10 +53,12 @@ $(document).ready(function() {
 </style>
 <body>
 <br>
+<h2 style="text-align:center">리뷰 상세</h2>
+<br>
 <div class="text-center">	
-	<button id="btnList" class="btn btn-primary">목록</button>
-	<button id="btnUpdate" class="btn btn-info">수정</button>
-	<button id="btnDelete" class="btn btn-danger">삭제</button>
+	<button id="btnList" class="btn btn-warning">목록</button>
+	<button id="btnUpdate" class="btn btn-warning">수정</button>
+	<button id="btnDelete" class="btn btn-warning">삭제</button>
 </div>
 <br>
 <div class="container">
@@ -79,6 +83,16 @@ $(document).ready(function() {
 <tr><td colspan="4"><%=r.getInq_content() %></td></tr>
 
 </table>
+<div>
+<%	if( boardFile != null ) { %>
+
+<a href="/upload/<%=boardFile.getStoredName() %>"
+ download="<%=boardFile.getOriginName() %>">
+	<%=boardFile.getOriginName() %>
+</a>
+
+<%	} %>
+</div>
 </div>
 
 </body>

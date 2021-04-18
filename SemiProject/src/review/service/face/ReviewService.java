@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import review.dto.BoardFile;
 import review.dto.Review;
 import review.util.Paging;
 
@@ -20,5 +21,9 @@ public interface ReviewService {
 	void write(HttpServletRequest req);
 
 	void delete(Review review);
+
+	void update(HttpServletRequest req);
+
+	BoardFile viewFile(Review viewReview);
 
 }

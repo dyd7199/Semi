@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
+<<<<<<< HEAD
+=======
+
 
 <script type="text/javascript">
 $(document).ready(function () {
@@ -174,6 +177,9 @@ $(document).ready(function () {
 		})
 		
 		
+<<<<<<< HEAD
+	})
+=======
 		
 	})//$("#idoverlap").click(function () end
 	
