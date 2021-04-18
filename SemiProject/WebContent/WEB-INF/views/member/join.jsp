@@ -126,7 +126,7 @@ $(document).ready(function () {
 		}
 		
 	})// $("#joinform").submit(function () end
-	
+	// 아이디 중복 체크
 	$("#idoverlap").click(function () {
 		
 		var userid = $("#userid").val();
@@ -152,6 +152,9 @@ $(document).ready(function () {
 		
 		
 	})//$("#idoverlap").click(function () end
+			
+			
+	// 닉네임 중복 체크
 	$("#nickoverlap").click(function () {
 		
 		var userid = $("#userid").val();
@@ -171,12 +174,13 @@ $(document).ready(function () {
 					 alert("닉네임을 입력하세요!")
 				 }
 			 }
-		})
+		}) 
 		
-		
-		
-	})//$("#idoverlap").click(function () end
-	
+	})//$("#nickoverlap").click(function () end
+	$("#cancleBtn").click(function () {
+
+		history.back();
+	})
 	
 })
 </script>
@@ -358,15 +362,14 @@ h1,hr{
 	 </select>
  </div>
 </div>
- 
-  <div class="form-group form-inline">
-    <div class="col-sm-offset-2 col-sm-3 radio-inline ">
-      <button type="submit" class="btn btn-default">가입</button>
-      <button type="submit" class="btn btn-default" >취소</button>
-    </div>
+ <div class="form-group ">
+    <div class="col-sm-5 form-inline ">
+	  <button type="submit" class="btn btn-default">가입</button>
+      <button type="button" id="cancleBtn"class="btn btn-default">취소</button>
   </div>
-  
+  </div>
 </form>
+
 </div>
 
 
