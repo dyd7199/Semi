@@ -10,7 +10,6 @@
 <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
 $(document).ready(function() {
-
 	function close(){
 		window.open('', '_self', '');
 		window.close();

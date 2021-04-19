@@ -76,9 +76,9 @@ $(document).ready(function() {
 <input type="hidden" name="boardno" value="<%=r.getReviewno() %>" />
 
 <table class="table table-bordered">
-<tr><td class="info">회원번호</td><td><%=r.getUserno() %></td></tr>
-<tr><td class="info">제목</td><td><input type="text" name="title" style="width:100%" value="<%=r.getTitle() %>"/></td></tr>
-<tr><td class="info" colspan="2">본문</td></tr>
+<tr><td class="info" style="background-color: #FAA600; width: 100px;">회원번호</td><td><%=r.getUserno() %></td></tr>
+<tr><td class="info" style="background-color: #FAA600;">제목</td><td><input type="text" name="title" style="width:100%" value="<%=r.getTitle() %>"/></td></tr>
+<tr><td class="info" style="background-color: #FAA600;" colspan="2">본문</td></tr>
 <tr><td colspan="2"><textarea id="inq_content" name="inq_content"><%=r.getInq_content() %></textarea></td></tr>
 </table>
 </form>
