@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Inquiry;
+import dto.InquiryFile;
 import inquiry.util.Paging;
 
 public interface InquiryService {
@@ -59,11 +60,29 @@ public interface InquiryService {
 
 
 	/**
+	 * Inquiry객체의 userno를 이용한 닉네임 조회
+	 * 
+	 * @param writeInquiry
+	 * @return String - 게시글 작성자의 닉네임
+	 */
+	public String getNick(Inquiry viewInquiry);
+	
+	
+	/**
 	 * 문의글 작성하기
 	 *  입력한 내용을 DB에 저장
 	 * 
-	 * @param req - 요청정보 객체(게시글 내용)
+	 * @param req - 요청정보 객체(게시글 내용 + 첨부파일)
 	 */
 	public void writeInq(HttpServletRequest req);
+	
+	
+	/**
+	 * 첨부파일의 정보 얻기
+	 * 
+	 * @param viewInquiry - 첨부파일에 포함된 문의번호(inquiryno)
+	 * @return InquiryFile - 첨부파일 정보 객체
+	 */
+//	public InquiryFile viewFile(Inquiry viewInquiry);
 
 }
