@@ -53,22 +53,19 @@ $(document).ready(function() {
 input .title{
 	width: 98%;
 }
+
 </style>
 
-<h3>레시피 쓰기</h3><br>
+<div style="text-align: left; height:15px;">
+<h3>레시피 글쓰기</h3><br>
+</div>
 
-<hr><br>
+<hr style="boarder: 0; height:1px; background: black;"><br>
 
 <div id="area">
-<form action="/recipe/write" method="post" >
+<form action="/recipe/write" method="post"  enctype="multipart/form-data">
 <table class="table table-bordered">
 
-	<tr>
-		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
-	</tr>
-	<tr>
-		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
-	</tr>
 	<tr>
 		<td>제목</td><td><input type="text" name="title" style="width: 95%"/></td>
 	</tr>
@@ -76,14 +73,20 @@ input .title{
 		<td colspan="2">내용</td>
 	</tr>
 	<tr>		
-		<td colspan="2"><textarea id="content" name="content"></textarea></td>
+		<td colspan="2" style="height: 600px;"><textarea id="content" name="content"></textarea></td>
+	</tr>
+	<tr>
+		<td>파일 첨부</td><td><input type="file" name="upfile" /></td>
+	</tr>
+	<tr>
+		<td><input type="hidden" name="userno" value="<%=request.getSession().getUserno %>"/>
 	</tr>
 
 </table>
 </form>
 
 </div>
-<div>
+<div style="margin-top: 20px; margin-bottom: 40px;">
 	<button type="button" id="btnWrite">완료</button>
 	<button type="button" id="btnCancel">취소</button>
 </div>

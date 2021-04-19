@@ -62,7 +62,7 @@
 		
 		#area {
 			width: 1200px;
-			height: 1200px;
+			height: 350px;
 			margin: 0;
 		}
 		

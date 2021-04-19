@@ -11,10 +11,14 @@
 <% List<Recipe> list = (List) request.getAttribute("List"); %>
 <% List<Member> mList = (List) request.getAttribute("mList"); %>
 
-<a href="/notice/list">공지사항</a>
-<a href="/recipe/list">레시피공유</a>
-<a href="/faq">FAQ</a>
-<hr>
+
+<ul class="nav nav-pills" style="margin: 10px;">
+  <li role="presentation" class="active"><a href="/notice/list">공지사항</a></li>
+  <li role="presentation"><a href="/recipe/list">레시피공유</a></li>
+  <li role="presentation"><a href="/faq">FAQ</a></li>
+</ul>
+
+<hr style="border: 0; height: 1px; background: black;">
 
 <div id="content">
 <table class="table table-hover">
