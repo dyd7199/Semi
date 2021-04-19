@@ -36,14 +36,17 @@ public class ChgWdrlController extends HttpServlet {
 		
 		
 		Member info = memberService.getuserInfo(member);
+		System.out.println(req.getParameter("check"));
+		
+		req.setAttribute("info", info);
 		
 		
 		
-		
-		
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/member/changeWithdrawal.jsp").forward(req, resp);
+		if(req.getParameter("check") == null) {
+			req.getRequestDispatcher("/WEB-INF/views/member/changeWithdrawal.jsp").forward(req, resp);
+		} else {
+			req.getRequestDispatcher("/WEB-INF/views/member/modify.jsp").forward(req, resp);
+		}
 		
 		
 		

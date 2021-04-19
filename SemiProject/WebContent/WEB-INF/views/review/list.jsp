@@ -1,33 +1,39 @@
+<%@page import="review.dto.BoardFile"%>
 <%@page import="review.dto.Review"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%	List<Review> list = (List) request.getAttribute("reviewList"); %>
+<%	Review r = (Review) request.getAttribute("viewReview"); %>
+<%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	//글쓰기 버튼 누르면 이동
-	$("#btnWrite").click(function() {
-		location.href="/review/write";
+
+	
+
+	//삭제버튼 동작
+	$("#btnDelete").click(function() {
 	});
 	
 });
 </script>
 
 <style>
+a {
+	color: #cc8700
+}
+
+
 details {
     margin-bottom: 1rem;
 }
@@ -79,14 +85,26 @@ details[open] > summary ~ * {
 details > summary::-webkit-details-marker {
     /* styles */
 }
+
+button {
+
+    width:100px;
+
+    background-color: #f8585b; border: none; color:#fff; padding: 15px 0; text-align: center;
+   text-decoration: none; display: inline-block; font-size: 15px; margin: 4px; cursor: pointer;
+
+}
+
+
+
 </style>
 <title>::: 맛객 :::</title>
 </head>
 <body>
-<h1>Review</h1>
+<h1 style="text-align:left;	">Review</h1>
 <hr>
 <div id="btnBox">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+	<button id="btnWrite" class="btn btn-warning" onclick="window.open('/review/write','write','width=600,height=800,location=no,status=no,scrollbars=yes');">글쓰기</button>
 </div>
 <br>
 <table class="table table-condensed">
@@ -100,17 +118,26 @@ details > summary::-webkit-details-marker {
 </tr>
 <%	for(int i=0; i<list.size(); i++) { %>
 <tr>
-	
-	<td style="width: 5%;"><a href="/review/view?reviewno=<%=list.get(i).getReviewno() %>"><%=list.get(i).getReviewno() %></a></td>
+
+	<td style="width: 5%;"><a href="#none" onclick="window.open('/review/view?reviewno=<%=list.get(i).getReviewno() %>','write','width=600,height=800,location=no,status=no,scrollbars=yes');"><%=list.get(i).getReviewno() %></a></td>
 	<td style="width: 5%;"><%=list.get(i).getUserno() %></td>
 	<td>
 	<details style="width: 60%;"><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
 	<td style="width: 10%;"><%=list.get(i).getCreate_date() %></td>
-	<td><button type="button" id="btnUpdate" style="width: 50px;">수정</button>
-	<button id="btnDelete" style="width: 50px;">삭제</button>
+	
+	<td><button onclick="window.open('review/update?reviewno=<%=list.get(i).getReviewno() %>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
+	<a href="/review/delete?reviewno=<%=list.get(i).getReviewno() %>"><button class="btn btn-warning" type="button" id="btnDelete">삭제</button></a>
 	&nbsp;&nbsp;
-	<img id="star" src="/Resources/img/star<%=list.get(i).getStar_score() %>.png">
+	<img id="star" src="/resources/se2/img/star<%=list.get(i).getStar_score() %>.png">
 		</td>
+	<td><%	if( boardFile != null ) { %>
+
+<a href="/upload/<%=boardFile.getStoredName() %>"
+ download="<%=boardFile.getOriginName() %>">
+	<%=boardFile.getOriginName() %>
+</a>
+
+<%	} %>
 
 </tr>
 <%	} %>

@@ -3,8 +3,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% Paging paging = (Paging) request.getAttribute("paging"); %>
+<style>
+.my.pagination > .active > a, 
+.my.pagination > .active > span, 
+.my.pagination > .active > a:hover, 
+.my.pagination > .active > span:hover, 
+.my.pagination > .active > a:focus, 
+.my.pagination > .active > span:focus {
+  background: #FAA600;
+  border-color: #FAA600;
+}
+</style>
 <div class="text-center">
-	<ul class="pagination">
+	<ul class="pagination my">
 	
 		<!-- 첫 페이지로 이동 -->
 		<%	if(paging.getCurPage() != 1) { //첫 페이지가 아닐 때 보임 %>

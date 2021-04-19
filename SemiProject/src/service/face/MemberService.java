@@ -55,12 +55,35 @@ public interface MemberService {
 	 */
 	public Member saveLoinId(Object attribute);
 	/**
-	 * 유저 정보 get
+	 * 유저 정보 불러오기
 	 * @param member
 	 * @return
 	 */
 	public Member getuserInfo(Member member);
 
 	public List<Member> getUserdata();
+
+	/**
+	 * 수정 정보 저장 객체
+	 * @param req
+	 * @return
+	 */
+	public Member getUpdateMember(HttpServletRequest req);
+
+	/**
+	 * 유저 정보 수정
+	 * @param member
+	 */
+	public void updateMemberInfo(Member member);
+
+	/**
+	 * 유저 정보 삭제
+	 * @param attribute
+	 */
+	public void secession(Object attribute);
+
+	
+	
+	
 
 }
