@@ -64,8 +64,9 @@ public class InquiryDaoImpl implements InquiryDao {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += "    SELECT rownum rnum, I.* FROM (";
-		sql += "        SELECT inquiryno, title, userno, createDate";
-		sql += "        FROM inquiry";
+		sql += "        SELECT inquiryno, title, userno, createDate,";
+		sql += " 		(SELECT nick FROM user_table U WHERE U.userno = INQ.userno ) nick";
+		sql += "        FROM inquiry INQ";
 		sql += "        ORDER BY inquiryno DESC";
 		sql += "    ) I";
 		sql += " ) INQUIRY";
@@ -89,6 +90,7 @@ public class InquiryDaoImpl implements InquiryDao {
 				inq.setTitle(rs.getString("title"));
 				inq.setUserno(rs.getInt("userno"));
 				inq.setCreateDate(rs.getDate("createDate"));
+				inq.setNick(rs.getString("nick"));
 				
 				inquiryList.add(inq);
 			}
@@ -136,6 +138,8 @@ public class InquiryDaoImpl implements InquiryDao {
 
 	@Override
 	public Inquiry selectInqByInquiryno(Connection conn, Inquiry inquiryno) {
+		//TEST 2)))
+//		System.out.println("Dao: " + inquiryno);
 		
 		//SQL 구문
 		String sql = "";
@@ -154,9 +158,9 @@ public class InquiryDaoImpl implements InquiryDao {
 			while(rs.next()) {
 				viewInq.setInquiryno(rs.getInt("inquiryno"));
 				viewInq.setInqsort(rs.getString("inqsort"));
+				viewInq.setUserno(rs.getInt("userno"));
 				viewInq.setCreateDate(rs.getDate("createDate"));
 				viewInq.setTitle(rs.getString("title"));
-				viewInq.setUserno(rs.getInt("userno"));
 				viewInq.setInqcontent(rs.getString("inqcontent"));
 			}
 			
@@ -169,14 +173,48 @@ public class InquiryDaoImpl implements InquiryDao {
 		return viewInq;
 	}
 
-
+	
 	@Override
-	public int insertInq(Connection conn, Inquiry inquiry) {
+	public String selectNickByUserno(Connection conn, Inquiry viewInquiry) {
 		
 		//SQL 구문
 		String sql = "";
-		sql += "INSERT INTO inquiry (inquiryno, title, inqcontent, userno)";
-		sql += " VALUES (inquiry_seq.nextval, ?, ?, ?)";
+		sql += "SELECT nick FROM user_table";
+		sql += " WHERE userno = ?";
+		
+		//결과 저장할 객체 생성
+		String nick = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, viewInquiry.getUserno());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				nick = rs.getString("nick");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return nick;
+	}
+
+	
+	@Override
+	public int insertInq(Connection conn, Inquiry inquiry) {
+		System.out.println(inquiry);
+		
+		//SQL 구문
+		String sql = "";
+		sql += "INSERT INTO inquiry (inquiryno, inqsort, title, inqcontent, userno)";
+		sql += " VALUES (inquiry_seq.nextval, ?, ?, ?, ?)";
 		
 		//결과 저장할 변수 생성
 		int result = 0;
@@ -184,9 +222,10 @@ public class InquiryDaoImpl implements InquiryDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, inquiry.getTitle());
-			ps.setString(2, inquiry.getInqcontent());
-			ps.setInt(3, inquiry.getUserno());
+			ps.setString(1, inquiry.getInqsort());
+			ps.setString(2, inquiry.getTitle());
+			ps.setString(3, inquiry.getInqcontent());
+			ps.setInt(4, inquiry.getUserno());
 			
 			result = ps.executeUpdate();
 			
@@ -198,6 +237,8 @@ public class InquiryDaoImpl implements InquiryDao {
 		
 		return result;
 	}
+
+
 	
 
 }

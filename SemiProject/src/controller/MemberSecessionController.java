@@ -30,7 +30,6 @@ public class MemberSecessionController extends HttpServlet {
 
 		memberService.secession(req.getSession().getAttribute("userid"));
 
-
 		//세션 객체
 		HttpSession session = req.getSession();
 
@@ -39,12 +38,7 @@ public class MemberSecessionController extends HttpServlet {
 
 		//메인화면으로 리다이렉트
 		resp.sendRedirect("/");
-
-
-
-
-
+		
 
 	}
-
 }

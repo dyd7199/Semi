@@ -41,6 +41,12 @@ public class InquiryListPageController extends HttpServlet {
 		//조회결과 MODEL값 전달
 		req.setAttribute("inquiryList", inquiryList);
 		
+		
+		Inquiry inquiryno = inquiryService.getInquiryno(req);
+		Inquiry viewInquiry = inquiryService.viewInq(inquiryno);
+		req.setAttribute("nick", inquiryService.getNick(viewInquiry));
+		
+		
 		//View 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquirylist.jsp").forward(req, resp);
 	

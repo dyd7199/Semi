@@ -1,14 +1,18 @@
 package service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.filters.SetCharacterEncodingFilter;
+
 import common.JDBCTemplate;
 import dao.face.InquiryDao;
 import dao.impl.InquiryDaoImpl;
 import dto.Inquiry;
+import dto.InquiryFile;
 import inquiry.util.Paging;
 import service.face.InquiryService;
 
@@ -55,11 +59,15 @@ public class InquiryServiceImpl implements InquiryService {
 		
 		//inquiryno 전달파라미터 검증
 		String param = req.getParameter("inquiryno");
+		//TEST 3)))
+//		System.out.println("param: " + param);
 		
-		if (param != null && "".equals(param)) {
+		if (param != null && !"".equals(param)) {
 			inquiryno.setInquiryno(Integer.parseInt(param));
 		}
 		
+		//TEST 4)))
+		System.out.println("inquiryno: " + inquiryno);
 		return inquiryno;
 	}
 
@@ -71,15 +79,29 @@ public class InquiryServiceImpl implements InquiryService {
 
 	
 	@Override
+	public String getNick(Inquiry viewInquiry) {
+		return inquiryDao.selectNickByUserno(JDBCTemplate.getConnection(), viewInquiry);
+	}
+	
+	
+	@Override
 	public void writeInq(HttpServletRequest req) {
 		
 		Inquiry inquiry = new Inquiry();
 		
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		inquiry.setInqsort(req.getParameter("inqsort"));
 		inquiry.setTitle(req.getParameter("title"));
-		inquiry.setInqcontent(req.getParameter("inqcontent"));
+		inquiry.setInqcontent(req.getParameter("content"));
+		inquiry.setUserno((int)req.getSession().getAttribute("userno"));
 		
 		//작성자 번호 처리
-		inquiry.setUserno((int) req.getSession().getAttribute("userno"));
+//		inquiry.setUserno((int) req.getSession().getAttribute("userno"));
 		
 		//title이 null이거나 빈칸일 때 처리
 		if (inquiry.getTitle() == null || "".equals(inquiry.getTitle())) {
@@ -92,8 +114,7 @@ public class InquiryServiceImpl implements InquiryService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		
-		
 	}
+
 
 }
