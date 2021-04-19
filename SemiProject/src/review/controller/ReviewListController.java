@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import detail.service.face.DetailService;
+import detail.service.impl.DetailServiceImpl;
 import review.dto.Review;
+import review.dto.Seoul;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
 import review.util.Paging;
-import review.dto.BoardFile;
 
 
 @WebServlet("/review/list")
@@ -21,6 +23,8 @@ public class ReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ReviewService reviewService = new ReviewServiceImpl();
+
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,12 +36,9 @@ public class ReviewListController extends HttpServlet {
 		
 		//페이징을 적용한 게시글 조회
 		List<Review> reviewList = reviewService.getList(paging);
-		
 
 		//페이징 객체를 MODEL값으로 전달
 		req.setAttribute("paging", paging);
-		
-
 		
 		//조회결과 MODEL값 전달
 		req.setAttribute("reviewList", reviewList);

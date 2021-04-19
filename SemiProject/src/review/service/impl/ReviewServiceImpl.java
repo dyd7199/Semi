@@ -52,7 +52,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public Review getReviewno(HttpServletRequest req) {
 		//reviewno를 저장할 객체 생성
 		Review reviewno = new Review();
-		//boardno 전달파라미터 검증 - null, ""
+		//reviewno 전달파라미터 검증 - null, ""
 		String param = req.getParameter("reviewno");
 		if(param!=null && !"".equals(param)) {
 			

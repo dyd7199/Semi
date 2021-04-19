@@ -28,6 +28,11 @@ public class InquiryViewPageController extends HttpServlet {
 		//상세보기 결과 조회
 		Inquiry viewInquiry = inquiryService.viewInq(inquiryno);
 		
+		//닉네임 전달
+		req.setAttribute("nick", inquiryService.getNick(viewInquiry));
+		
+		//TEST 1)))
+//		System.out.println("viewInquiry: " + viewInquiry);
 		req.setAttribute("viewInquiry", viewInquiry);
 		
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquiryview.jsp").forward(req, resp);

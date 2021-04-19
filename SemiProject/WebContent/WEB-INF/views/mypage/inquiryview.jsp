@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%	Inquiry inq = (Inquiry) request.getAttribute("viewInq"); %>
+<%	Inquiry inq = (Inquiry) request.getAttribute("viewInquiry"); %>
 
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
@@ -140,23 +140,24 @@ ul.sub li:hover {
 <br><br>
 
 <div>
-<table>
+<table class="table" style="border: 1px solid #ccc;">
 <tr>
-	<td>글번호</td><td><%=inq.getInquiryno() %></td>
-	<td>문의종류</td><td><%=inq.getInqsort() %></td>
+	<td class="active">문의번호</td><td><%=inq.getInquiryno() %></td>
+	<td class="active">문의종류</td><td><%=inq.getInqsort() %></td>
 </tr>
 <tr>
-	<td>작성자</td><td><%=inq.getUserno() %></td>
-	<td>작성일자</td><td><%=inq.getCreateDate() %></td>
+	<td class="active">회원번호</td><td><%=inq.getUserno() %></td>
+	<td class="active">닉네임</td><td><%=request.getAttribute("nick") %></td>
 </tr>
 <tr>
-	<td>제목</td><td><%=inq.getTitle() %></td>
+	<td class="active">제목</td><td><%=inq.getTitle() %></td>
+	<td class="active">작성일자</td><td><%=inq.getCreateDate() %></td>
 </tr>
 <tr>
-	<td>내용</td>
+	<td class="active" colspan="4">내용</td>
 </tr>
 <tr>
-	<td><%=inq.getInqcontent() %></td>
+	<td colspan="4" style="height: 200px;"><%=inq.getInqcontent() %></td>
 </tr>
 </table>
 </div>

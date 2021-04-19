@@ -186,17 +186,14 @@ td:nth-child(2n) {
 <form action="/mypage/inqwrite" method="post">
 
 <table class="table">
-<tr>
-	<td class="active">문의번호</td>
-	<td><%=write.getInquiryno() %></td>
-</tr>
+
 <tr>
 	<td class="active">문의종류</td>
-	<td colspan="2"><select>
-		<option value="회원_정보">회원정보 수정</option>
-		<option value="회원_탈퇴">회원탈퇴</option>
-		<option value="회원_프리미엄">프리미엄 회원</option>
-		<option value="식당">식당</option>
+	<td colspan="2"><select name="inqsort">
+		<option value="회원정보 수정">회원정보 수정</option>
+		<option value="회원탈퇴">회원탈퇴</option>
+		<option value="프리미엄 회원">프리미엄 회원</option>
+		<option value="식당 관련">식당</option>
 		<option value="기타">기타</option>
 		</select></td>
 </tr>
@@ -205,8 +202,8 @@ td:nth-child(2n) {
 	<td><input type="text" name="title" style="width: 80%;"></td>
 </tr>
 <tr>
-	<td class="active">회원번호</td>
-	<td><%=session.getAttribute("userno") %></td>
+	<td class="active">닉네임</td>
+	<td><%=session.getAttribute("usernick") %></td>
 </tr>
 <tr>
 	<td class="active" colspan="2">문의 내용</td>
@@ -216,7 +213,7 @@ td:nth-child(2n) {
 </tr>
 </table>
 
-<input type="file" name="attachmentsfile" />
+<!-- <input type="file" name="attachmentsfile" /> -->
 
 </form>
 </div>

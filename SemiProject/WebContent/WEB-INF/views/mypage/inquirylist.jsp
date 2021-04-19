@@ -5,6 +5,8 @@
     
 <%	List<Inquiry> list = (List) request.getAttribute("inquiryList"); %>
 
+<%	Inquiry inq = (Inquiry) request.getAttribute("nick"); %>
+
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 <script type="text/javascript">
@@ -34,7 +36,7 @@ ul#navi {
     
     background: #f4f4f4;
     float: left;
-    min-height: 800px;
+    min-height: 590px;
         
 }
 ul#navi, ul#navi ul {
@@ -89,6 +91,10 @@ ul.sub li:hover {
 	float: right;
 }
 
+th {
+	text-align: center;
+}
+
 </style>
 
 
@@ -140,13 +146,15 @@ ul.sub li:hover {
 <div>
 <table class="table table-striped table-hover table-condensed">
 <tr>
-	<th>문의번호</th>
-	<th>제목</th>
-	<th>작성자</th>
-	<th>작성일</th>
+	<th style="width: 10%;">문의번호</th>
+	<th style="width: 50%;">제목</th>
+	<th style="width: 15%;">작성자</th>
+	<th style="width: 15%;">작성일</th>
 </tr>
 
-<%	for(int i = 0; i < list.size(); i++) { %>
+<%	for(int i = 0; i < list.size(); i++) { 
+		Inquiry myInquiry = (Inquiry)list.get(i);
+		if (session.getAttribute("userno").equals(myInquiry.getUserno())) { %>
 <tr>
 	<td><%=list.get(i).getInquiryno() %></td>
 	<td>
@@ -154,9 +162,10 @@ ul.sub li:hover {
 		<%=list.get(i).getTitle() %>
 		</a>
 	</td>
-	<td><%=list.get(i).getUserno() %></td>
+	<td><%=list.get(i).getNick() %></td>
 	<td><%=list.get(i).getCreateDate() %></td>
 </tr>
+	<%	} %>
 <%	} %>
 </table>
 </div>
@@ -170,7 +179,7 @@ ul.sub li:hover {
 <!-- .inqList_container end -->
 </div>
 
-<div class="clearfix"></div>
+<!-- <div class="clearfix"></div> -->
 
 
 

@@ -101,7 +101,7 @@ button {
 <title>::: 맛객 :::</title>
 </head>
 <body>
-<h1 style="text-align:left;	">Review</h1>
+<h2 style="text-align:left; font-family: '바탕';">리뷰</h2>
 <hr>
 <div id="btnBox">
 	<button id="btnWrite" class="btn btn-warning" onclick="window.open('/review/write','write','width=600,height=800,location=no,status=no,scrollbars=yes');">글쓰기</button>
