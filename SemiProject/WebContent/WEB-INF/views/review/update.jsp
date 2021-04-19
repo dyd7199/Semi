@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript"
- src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+ src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
 <style type="text/css">
    #inq_content {
@@ -91,7 +91,7 @@ var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
 oAppRef: oEditors,
 elPlaceHolder: "inq_content", //에디터가 적용될 <textarea>의 id를 입력
-sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+sSkinURI: "/Resources/se2/SmartEditor2Skin.html",
 fCreator: "createSEditor2"
  })
 

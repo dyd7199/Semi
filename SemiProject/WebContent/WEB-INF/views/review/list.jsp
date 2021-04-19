@@ -128,7 +128,7 @@ button {
 	<td><button onclick="window.open('review/update?reviewno=<%=list.get(i).getReviewno() %>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
 	<a href="/review/delete?reviewno=<%=list.get(i).getReviewno() %>"><button class="btn btn-warning" type="button" id="btnDelete">삭제</button></a>
 	&nbsp;&nbsp;
-	<img id="star" src="/resources/se2/img/star<%=list.get(i).getStar_score() %>.png">
+	<img id="star" src="/Resources/se2/img/star<%=list.get(i).getStar_score() %>.png">
 		</td>
 	<td><%	if( boardFile != null ) { %>
 

@@ -53,10 +53,10 @@ var url_combine_naver = url_default_naver + encodeURI(url_this_page) + title_def
 <!-- SNS버튼 시작 --> 
 <div style="width: 100%; text-align: center; margin-bottom: 64px;"> 
 <!-- 페이스북 공유 버튼 --> 
-<a href="" onclick="window.open(url_combine_fb, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/resources/se2/img/facebook.png" title="페이스북으로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
-<!-- 트위터 공유 버튼 --> <a href="" onclick="window.open(url_combine_tw, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/resources/se2/img/twitter.png" title="트위터로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
-<!-- 카카오 스토리 공유 버튼 --> <a href="" onclick="window.open(url_combine_ks, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/resources/se2/img/kakaostory.png" title="카카오스토리로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
-<!-- 네이버 공유 버튼 --> <a href="" onclick="window.open(url_combine_naver, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/resources/se2/img/naver.jpg" title="네이버로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
+<a href="" onclick="window.open(url_combine_fb, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/Resources/se2/img/facebook.png" title="페이스북으로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
+<!-- 트위터 공유 버튼 --> <a href="" onclick="window.open(url_combine_tw, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/Resources/se2/img/twitter.png" title="트위터로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
+<!-- 카카오 스토리 공유 버튼 --> <a href="" onclick="window.open(url_combine_ks, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/Resources/se2/img/kakaostory.png" title="카카오스토리로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
+<!-- 네이버 공유 버튼 --> <a href="" onclick="window.open(url_combine_naver, '', 'scrollbars=no, width=600, height=600'); return false;"><img src="/Resources/se2/img/naver.jpg" title="네이버로 공유하기" class="sharebtn_custom" style="width: 32px;"></a> 
 <!-- SNS버튼 끝 -->
 </div>
 
@@ -92,12 +92,15 @@ var url_combine_naver = url_default_naver + encodeURI(url_this_page) + title_def
 <br>
 <a href="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 alt="이미지 설명"> </a>
 <a href="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/resources/se2/img/upso/S2<%=sn.getUpso_sno() %>.jpg" 
+data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/Resources/se2/img/upso/S2<%=sn.getUpso_sno() %>.jpg" 
 alt="이미지 설명"> </a>
 <a href="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/resources/se2/img/upso/S3<%=sn.getUpso_sno() %>.jpg" 
+data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/Resources/se2/img/upso/S3<%=sn.getUpso_sno() %>.jpg" 
 alt="이미지 설명"> </a>
 <br>
 <br>
