@@ -64,7 +64,7 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public void write(HttpServletRequest req) {
+	public int write(HttpServletRequest req) {
 
 		Connection conn = JDBCTemplate.getConnection();
 
@@ -92,6 +92,8 @@ public class RecipeServiceImpl implements RecipeService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
+		
+		return recipeDao.getCurPostno(recipe, member, conn);
 		
 	}
 

@@ -358,5 +358,35 @@ public class RecipeDaoImpl implements RecipeDao {
 		return res;
 	}
 
+	@Override
+	public int getCurPostno(Recipe recipe, Member member, Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT postno FROM recipe";
+		sql += "	WHERE title = ?, inq_content = ?, userno = ?";
+		
+		int postno = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, recipe.getTitle());
+			ps.setString(2, recipe.getInq_content());
+			ps.setInt(1, member.getUserno());
+			
+			rs = ps.executeQuery();
+			
+			postno = rs.getInt("postno");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return postno;
+	}
+
 }
 

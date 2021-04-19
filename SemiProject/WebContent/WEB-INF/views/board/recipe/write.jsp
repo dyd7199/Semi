@@ -1,8 +1,10 @@
+<%@page import="dto.Member"%>
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
     
 <!-- 스마트에디터 2 -->
 <script type="text/javascript"
  src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+ 
  
 <!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
 <script type="text/javascript">
@@ -56,6 +58,7 @@ input .title{
 
 </style>
 
+
 <div style="text-align: left; height:15px;">
 <h3>레시피 글쓰기</h3><br>
 </div>
@@ -63,11 +66,20 @@ input .title{
 <hr style="boarder: 0; height:1px; background: black;"><br>
 
 <div id="area">
-<form action="/recipe/write" method="post"  enctype="multipart/form-data">
+<form action="/recipe/write" method="post" >
 <table class="table table-bordered">
 
 	<tr>
 		<td>제목</td><td><input type="text" name="title" style="width: 95%"/></td>
+	</tr>
+	<!-- <tr>
+		<td>파일 첨부</td><td><input type="file" name="upfile" /></td>
+	</tr> -->
+	<tr>
+		<td>파일 첨부</td>
+		<td style="padding-left: 10px; text-align: left">
+			<input type="file" name="upfile" />
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2">내용</td>
@@ -75,18 +87,11 @@ input .title{
 	<tr>		
 		<td colspan="2" style="height: 600px;"><textarea id="content" name="content"></textarea></td>
 	</tr>
-	<tr>
-		<td>파일 첨부</td><td><input type="file" name="upfile" /></td>
-	</tr>
-	<tr>
-		<td><input type="hidden" name="userno" value="<%=request.getSession().getUserno %>"/>
-	</tr>
-
 </table>
 </form>
 
 </div>
-<div style="margin-top: 20px; margin-bottom: 40px;">
+<div style="margin-top: 50px; margin-bottom: 40px;">
 	<button type="button" id="btnWrite">완료</button>
 	<button type="button" id="btnCancel">취소</button>
 </div>

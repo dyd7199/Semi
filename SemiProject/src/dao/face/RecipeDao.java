@@ -100,6 +100,16 @@ public interface RecipeDao {
 	 */
 	int deleteRecipe(Connection conn, HttpServletRequest req);
 
+	/**
+	 * 첨부파일 테이블에 넣을 postno의 값을 가져온다
+	 * @param member 
+	 * @param recipe 
+	 * @param conn 
+	 * 
+	 * @return 작성된 글의 postno
+	 */
+	int getCurPostno(Recipe recipe, Member member, Connection conn);
+
 
 
 }

@@ -39,13 +39,16 @@ public class RecipeWriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setCharacterEncoding("utf-8");
+		//req.setCharacterEncoding("utf-8");
 		
-		//작성글 삽입
-		recipeService.write(req);
+		//작성글 삽입 및 현재 작성한 postno 가져오기
+		int postno = recipeService.write(req);
+		
+		//req객체에 postno 담기
+		req.setAttribute("postno", postno);
 		
 		//파일 업로드 처리 - 서비스 객체 이용
-		//fileService.fileupload(req, resp);
+		fileService.fileupload(req, resp);	
 		
 		//목록으로 리다이렉트
 		resp.sendRedirect("/recipe/list");

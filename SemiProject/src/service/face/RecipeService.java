@@ -37,8 +37,9 @@ public interface RecipeService {
 	 * insert메소드로 삽입 후 커밋한다
 	 * 
 	 * @param req
+	 * @return 
 	 */
-	void write(HttpServletRequest req);
+	int write(HttpServletRequest req);
 	
 	/**
 	 * 레시피 상세보기에서 얻은 postno를 이용하여 해당 recipe의 모든 데이터를 가져온다

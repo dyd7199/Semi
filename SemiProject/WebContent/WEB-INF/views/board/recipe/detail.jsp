@@ -15,31 +15,29 @@
 
 <div id="content">
 <table id="detail" class="table" style="marget-top: 200px;">
+
 	<tr>
-		<th>글 번호</th>
-		<th>닉네임</th>
-		<th>작성일</th>
-		<th>조회수</th>
-		<th>제목</th>
-		<th>본문</th>
+		<td colspan="4"><%=recipe.getTitle() %></td>
 	</tr>
 	<tr>
-		<td><%=recipe.getPostno() %></td>
-		<td>
-		<% for(int i=0; i<mList.size(); i++) { %>
+		<td>닉네임</td>
+		<td style="width: 450px;">
+			<% for(int i=0; i<mList.size(); i++) { %>
 			<% if( recipe.getUserno() == mList.get(i).getUserno() ) { %>
 			<%=mList.get(i).getNick() %>
 			<% } %>
-		<% } %>
+			<% } %>
 		</td>
-		<td><%=recipe.getCreate_date() %></td>
-		<td><%=recipe.getViews() %></td>
-		<td><%=recipe.getTitle() %></td>
-		<td><%=recipe.getInq_content() %></td>
-		
+		<td>조회수 : <%=recipe.getViews() %></td>
+		<td>작성일 : <%=recipe.getCreate_date() %></td>
 	</tr>
-
-
+	<tr>
+		<td colspan="4" style="height: 300px;"><%=recipe.getInq_content() %></td>
+	</tr>
+	<tr style="border: white;">
+		<td>첨부파일</td>
+		<td></td>
+	</tr>
 </table>
 <hr>
 

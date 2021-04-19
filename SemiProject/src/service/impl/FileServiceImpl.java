@@ -22,7 +22,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import common.JDBCTemplate;
 import dao.face.FileDao;
 import dao.impl.FileDaoImpl;
-import dto.AttachmentsFile;
+import dto.ParamData;
 import dto.UploadFile;
 import service.face.FileService;
 
@@ -166,7 +166,7 @@ public class FileServiceImpl implements FileService {
 		
 		
 		//폼필드를 저장할 DTO 객체 생성
-		AttachmentsFile attach = new AttachmentsFile();
+		ParamData paramData = new ParamData();
 		
 		//파일이름을 저장할 DTO 객체 생성
 		UploadFile uploadFile = new UploadFile();
@@ -215,7 +215,6 @@ public class FileServiceImpl implements FileService {
 				//----------------------
 				
 				
-				
 				//--- 키값에 따른 처리 방식 ---
 				// -> 최종 결과를 DTO객체에 저장한다
 				
@@ -223,19 +222,25 @@ public class FileServiceImpl implements FileService {
 				String key = item.getFieldName();
 				
 				try {
-					if( "userno".equals( key ) ) {//전달파라미터가 "title"일 때
-						AttachmentsFile.setUserno( Integer.parseInt( (Object) req.getSession().getAttribute("userno") ) );
-						
-					} else if( "data1".equals( key ) ) {//전달파라미터가 "data1"일 때
-						AttachmentsFile.setData1( item.getString("UTF-8") );
-						
-					} else if( "data2".equals( key ) ) {//전달파라미터가 "data2"일 때
-						AttachmentsFile.setData2( item.getString("UTF-8") );
-						
+					if( "title".equals( key ) ) {//전달파라미터가 "title"일 때
+						paramData.setTitle( item.getString("UTF-8") );
 					} 
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
+				
+				//paramData 테이블에 postno 담기
+				String postno1 = req.getParameter("postno");
+				
+				int postno2 = Integer.parseInt(postno1);
+				
+				paramData.setPostno(postno2);
+				
+				
+
+//					if( "title".equals( key ) ) {
+//						AttachmentsFile.setTitle( item.getString("UTF-8") );
+//					}
 				//-----------------------------
 
 			} //if( item.isFormField() ) end
@@ -319,7 +324,7 @@ public class FileServiceImpl implements FileService {
 		
 		
 		//[테스트] 폼필드 저장한 DTO
-		System.out.println("param - " + paramData);
+		System.out.println("paramData - " + paramData);
 
 		//[테스트] 파일 이름 저장한 DTO
 		System.out.println("file - " + uploadFile);

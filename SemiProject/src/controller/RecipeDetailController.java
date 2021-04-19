@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.Member;
 import dto.Recipe;
+import service.face.FileService;
 import service.face.MemberService;
 import service.face.RecipeService;
+import service.impl.FileServiceImpl;
 import service.impl.MemberServiceImpl;
 import service.impl.RecipeServiceImpl;
 
@@ -23,6 +25,7 @@ public class RecipeDetailController extends HttpServlet {
 
 	private RecipeService recipeService = new RecipeServiceImpl();
 	private MemberService memberService = new MemberServiceImpl();
+	private FileService fileService = new FileServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,6 +50,11 @@ public class RecipeDetailController extends HttpServlet {
 
 		//세션에 속성값으로 mList 설정
 		req.setAttribute("mList", mList);
+		
+		//첨부파일 정보 불러오기
+		//fileService.getEnclosed();
+		
+		//첨부파일 객체 속성값으로 설정
 		
 		//JSP로 연결
 		req.getRequestDispatcher("/WEB-INF/views/board/recipe/detail.jsp")
