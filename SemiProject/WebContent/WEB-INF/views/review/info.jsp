@@ -14,7 +14,7 @@ $(document).ready(function() {
 	function close(){
 		window.open('', '_self', '');
 		window.close();
-		}d
+		}
 })
 </script>
 
