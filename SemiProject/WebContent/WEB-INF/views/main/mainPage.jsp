@@ -4,6 +4,7 @@
     
     
 <%@include file="/WEB-INF/views/header/header.jsp" %>
+
 			<link href="/Resources/se2/css/slider/slider.css" rel="stylesheet"/>
 			<script type="text/javascript" src ="/Resources/se2/js/slider_edit.js"></script>
 
@@ -28,28 +29,16 @@
      
        <!-- 본문입니다! -->
        <section>
-
 			<div id="wrapper">
-			<h1>맛지도</h1>
-			
-			<!-- 지도를 표시할 div 입니다 -->
-			<div id="map" style="width:500px;height:350px;margin:0 auto;"></div>
-			
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a0cf149f393c0b75e4343f25535745c2"></script>
-			<script>
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				    mapOption = { 
-				        center: new kakao.maps.LatLng(126.9646316640898, 37.563752042230355), // 지도의 중심좌표
-				        level: 3 // 지도의 확대 레벨
-				    };
-	
-			// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-			var map = new kakao.maps.Map(mapContainer, mapOption); 
-		</script>
-			
-			
+			<h1>맛지도</h1><br><br>
+			<div class="swiper-wrapper">
+		      <div class="img_write">
+				<h3>서울시</h3>
+				<span>K-FOOD</span>
+		      </div>
+		      <a href="/main/map"><img class="slide_img" src="https://cis.seoul.go.kr/ko/totalalimi_new/images/map/map_0.png" width="80%"></a>
+		      </div>
 			</div>
-       
        </section>
       
       

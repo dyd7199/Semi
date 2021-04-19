@@ -168,7 +168,7 @@ td:nth-child(2n) {
   	<li class="group">
         <div class="title">MY 회원정보</div>
         <ul class="sub">
-            <li><a href="#">회원정보 변경/탈퇴</a></li>                
+            <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
             <li><a href="#">결제 수단 관리</a></li>    
         </ul>
     </li>        
