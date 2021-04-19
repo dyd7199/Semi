@@ -140,7 +140,7 @@ ul.sub li:hover {
 <br><br>
 
 <div>
-<table class="table">
+<table class="table" style="border: 1px solid #ccc;">
 <tr>
 	<td class="active">문의번호</td><td><%=inq.getInquiryno() %></td>
 	<td class="active">문의종류</td><td><%=inq.getInqsort() %></td>
@@ -157,7 +157,7 @@ ul.sub li:hover {
 	<td class="active" colspan="4">내용</td>
 </tr>
 <tr>
-	<td><%=inq.getInqcontent() %></td>
+	<td colspan="4" style="height: 200px;"><%=inq.getInqcontent() %></td>
 </tr>
 </table>
 </div>
