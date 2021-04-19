@@ -1,13 +1,17 @@
 package service.face;
 
-import dto.Restaurant;
+import java.util.List;
+
+import review.dto.Seoul;
 
 public interface RestaurantService {
 
 	/**
-	 *  top 5 식당 조회
+	 * 탑랭킹 맛집 정보가져오기
 	 * @return
 	 */
-	public Restaurant getTopRest();
+	public List<Seoul> getTopRest();
+
+
 
 }

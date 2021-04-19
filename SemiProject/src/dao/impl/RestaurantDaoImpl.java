@@ -1,13 +1,65 @@
 package dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import common.JDBCTemplate;
 import dao.face.RestaurantDao;
-import dto.Restaurant;
+import review.dto.Seoul;
 
 public class RestaurantDaoImpl implements RestaurantDao {
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	
 
 	@Override
-	public Restaurant selectByTopRest() {
-		return null;
+	public List<Seoul> selectByTopRest(Connection conn) {
+
+		String sql="";
+		sql += "select * from seoul";
+		sql += " WHERE upso_sno IN ('20040056307' , '19910084082' ,'20050086222','20020073071','19940114514')";
+		List<Seoul> list = new ArrayList<Seoul>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Seoul rest = new Seoul();
+				
+				rest.setCgg_code(rs.getString("cgg_code"));
+				rest.setY_dents(rs.getString("y_dents"));
+				rest.setCob_code_nm(rs.getString("cob_code_nm"));
+				rest.setX_cnts(rs.getString("x_cnts"));
+				rest.setCgg_code_nm(rs.getString("cgg_code_nm"));
+				rest.setTel_no(rs.getString("tel_no"));
+				rest.setBizcnd_code_nm(rs.getString("bizcnd_code_nm"));
+				rest.setUpso_sno(rs.getString("upso_sno"));
+				rest.setFood_menu(rs.getString("food_menu"));
+				rest.setUpso_nm(rs.getString("upso_nm"));
+				rest.setRdn_code_nm(rs.getString("rdn_code_nm"));
+				
+				list.add(rest);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return list;
 	}
+
 
 }

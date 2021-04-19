@@ -45,11 +45,11 @@ var url_combine_naver = url_default_naver + encodeURI(url_this_page) + title_def
 <br>
 <br>
 
-<img style="width: 600px; height:500px;"align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg">
+<img style="width: 600px; height:500px;"align="left" src="/Resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg">
 
 <h1 align="left" style="font-family: '바탕';">&nbsp;&nbsp;<%=s.getUpso_nm() %></h1>
 <span class="btn-type1">
-<img width=50; height=50; src="/resources/se2/img/iconshare.png">
+<img width=50; height=50; src="/Resources/se2/img/iconshare.png">
 <!-- SNS버튼 시작 --> 
 <div style="width: 100%; text-align: center; margin-bottom: 64px;"> 
 <!-- 페이스북 공유 버튼 --> 
@@ -90,13 +90,13 @@ var url_combine_naver = url_default_naver + encodeURI(url_this_page) + title_def
 <br>
 <br>
 <br>
-<a href="/resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+<a href="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 alt="이미지 설명"> </a>
-<a href="/resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+<a href="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/resources/se2/img/upso/S2<%=sn.getUpso_sno() %>.jpg" 
 alt="이미지 설명"> </a>
-<a href="/resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+<a href="/Resources/se2/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" src="/resources/se2/img/upso/S3<%=sn.getUpso_sno() %>.jpg" 
 alt="이미지 설명"> </a>
 <br>

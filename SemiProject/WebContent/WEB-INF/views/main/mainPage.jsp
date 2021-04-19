@@ -30,7 +30,9 @@
        <!-- 본문입니다! -->
        <section>
 			<div id="wrapper">
-			<h1>맛지도</h1><br><br>
+	      	 <h1>맛지도</h1>
+				<br><br>
+			
 			<div class="swiper-wrapper">
 		      <div class="img_write">
 				<h3>서울시</h3>

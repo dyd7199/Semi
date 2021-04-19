@@ -20,7 +20,7 @@ public class TestDaoImpl implements TestDao{
 
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT * FROM seoul WHERE upso_sno IN ('20060056233' , '19920056389' ,'20020053899')";
+		sql += "SELECT * FROM seoul WHERE upso_sno IN ('19710029072' , '20030029093' ,'19930076438')";
 		
 		List<Seoul> seoulList = new ArrayList<>();
 		

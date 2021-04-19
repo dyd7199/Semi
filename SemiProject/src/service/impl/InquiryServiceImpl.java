@@ -100,6 +100,7 @@ public class InquiryServiceImpl implements InquiryService {
 		inquiry.setInqcontent(req.getParameter("content"));
 		inquiry.setUserno((int)req.getSession().getAttribute("userno"));
 		
+		
 		//작성자 번호 처리
 //		inquiry.setUserno((int) req.getSession().getAttribute("userno"));
 		
