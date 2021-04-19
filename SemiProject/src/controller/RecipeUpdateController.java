@@ -18,9 +18,6 @@ import service.impl.MemberServiceImpl;
 //github.com/dyd7199/Semi.git
 import service.impl.RecipeServiceImpl;
 
-/**
- * Servlet implementation class RecipeUpdateController
- */
 @WebServlet("/recipe/update")
 public class RecipeUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,10 +33,11 @@ public class RecipeUpdateController extends HttpServlet {
 		Recipe recipe = new Recipe();
 		
 		//게시글의 회원번호 가져오기
-		String userno = req.getParameter("userno");
+		String postno = req.getParameter("postno");
+		
 		
 		//게시글의 회원번호로 해당 게시글의 모든 데이터 가져오기
-		recipe = recipeService.getDataByUserno(userno);
+		recipe = recipeService.getDataByUserno(postno);
 		
 		//얻어온 레시피 게시글 정보 속성 정의
 		req.setAttribute("recipe", recipe);
@@ -52,7 +50,7 @@ public class RecipeUpdateController extends HttpServlet {
 			
 		} else {
 			
-			System.out.println("로그인 한 회원과 글장석자 불일치");
+			System.out.println("로그인 한 회원과 글작성자 불일치");
 			
 		}
 		

@@ -41,12 +41,12 @@ public interface RecipeService {
 	void write(HttpServletRequest req);
 	
 	/**
-	 * 레시피 상세보기에서 얻은 userno를 이용하여 해당 recipe의 모든 데이터를 가져온다
+	 * 레시피 상세보기에서 얻은 postno를 이용하여 해당 recipe의 모든 데이터를 가져온다
 	 * 
-	 * @param userno
+	 * @param postno 해당 레시피 게시글의 모든 데이터를 가져올 기준 postno 값
 	 * @return 해당 레시피 게시글의 모든 정보
 	 */
-	Recipe getDataByUserno(String userno);
+	Recipe getDataByUserno(String postno);
 	
 
 	/**

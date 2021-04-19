@@ -43,14 +43,25 @@ $(document).ready(function() {
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<style type="text/css">
+#content {
+	/* width: 100%; */
+	width: 98%;
+}
 
-<h1>레시피 쓰기</h1><br>
+
+input .title{
+	width: 98%;
+}
+</style>
+
+<h3>레시피 쓰기</h3><br>
 
 <hr><br>
 
 <div id="area">
 <form action="/recipe/write" method="post" >
-<table>
+<table class="table table-bordered">
 
 	<tr>
 		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
@@ -59,7 +70,7 @@ $(document).ready(function() {
 		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
 	</tr>
 	<tr>
-		<td>제목</td><td><input type="text" name="title" /></td>
+		<td>제목</td><td><input type="text" name="title" style="width: 95%"/></td>
 	</tr>
 	<tr>
 		<td colspan="2">내용</td>

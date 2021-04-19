@@ -96,11 +96,11 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public Recipe getDataByUserno(String userno) {
+	public Recipe getDataByUserno(String postno) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		return recipeDao.getDataByUserno(conn, userno);
+		return recipeDao.getDataByUserno(conn, postno);
 	}
 	
 	

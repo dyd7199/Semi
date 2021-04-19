@@ -201,11 +201,11 @@ public class RecipeDaoImpl implements RecipeDao {
 	}
 
 	@Override
-	public Recipe getDataByUserno(Connection conn, String userno) {
+	public Recipe getDataByUserno(Connection conn, String postno) {
 		
 		String sql = "";
 		sql += "SELECT * FROM recipe";
-		sql += "	WHERE userno = ?";
+		sql += "	WHERE postno = ?";
 		
 		//결과정보를 담을 recipe객체
 		Recipe recipe = new Recipe();
@@ -213,7 +213,7 @@ public class RecipeDaoImpl implements RecipeDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, Integer.parseInt(userno) );
+			ps.setInt(1, Integer.parseInt(postno) );
 			
 			rs = ps.executeQuery();
 			

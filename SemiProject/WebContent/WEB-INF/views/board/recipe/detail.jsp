@@ -43,7 +43,7 @@
 </table>
 <hr>
 
-<button id="btnUpdate" name="update" onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>";'>수정</button>
+<button id="btnUpdate" name="update" onclick='location.href="/recipe/update?userno=<%=recipe.getUserno() %>&postno=<%=recipe.getPostno() %>";'>수정</button>
 <button id="btnDelete" name="delete" onclick='location.href="/recipe/delete?userno=<%=recipe.getUserno() %>&postno=<%=recipe.getPostno() %>";'>삭제</button>
 <button id="btnList" name="btnReturn" onclick='location.href="/recipe/list";'>목록으로</button>
 

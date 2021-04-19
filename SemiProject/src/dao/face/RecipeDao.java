@@ -59,10 +59,10 @@ public interface RecipeDao {
 	 * 레시피 상세보기에서 얻은 userno로 해당 recipe의 모든 정보를 가져온다
 	 * 
 	 * @param conn
-	 * @param userno
+	 * @param postno 레시피 게시글의 모든 정보를 가져오기위한 기준 postno값
 	 * @return 해당 레시피 게시글의 모든 정보
 	 */
-	Recipe getDataByUserno(Connection conn, String userno);
+	Recipe getDataByUserno(Connection conn, String postno);
 	
 	/**
 	 * Userno를 이용해서 Recipe의 모든 데이터를 가져온다
