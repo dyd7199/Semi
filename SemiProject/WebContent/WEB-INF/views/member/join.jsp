@@ -3,6 +3,8 @@
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 
+
+
 <script type="text/javascript">
 $(document).ready(function () {
 	
@@ -181,8 +183,12 @@ $(document).ready(function () {
 
 		history.back();
 	})
-	
+		
 })
+
+		
+	
+
 </script>
 
 

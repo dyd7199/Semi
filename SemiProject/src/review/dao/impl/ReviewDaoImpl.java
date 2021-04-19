@@ -9,6 +9,7 @@ import java.util.List;
 
 import review.common.JDBCTemplate;
 import review.dao.face.ReviewDao;
+import review.dto.BoardFile;
 import review.dto.Review;
 import review.util.Paging;
 
@@ -18,7 +19,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	private ResultSet rs = null; //SQL조회 결과 객체
 	@Override
 	public int selectCntAll(Connection conn) {
-		System.out.println("selectCntAll() 호출");
+//		System.out.println("selectCntAll() 호출");
 		String sql = "";
 		sql += "SELECT count(*) cnt FROM review";
 		
@@ -34,7 +35,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			}
 			
 			//cnt 확인
-			System.out.println(cnt);
+//			System.out.println(cnt);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,17 +128,19 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 	@Override
 	public int insert(Connection conn, Review review) {
-		//다음 게시글 번호 조회 쿼리
+		
 		String sql = "";
 		sql += "INSERT INTO review(reviewno, title, userno, inq_content, star_score)";
-		sql += " VALUES (board_seq.nextval, ?, board_seq.nextval, ?, 5)";
+		sql += " VALUES (?, ?, review_seq.nextval, ?, ?)";
 		int res = 0;
 		
 		//DB작업
 			try {
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, review.getTitle());
-				ps.setString(2, review.getInq_content());
+				ps.setInt(1, review.getReviewno());
+				ps.setString(2, review.getTitle());
+				ps.setString(3, review.getInq_content());
+				ps.setInt(4, review.getStar_score());
 				
 				res = ps.executeUpdate();
 			} catch (SQLException e) {
@@ -145,7 +148,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			} finally {
 				JDBCTemplate.close(ps);
 			}
-		
+//		System.out.println("res:" + res);
 		return res;
 	}
 	@Override
@@ -177,5 +180,145 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return res;
 	}
+	@Override
+	public int update(Connection conn, Review review) {
+		//다음 게시글 번호 조회 쿼리
+				String sql = "";
+				sql += "UPDATE review";
+				sql += " SET title = ?,";
+				sql += " 	inq_content = ?";
+				sql += " WHERE reviewno = ?";
+				
+				//DB 객체
+				PreparedStatement ps = null; 
+				
+				int res = -1;
+				
+				try {
+					//DB작업
+					ps = conn.prepareStatement(sql);
+					ps.setString(1, review.getTitle());
+					ps.setString(2, review.getInq_content());
+					ps.setInt(3, review.getReviewno());
+
+					res = ps.executeUpdate();
+					System.out.println(res);
+				} catch (SQLException e) {
+					e.printStackTrace();
+					
+				} finally {
+					try {
+						//DB객체 닫기
+						if(ps!=null)	ps.close();
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				return res;
+			}
+	@Override
+	public int selectReviewno(Connection conn) {
+		//SQL 작성
+				String sql = "";
+				sql += "SELECT review_seq.nextval FROM dual";
+				
+				//결과 저장할 변수
+				int reviewno = 0;
+				
+				try {
+					ps = conn.prepareStatement(sql); //SQL수행 객체
+					
+					rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+					
+					//조회 결과 처리
+					while(rs.next()) {
+						reviewno = rs.getInt(1);
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					//DB객체 닫기
+					JDBCTemplate.close(rs);
+					JDBCTemplate.close(ps);
+				}
+				
+				//최종 결과 반환
+				return reviewno;
+	}
+	@Override
+	public int insertFile(Connection conn, BoardFile boardFile) {
+		//다음 게시글 번호 조회 쿼리
+				String sql = "";
+				sql += "INSERT INTO boardfile(fileno, boardno, originname, storedname, filesize)";
+				sql += " VALUES ( boardfile_seq.nextval, ?, ?, ?, ? )";
+				
+				int res = 0;
+				
+				try {
+					//DB작업
+					ps = conn.prepareStatement(sql);
+
+					ps.setInt(1, boardFile.getBoardno());
+					ps.setString(2, boardFile.getOriginName());
+					ps.setString(3, boardFile.getStoredName());
+					ps.setInt(4, boardFile.getFilesize());
+
+					res = ps.executeUpdate();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					JDBCTemplate.close(ps);
+				}
+				
+				return res;
+			}
+	@Override
+	public BoardFile selectFile(Connection conn, Review viewReview) {
+		//SQL 작성
+				String sql = "";
+				sql += "SELECT * FROM boardfile";
+				sql += " WHERE boardno = ?";
+				
+				//결과 저장할 BoardFile 객체
+				BoardFile boardFile = null;
+				
+				try {
+					ps = conn.prepareStatement(sql); //SQL수행 객체
+					
+					ps.setInt(1, viewReview.getReviewno()); //조회할 boardno 적용
+					
+					rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+					
+					//조회 결과 처리
+					while(rs.next()) {
+						boardFile = new BoardFile();
+						
+						boardFile.setFileno( rs.getInt("fileno") );
+						boardFile.setBoardno( rs.getInt("boardno") );
+						boardFile.setOriginName( rs.getString("originname") );
+						boardFile.setStoredName( rs.getString("storedname") );
+						boardFile.setFilesize( rs.getInt("filesize") );
+						boardFile.setWriteDate( rs.getDate("write_date") );
+						
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					//DB객체 닫기
+					JDBCTemplate.close(rs);
+					JDBCTemplate.close(ps);
+				}
+				
+				//최종 결과 반환
+				return boardFile;
+				
+			}
+	
+	
 
 }
