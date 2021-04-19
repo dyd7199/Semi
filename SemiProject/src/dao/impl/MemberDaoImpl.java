@@ -21,7 +21,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member selectMemberByUserid(Connection conn, Member member) {
 		String sql = "";
-		sql += "SELECT * FROM webuser";
+		sql += "SELECT * FROM user_table";
 		sql += " WHERE 1=1 AND userid = ?";
 
 		Member res = null;
@@ -60,7 +60,7 @@ public class MemberDaoImpl implements MemberDao {
 
 		String sql="";
 
-		sql += "SELECT count(*) cnt FROM webuser";
+		sql += "SELECT count(*) cnt FROM user_table";
 		sql += " WHERE userid = ? AND userpw = ?";
 
 		int res = 0;
@@ -96,7 +96,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int insertByMemberInfo(Connection conn, Member member) {
 		
-		String sql ="INSERT INTO webuser( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
+		String sql ="INSERT INTO user_table( userno,userid,username,userpw,userbirth,phoneno,nick,email,gender,grade)";
 		sql += " VALUES(seq_user.nextval,?,?,?,?,?,?,?,?,?)";
 		
 		
@@ -133,7 +133,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		//SQL 구문 생성
 		String sql = "";
-		sql += "SELECT*FROM webuser";
+		sql += "SELECT*FROM user_table";
 		
 		//리턴값 담을 리스트 객체 생성
 		List<Member> list = new ArrayList<>();
@@ -178,7 +178,7 @@ public class MemberDaoImpl implements MemberDao {
 	public Member getUserno(Connection conn, Member m) {
 		
 		String sql ="";
-		sql += "SELECT * FROM webuser";
+		sql += "SELECT * FROM user_table";
 		sql += "	WHERE userid = ?";
 		
 		Member member = new Member();

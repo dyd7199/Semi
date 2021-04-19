@@ -47,7 +47,17 @@ public interface InquiryDao {
 	 */
 	public Inquiry selectInqByInquiryno(Connection conn, Inquiry inquiryno);
 
+	
+	/**
+	 * userno를 이용해 nick을 조회한다
+	 * 
+	 * @param connection - DB연결 객체
+	 * @param writeInquiry - 조회할 userno를 가진 객체
+	 * @return String - 작성자 닉네임
+	 */
+	public String selectNickByUserno(Connection conn, Inquiry viewInquiry);
 
+	
 	/**
 	 * 게시글 삽입하기
 	 * 
@@ -55,6 +65,8 @@ public interface InquiryDao {
 	 * @param inquiry - 삽입되는 게시글 제목, 내용
 	 */
 	public int insertInq(Connection conn, Inquiry inquiry);
+
+
 
 	
 }
