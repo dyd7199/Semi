@@ -10,6 +10,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.AdminInquiryDao;
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
 public class AdminInquiryDaoImpl implements AdminInquiryDao {
@@ -202,5 +203,35 @@ public class AdminInquiryDaoImpl implements AdminInquiryDao {
 		
 		
 		return nick;
+	}
+
+
+	@Override
+	public int insertAnswer(Connection conn, InquiryAnswer answer) {
+		
+		//SQL 구문
+		String sql = "";
+		sql += "INSERT INTO InquiryAnswer (answerno, answercontent, inquiryno, userno)";
+		sql += " VALUES (inquiryAns_seq.nextval, ?, ?, ?)";
+		
+		//결과 저장할 변수
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, answer.getAnswercontent());
+			ps.setInt(2, answer.getInquiryno());
+			ps.setInt(3, answer.getUserno());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
 	}
 }

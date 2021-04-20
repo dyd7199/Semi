@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
 public interface AdminInquiryDao {
@@ -51,10 +52,19 @@ public interface AdminInquiryDao {
 	/**
 	 * userno를 이용해 nick을 조회한다
 	 * 
-	 * @param connection - DB연결 객체
+	 * @param conn - DB연결 객체
 	 * @param writeInquiry - 조회할 userno를 가진 객체
 	 * @return String - 작성자 닉네임
 	 */
 	public String selectNickByUserno(Connection conn, Inquiry viewInquiry);
+
+
+	/**
+	 * 문의에 대한 답변 삽입하기
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param answer - 삽입되는 답변 내용
+	 */
+	public int insertAnswer(Connection conn, InquiryAnswer answer);
 
 }
