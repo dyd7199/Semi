@@ -14,11 +14,13 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import dto.Member;
 import review.common.JDBCTemplate;
 import review.dao.face.ReviewDao;
 import review.dao.impl.ReviewDaoImpl;
 import review.dto.BoardFile;
 import review.dto.Review;
+import review.dto.Seoul;
 import review.service.face.ReviewService;
 import review.util.Paging;
 
@@ -44,8 +46,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> getList(Paging paging) {
-		return reviewDao.selectAll(JDBCTemplate.getConnection(), paging);
+	public List<Review> getList(Paging paging, Seoul upso_sno) {
+		return reviewDao.selectAll(JDBCTemplate.getConnection(), paging, upso_sno);
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void write(HttpServletRequest req) {
+	public void write(HttpServletRequest req, Member member) {
 				//게시글 정보 저장할 객체
 				Review review = null;
 				
@@ -157,7 +159,7 @@ public class ReviewServiceImpl implements ReviewService {
 						
 					} // if( item.isFormField() ) end - 폼필드 확인
 					
-					
+					review.setUserno(member.getUserno());
 					
 					// 3) 파일 처리
 					if( !item.isFormField() ) {
