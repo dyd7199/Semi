@@ -4,14 +4,14 @@
     
 <%	Inquiry inq = (Inquiry) request.getAttribute("viewInquiry"); %>
 
-<%@include file="/WEB-INF/views/header/header.jsp" %>
+<%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
 
 <script type="text/javascript">
 $(document).ready(function() {
 	
 	//목록 버튼 클릭 시
 	$("#btnListInq").click(function() {
-		$(location).attr("href", "/mypage/inqlist");
+		$(location).attr("href", "/admin/inqlist");
 	});
 	
 	//삭제 버튼 클릭 시
@@ -84,7 +84,7 @@ ul.sub li:hover {
 }
 
 
-.inqView_container {
+.admininqView_container {
 	width: 80%;
 	padding: 30px;
 	
@@ -96,45 +96,28 @@ ul.sub li:hover {
 
 
 <ul id="navi">
-	
-	<li class="group">
-        <div class="maintitle">나의맛객</div>
+	<li style="height: 50px; padding: 10px;">
     </li>
     <li class="group">
-        <div class="title">MyPage</div>
-        <ul class="sub">
-            <li><a href="#">찜한식당</a></li>
-            <li><a href="#">최근 본 식당</a></li>
-            <li><a href="#">내가 작성한 후기</a></li>
-            <li><a href="#">내가 작성한 레시피</a></li>
-        </ul>
+        <div class="title">게시판 관리</div>
+       	<ul class="sub">
+            <li><a href="#">레시피 공유</a></li>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="/admin/inqlist">문의하기</a></li>
+       	</ul>
     </li>
     <li class="group">
-        <div class="title">MY혜택</div>
+        <div class="title">데이터 관리</div>
         <ul class="sub">
-            <li><a href="#">프리미엄 가입하기</a></li>                
-            <li><a href="#">프리미엄 혜택보기</a></li>                
+            <li><a href="#">회원 관리</a></li>                
+            <li><a href="#">식당관리</a></li>                
         </ul>
     </li>
-    <li class="group">
-        <div class="title">MY 활동</div>
-        <ul class="sub">
-            <li><a href="/mypage/inqwrite">문의하기</a></li>                
-            <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
-        </ul>
-    </li>        
-	<li class="group">
-        <div class="title">MY 회원정보</div>
-        <ul class="sub">
-            <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
-            <li><a href="#">결제 수단 관리</a></li>    
-        </ul>
-    </li>        
 </ul>
 
 
 
-<div class="inqView_container">
+<div class="admininqView_container">
 
 <h2>문의내용 상세보기</h2>
 <br><br>
@@ -164,7 +147,12 @@ ul.sub li:hover {
 
 
 <div class="inqAnswer_container">
-
+	<div>
+		<textarea id="answer"></textarea>
+	</div>
+	<div>
+		<button id="btnWriteAns">댓글달기</button>
+	</div>
 <!-- .inqAnswer_container end -->
 </div>
 
@@ -179,11 +167,4 @@ ul.sub li:hover {
 </div>
 
 <div class="clearfix"></div>
-
-
-
-
-<%@include file="/WEB-INF/views/footer/footer.jsp" %>
-
-
 
