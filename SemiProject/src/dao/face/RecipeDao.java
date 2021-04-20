@@ -109,6 +109,15 @@ public interface RecipeDao {
 	 * @return 작성된 글의 postno
 	 */
 	int getCurPostno(Recipe recipe, Member member, Connection conn);
+	
+	/**
+	 * 생성된 게시글의 postno를 반환한다
+	 * @param conn 
+	 * 
+	 * @return
+	 */
+	int getPostno(Connection conn);
+
 
 
 

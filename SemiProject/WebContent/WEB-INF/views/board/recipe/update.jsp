@@ -1,7 +1,10 @@
+<%@page import="dto.UploadFile"%>
+<%@page import="java.util.List"%>
 <%@page import="dto.Recipe"%>
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
 
 <% Recipe recipe = (Recipe) request.getAttribute("recipe"); %>
+<% List<UploadFile> fList = (List) request.getAttribute("fileList"); %>
 
 <!-- 스마트에디터 2 -->
 <script type="text/javascript"
@@ -69,6 +72,16 @@ $(document).ready(function() {
 	</tr>
 	<tr>		
 		<td colspan="2"><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
+	</tr>
+	<tr>
+		<td>첨부파일</td>
+		<td>
+			<% for(int j=0; j<fList.size(); j++) {%>
+				<% if( recipe.getPostno() == fList.get(j).getPostno() ){%>
+					<%=fList.get(j).getStoredName() %>
+				<% } %>
+			<% } %>
+		</td>
 	</tr>
 	<tr>
 		<td><input type="hidden" name="postno" value="<%=recipe.getPostno() %>"/></td>

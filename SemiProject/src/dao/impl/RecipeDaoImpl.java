@@ -140,7 +140,6 @@ public class RecipeDaoImpl implements RecipeDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		
 		return recipe;
 	}
 
@@ -362,8 +361,8 @@ public class RecipeDaoImpl implements RecipeDao {
 	public int getCurPostno(Recipe recipe, Member member, Connection conn) {
 		
 		String sql = "";
-		sql += "SELECT postno FROM recipe";
-		sql += "	WHERE title = ?, inq_content = ?, userno = ?";
+		sql += "SELECT * FROM recipe";
+		sql += "	WHERE title = ? AND inq_content = ? AND userno = ?";
 		
 		int postno = 0;
 		
@@ -388,5 +387,50 @@ public class RecipeDaoImpl implements RecipeDao {
 		return postno;
 	}
 
+	@Override
+	public int getPostno(Connection conn) {
+
+		String sql ="";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT ROWNUM rnum, R.* FROM (";
+		sql += "		SELECT * FROM recipe";
+		sql += "		ORDER BY postno DESC";
+		sql += "	)R";
+		sql += " ) Recipe ";
+		sql += " WHERE rnum = 1 ";
+		
+		int postno = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				postno = rs.getInt("postno");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+
+		
+		
+		return postno;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

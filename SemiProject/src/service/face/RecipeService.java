@@ -3,6 +3,7 @@ package service.face;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import common.Paging;
 import dto.Recipe;
@@ -37,9 +38,10 @@ public interface RecipeService {
 	 * insert메소드로 삽입 후 커밋한다
 	 * 
 	 * @param req
+	 * @param resp 
 	 * @return 
 	 */
-	int write(HttpServletRequest req);
+	void write(HttpServletRequest req, HttpServletResponse resp);
 	
 	/**
 	 * 레시피 상세보기에서 얻은 postno를 이용하여 해당 recipe의 모든 데이터를 가져온다
@@ -79,6 +81,14 @@ public interface RecipeService {
 	 * @param req 게시글번호를 담고있는 객체
 	 */
 	void deleteRecipe(HttpServletRequest req);
+
+	/**
+	 * 수정된 게시글의 postno, title, content를 파일에도 적용시킨다
+	 * 
+	 * @param req
+	 * @param resp
+	 */
+	void Update(HttpServletRequest req, HttpServletResponse resp);
 
 
 }

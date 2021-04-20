@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.Member;
 import dto.Recipe;
+import dto.UploadFile;
+import service.face.FileService;
 import service.face.MemberService;
 import service.face.RecipeService;
+import service.impl.FileServiceImpl;
 import service.impl.MemberServiceImpl;
 //github.com/dyd7199/Semi.git
 import service.impl.RecipeServiceImpl;
@@ -24,6 +27,7 @@ public class RecipeUpdateController extends HttpServlet {
 	
 	private MemberService memberService = new MemberServiceImpl();
 	private RecipeService recipeService = new RecipeServiceImpl();
+	private FileService fileService = new FileServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,14 +37,23 @@ public class RecipeUpdateController extends HttpServlet {
 		Recipe recipe = new Recipe();
 		
 		//게시글의 회원번호 가져오기
-		String postno = req.getParameter("postno");
+		String postno1 = req.getParameter("postno");
 		
 		
 		//게시글의 회원번호로 해당 게시글의 모든 데이터 가져오기
-		recipe = recipeService.getDataByUserno(postno);
+		recipe = recipeService.getDataByUserno(postno1);
 		
 		//얻어온 레시피 게시글 정보 속성 정의
 		req.setAttribute("recipe", recipe);
+		
+		//postno 얻어오기
+		int postno = Integer.parseInt(postno1);
+				
+		//첨부파일 정보 불러오기
+		List<UploadFile> list = fileService.getFileData(postno);
+						
+		//첨부파일 객체 속성값으로 설정
+		req.setAttribute("fileList", list);
 		
 		//레시피 게시글의 회원번호정보와 로그인된 회원정보가 일치하는지 확인
 		if( (boolean) memberService.UsernoChk(req) ) {
@@ -87,8 +100,10 @@ public class RecipeUpdateController extends HttpServlet {
 		//세션에 속성값으로 mList 설정
 		req.setAttribute("mList", mList);
 		
-		req.getRequestDispatcher("/WEB-INF/views/board/recipe/detail.jsp")
-			.forward(req, resp);
+		recipeService.Update(req, resp);
+
+		resp.sendRedirect("/recipe/list");
+		
 		
 	}
 }

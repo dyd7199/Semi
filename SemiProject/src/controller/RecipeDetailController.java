@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.Member;
 import dto.Recipe;
+import dto.UploadFile;
 import service.face.FileService;
 import service.face.MemberService;
 import service.face.RecipeService;
@@ -35,7 +36,7 @@ public class RecipeDetailController extends HttpServlet {
 
 		//전달 파라미터 객체 생성
 		String postno = req.getParameter("postno");
-
+		
 		//글번호에 해당하는 글 상세데이터 객체 생성
 		Recipe recipe = recipeService.getRecipe(postno);
 		
@@ -51,10 +52,15 @@ public class RecipeDetailController extends HttpServlet {
 		//세션에 속성값으로 mList 설정
 		req.setAttribute("mList", mList);
 		
+		System.out.println("해당 게시글의 postno : " + recipe.getPostno());
+		
+		int postno1 = recipe.getPostno();
+		
 		//첨부파일 정보 불러오기
-		//fileService.getEnclosed();
+		List<UploadFile> list = fileService.getFileData(postno1);
 		
 		//첨부파일 객체 속성값으로 설정
+		req.setAttribute("fileList", list);
 		
 		//JSP로 연결
 		req.getRequestDispatcher("/WEB-INF/views/board/recipe/detail.jsp")
