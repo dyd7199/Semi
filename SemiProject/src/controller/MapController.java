@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.SeoulGrade;
 import review.dto.Seoul;
 import service.face.RestaurantService;
 import service.impl.RestaurantServiceImpl;

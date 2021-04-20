@@ -20,7 +20,6 @@ import service.impl.MemberServiceImpl;
 public class ChgWdrlController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	MemberService memberService = new MemberServiceImpl();
 	
 	
