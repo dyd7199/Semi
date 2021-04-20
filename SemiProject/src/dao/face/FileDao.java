@@ -44,12 +44,6 @@ public interface FileDao {
 	 */
 	public int updateParamData(Connection conn, HttpServletRequest req);
 
-//	/**
-//	 * 수정된 게시글의 게시글번호, 제목, 본문을 첨부된 파일 테이블에 적용한다
-//	 * 
-//	 * @param conn
-//	 * @param req
-//	 */
-//	public int updateUploadFile(Connection conn, HttpServletRequest req);
+
 
 }

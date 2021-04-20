@@ -5,12 +5,12 @@ public class ParamData {
 	private int datano;
 	private int postno;
 	private String title;
-	private String content;
+	private String filecontent;
 	
 	
 	@Override
 	public String toString() {
-		return "ParamData [datano=" + datano + ", postno=" + postno + ", title=" + title + ", content=" + content + "]";
+		return "ParamData [datano=" + datano + ", postno=" + postno + ", title=" + title + ", content=" + filecontent + "]";
 	}
 
 
@@ -45,12 +45,12 @@ public class ParamData {
 
 
 	public String getContent() {
-		return content;
+		return filecontent;
 	}
 
 
 	public void setContent(String content) {
-		this.content = content;
+		this.filecontent = content;
 	}
 	
 	

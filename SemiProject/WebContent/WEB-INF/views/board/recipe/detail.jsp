@@ -15,7 +15,7 @@
 
 
 
-<div id="content">
+<div id="content" style="height: 613px;">
 <table id="detail" class="table" style="marget-top: 200px;">
 
 	<tr>

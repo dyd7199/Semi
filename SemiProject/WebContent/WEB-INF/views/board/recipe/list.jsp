@@ -13,14 +13,14 @@
 
 
 <ul class="nav nav-pills" style="margin: 10px;">
-  <li role="presentation" class="active"><a href="/notice/list">공지사항</a></li>
-  <li role="presentation"><a href="/recipe/list">레시피공유</a></li>
+  <li role="presentation" class="active"><a href="/recipe/list">레시피공유</a></li>
+  <li role="presentation"><a href="/notice/list">공지사항</a></li>
   <li role="presentation"><a href="/faq">FAQ</a></li>
 </ul>
 
 <hr style="border: 0; height: 1px; background: black;">
 
-<div id="content">
+<div id="content" style="height: 548px;">
 <table class="table table-hover">
 	<tr class="active">
 		<th width="5%">글번호</th>

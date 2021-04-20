@@ -22,7 +22,7 @@ public class FileDaoImpl implements FileDao {
 	public int insertParam(Connection conn, ParamData paramData, int postno) {
 		
 		String sql = "";
-		sql += "INSERT INTO paramdata( datano, postno, title, content)";
+		sql += "INSERT INTO paramdata( datano, postno, title, filecontent)";
 		sql += "	VALUES( paramdata_seq.nextval, ?, ?, ? )";
 		
 		int result = 0;
@@ -116,7 +116,7 @@ public class FileDaoImpl implements FileDao {
 		
 		String sql = "";
 		sql += "UPDATE paramdata";
-		sql += "	SET title = ?, content = ?";
+		sql += "	SET title = ?, filecontent = ?";
 		sql += "	WHERE postno = ?";
 		
 		String post = req.getParameter("postno");
@@ -146,18 +146,6 @@ public class FileDaoImpl implements FileDao {
 		return res;
 	}
 
-//	@Override
-//	public int updateUploadFile(Connection conn, HttpServletRequest req) {
-//		
-//		String sql = "";
-//		sql += "UPDATE uploadfile";
-//		sql += "	SET postno = ?";
-//		
-//		String post = req.getParameter("postno");
-//		int postno = Integer.parseInt(post);
-//		
-//		return 0;
-//	}
 
 }
 

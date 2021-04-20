@@ -65,18 +65,15 @@ input .title{
 
 <hr style="boarder: 0; height:1px; background: black;"><br>
 
-<div id="area">
+<div id="area" style="height: 500px;">
 <form action="/recipe/write" method="post" enctype="multipart/form-data" >
 <table class="table table-bordered">
 
 	<tr>
-		<td>제목</td><td><input type="text" name="title" style="width: 95%"/></td>
+		<td>제목</td><td><input type="text" name="title" style="width: 100%;"/></td>
 	</tr>
 	<tr>
 		<td>파일 첨부</td><td><input type="file" name="upfile" /></td>
-	</tr>
-	<tr>
-		<td colspan="2">내용</td>
 	</tr>
 	<tr>		
 		<td colspan="2" style="height: 600px;"><textarea id="content" name="content"></textarea></td>
@@ -87,7 +84,7 @@ input .title{
 
 
 
-<div style="margin-top: 50px; margin-bottom: 40px;">
+<div>
 	<button type="button" id="btnWrite">완료</button>
 	<button type="button" id="btnCancel">취소</button>
 </div>

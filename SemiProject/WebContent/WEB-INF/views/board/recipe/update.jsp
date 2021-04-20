@@ -50,13 +50,16 @@ $(document).ready(function() {
     pageEncoding="UTF-8"%>
 
 
-<h1>레시피 쓰기</h1><br>
+<div style="text-align: left; height:15px;">
+<h3>레시피 글 수정</h3><br>
+</div>
 
-<hr><br>
+<hr style="boarder: 0; height:1px; background: black;"><br>
 
-<div id="area">
+
+<div id="area" style="height: 590px;">
 <form action="/recipe/update" method="post" >
-<table>
+<table class="table table=bordered">
 
 	<tr>
 		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
@@ -65,13 +68,10 @@ $(document).ready(function() {
 		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
 	</tr>
 	<tr>
-		<td>제목</td><td><input type="text" name="title" value="<%=recipe.getTitle() %>"/></td>
-	</tr>
-	<tr>
-		<td colspan="2">내용</td>
+		<td>제목</td><td><input type="text" name="title" style="width:100%;" value="<%=recipe.getTitle() %>"/></td>
 	</tr>
 	<tr>		
-		<td colspan="2"><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
+		<td colspan="2" style="height:600px;"><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
 	</tr>
 	<tr>
 		<td>첨부파일</td>
@@ -81,18 +81,16 @@ $(document).ready(function() {
 					<%=fList.get(j).getStoredName() %>
 				<% } %>
 			<% } %>
+		<input type="hidden" name="postno" value="<%=recipe.getPostno() %>"/>
+		<input type="hidden" name="create_date" value="<%=recipe.getCreate_date() %>"/>
+		<input type="hidden" name="userno" value="<%=recipe.getUserno() %>"/>
+		<input type="hidden" name="views" value="<%=recipe.getViews() %>"/>
 		</td>
-	</tr>
-	<tr>
-		<td><input type="hidden" name="postno" value="<%=recipe.getPostno() %>"/></td>
-		<td><input type="hidden" name="create_date" value="<%=recipe.getCreate_date() %>"/></td>
-		<td><input type="hidden" name="userno" value="<%=recipe.getUserno() %>"/></td>
-		<td><input type="hidden" name="views" value="<%=recipe.getViews() %>"/></td>
 	</tr>
 </table>
 </form>
-
 </div>
+
 <div>
 	<button type="button" id="btnUpdate">수정 완료</button>
 	<button type="button" id="btnCancel">취소</button>
