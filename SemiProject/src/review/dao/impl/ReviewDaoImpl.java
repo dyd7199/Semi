@@ -133,8 +133,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int insert(Connection conn, Review review) {
 		
 		String sql = "";
-		sql += "INSERT INTO review(reviewno, title, userno, inq_content, star_score)";
-		sql += " VALUES (?, ?, ?, ?, ?)";
+		sql += "INSERT INTO review(reviewno, title, userno, inq_content, star_score, upso_sno)";
+		sql += " VALUES (?, ?, ?, ?, ?, ?)";
 		int res = 0;
 		
 		//DB작업
@@ -142,8 +142,10 @@ public class ReviewDaoImpl implements ReviewDao {
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, review.getReviewno());
 				ps.setString(2, review.getTitle());
-				ps.setString(3, review.getInq_content());
-				ps.setInt(4, review.getStar_score());
+				ps.setInt(3, review.getUserno());
+				ps.setString(4, review.getInq_content());
+				ps.setInt(5, review.getStar_score());
+				ps.setString(6, review.getUpso_sno());
 				
 				res = ps.executeUpdate();
 			} catch (SQLException e) {

@@ -73,7 +73,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void write(HttpServletRequest req, Member member) {
+	public void write(HttpServletRequest req, Member member, Seoul upso_sno) {
 				//게시글 정보 저장할 객체
 				Review review = null;
 				
@@ -159,7 +159,10 @@ public class ReviewServiceImpl implements ReviewService {
 						
 					} // if( item.isFormField() ) end - 폼필드 확인
 					
+					//유저번호 받아오기
 					review.setUserno(member.getUserno());
+					//업소번호 받아오기
+					review.setUpso_sno(upso_sno.getUpso_sno());
 					
 					// 3) 파일 처리
 					if( !item.isFormField() ) {

@@ -45,8 +45,9 @@ public interface ReviewService {
 	 * 게시글 작성
 	 * @param req 요청정보 객체(게시글내용 + 첨부파일), 멤버 userno
 	 * @param member 
+	 * @param upso_sno 
 	 */
-	void write(HttpServletRequest req, Member member);
+	void write(HttpServletRequest req, Member member, Seoul upso_sno);
 
 	/**
 	 * 게시글 삭제
