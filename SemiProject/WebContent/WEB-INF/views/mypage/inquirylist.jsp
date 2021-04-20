@@ -179,7 +179,7 @@ th {
 <!-- .inqList_container end -->
 </div>
 
-<!-- <div class="clearfix"></div> -->
+<div class="clearfix"></div>
 
 
 
