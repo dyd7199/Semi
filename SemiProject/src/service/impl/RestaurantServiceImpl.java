@@ -1,5 +1,6 @@
 package service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		List<SeoulGrade> list = restaurantDao.selectTopRestByTitle(JDBCTemplate.getConnection(), req);
 		
+		// avg순서로 정렬
+		Collections.sort(list,Collections.reverseOrder());
 		
 		return list;
 	}

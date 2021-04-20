@@ -1,6 +1,8 @@
 package dto;
 
-public class SeoulGrade {
+import java.util.Comparator;
+
+public class SeoulGrade implements Comparable<SeoulGrade> {
 	private String cgg_code;
 	private String y_dents;
 	private String cob_code_nm;
@@ -13,6 +15,28 @@ public class SeoulGrade {
 	private String upso_nm;
 	private String rdn_code_nm;
 	private int avg;
+	
+//	public SeoulGrade(String cgg_code, String y_dents, String cob_code_nm, String x_cnts
+//			, String cgg_code_nm, String tel_no, String bizcnd_code_nm, String upso_sno
+//			, String food_menu, String upso_nm, String rdn_code_nm, int avg) {
+//		
+//		this.cgg_code = cgg_code;
+//		this.y_dents = y_dents;
+//		this.cob_code_nm = cob_code_nm;
+//		this.x_cnts = x_cnts;
+//		this.cgg_code_nm = cgg_code_nm;
+//		this.tel_no = tel_no;
+//		this.bizcnd_code_nm = bizcnd_code_nm;
+//		this.upso_sno = upso_sno;
+//		this.food_menu = food_menu;
+//		this.upso_nm = upso_nm;
+//		this.rdn_code_nm = rdn_code_nm;
+//		this.avg = avg;
+//	
+//	
+//	}
+	
+	
 	@Override
 	public String toString() {
 		return "SeoulGrade [cgg_code=" + cgg_code + ", y_dents=" + y_dents + ", cob_code_nm=" + cob_code_nm
@@ -92,4 +116,12 @@ public class SeoulGrade {
 	public void setAvg(int avg) {
 		this.avg = avg;
 	}
+	@Override
+	public int compareTo(SeoulGrade seoulGrade) {
+		
+		Integer v1 = this.avg;
+		return v1.compareTo(seoulGrade.avg);
+	}
+	
+	
 }
