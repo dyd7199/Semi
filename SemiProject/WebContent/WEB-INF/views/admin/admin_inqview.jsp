@@ -9,6 +9,22 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	//답변 등록 버튼 클릭 시
+	$("#btnWriteAns").click(function() {
+// 		var answertext = $("#answertext").val(); //댓글 내용
+// 		var inquiryno = "${dto.inquiryno}"; //게시물 번호
+// 		var param = {"answertext": answertext, "inquiryno": inquiryno};
+		
+// 		$.ajax({
+// 			type: "POST",
+// 			url: "${path}/admin/inqview", //데이터 보낼 url
+// 			data: param, //보낼 데이터
+// 			success: function() {
+// 				alert("댓글이 등록되었습니다.")
+// 			}
+// 		})
+	});
+	
 	//목록 버튼 클릭 시
 	$("#btnListInq").click(function() {
 		$(location).attr("href", "/admin/inqlist");
@@ -18,6 +34,8 @@ $(document).ready(function() {
 	$("#btnDelete").click(function() {
 	});
 });
+
+
 </script>
 
 <style>
@@ -91,6 +109,11 @@ ul.sub li:hover {
 	float: right;
 }
 
+.inqAnswer_container {
+	padding: 40px;
+}
+
+
 </style>
 
 
@@ -145,16 +168,27 @@ ul.sub li:hover {
 </table>
 </div>
 
+<%-- <%	if(   ) { %> --%>
+<!-- 해당 문의글에 대한 답변이 존재할 경우
+	답변을 보여줌 -->
+<!-- 	<strong>답변완료!</strong> -->
 
-<div class="inqAnswer_container">
-	<div>
-		<textarea id="answer"></textarea>
-	</div>
-	<div>
-		<button id="btnWriteAns">댓글달기</button>
-	</div>
+<%-- <%	} else {  %> --%>
+<!-- 해당 문의글에 대한 답변이 없을 경우
+	답변 작성 form을 보여줌 -->
+	<div class="inqAnswer_container">
+	<form action="/admin/inqanswer" method="post">
+	<input type="hidden" name="inquiryno" value="<%=request.getParameter("inquiryno") %>">
+		<div>
+			<textarea id="answertext" name="answercontent" rows="10" cols="100" placeholder="해당 문의에 대한 답변 작성하기"></textarea>
+			<input type="submit" id="btnWriteAns" class="btn btn-default" value="답변등록">
+		</div>
+	</form>
+
 <!-- .inqAnswer_container end -->
 </div>
+
+<%-- <%	} %> --%>
 
 
 <div>

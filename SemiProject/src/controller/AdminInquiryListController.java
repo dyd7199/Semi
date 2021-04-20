@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 import service.face.AdminInquiryService;
 import service.impl.AdminInquiryServiceImpl;
