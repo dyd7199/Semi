@@ -30,6 +30,7 @@ public class DetailServiceImpl implements DetailService{
 		Connection conn = JDBCTemplate.getConnection();
 		
 		Seoul upso = detailDao.selectUpsoByUpso_sno(conn, upso_sno); 
+		
 		return upso;
 	}
 

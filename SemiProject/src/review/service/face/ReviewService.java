@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import dto.Member;
 import review.dto.BoardFile;
 import review.dto.Review;
+import review.dto.Seoul;
 import review.util.Paging;
 
 public interface ReviewService {
@@ -20,9 +22,10 @@ public interface ReviewService {
 	/**
 	 * 게시글 전체 조회
 	 * @param paging
+	 * @param upso_sno 
 	 * @return List<Review> 
 	 */
-	List<Review> getList(Paging paging);
+	List<Review> getList(Paging paging, Seoul upso_sno);
 
 	/**
 	 * 요청 파라미터 얻기
@@ -40,9 +43,10 @@ public interface ReviewService {
 
 	/**
 	 * 게시글 작성
-	 * @param req 요청정보 객체(게시글내용 + 첨부파일)
+	 * @param req 요청정보 객체(게시글내용 + 첨부파일), 멤버 userno
+	 * @param member 
 	 */
-	void write(HttpServletRequest req);
+	void write(HttpServletRequest req, Member member);
 
 	/**
 	 * 게시글 삭제

@@ -5,6 +5,7 @@ import java.util.List;
 
 import review.dto.BoardFile;
 import review.dto.Review;
+import review.dto.Seoul;
 import review.util.Paging;
 
 public interface ReviewDao {
@@ -22,7 +23,7 @@ public interface ReviewDao {
 	 * @param paging 페이징 정보 객체
 	 * @return List<Review> 전체 조회 결과 리스트
 	 */
-	public List<Review> selectAll(Connection conn, Paging paging);
+	public List<Review> selectAll(Connection conn, Paging paging, Seoul upso_sno);
 
 	/**
 	 * 선택된 리뷰 조회

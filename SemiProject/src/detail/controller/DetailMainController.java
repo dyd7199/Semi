@@ -29,7 +29,7 @@ public class DetailMainController extends HttpServlet {
 		req.setAttribute("upso_sno", upso_sno);
 		req.setAttribute("viewupso", viewupso);
 		
-		
+		System.out.println(viewupso);
 		req.getRequestDispatcher("/WEB-INF/views/detail/detailmain.jsp").forward(req, resp);
 		}
    
