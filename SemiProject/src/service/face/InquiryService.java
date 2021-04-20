@@ -72,7 +72,7 @@ public interface InquiryService {
 	 * 문의글 작성하기
 	 *  입력한 내용을 DB에 저장
 	 * 
-	 * @param req - 요청정보 객체(게시글 내용 + 첨부파일)
+	 * @param req - 요청정보 객체(게시글 내용)
 	 */
 	public void writeInq(HttpServletRequest req);
 	

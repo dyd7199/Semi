@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import common.JDBCTemplate;
 import dao.face.AdminInquiryDao;
 import dao.impl.AdminInquiryDaoImpl;
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 import service.face.AdminInquiryService;
 
@@ -74,5 +77,34 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 	@Override
 	public String getNick(Inquiry viewInquiry) {
 		return adminInquiryDao.selectNickByUserno(JDBCTemplate.getConnection(), viewInquiry);
+	}
+
+	
+	@Override
+	public void writeAnswer(HttpServletRequest req) {
+		
+		InquiryAnswer answer = new InquiryAnswer();
+		
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		answer.setInquiryno(Integer.parseInt(req.getParameter("inquiryno")));
+		answer.setUserno((int)req.getSession().getAttribute("userno"));
+		answer.setAnswercontent(req.getParameter("answercontent"));
+		System.out.println("answer: " + answer);
+		
+		if (req.getParameter("answercontent") != null && !"".equals(req.getParameter("answercontent"))) {
+			answer.setAnswercontent(req.getParameter("answercontent"));
+		}
+		
+		Connection conn = JDBCTemplate.getConnection();
+		if (adminInquiryDao.insertAnswer(conn, answer) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
 	}
 }
