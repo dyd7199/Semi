@@ -12,12 +12,25 @@
 
 }
 
-
+	.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
 
 
 </style>
 <div id="mapwrapper">
-<img alt="" src="/Resources/img/mapLogo.png" style="width: 50%">
+<img alt="" src="/Resources/img/mapLogo.png" style="width: 30%">
 <div id="map" style="width:100%;height:850px;">
 </div>
 <!-- 37.56677014292466, 126.97865227425055 -->
@@ -150,7 +163,7 @@ var positions = [
     {
         title: '마포구',
         latlng: new kakao.maps.LatLng(37.554871, 126.917390),
-        markerImage: new kakao.maps.MarkerImage("https://i.ibb.co/W6g7mNR/image.png", imageSize)
+        markerImage: new kakao.maps.MarkerImage("https://i.ibb.co/YXKWPh5/image.png", imageSize)
     },
     {
         title: '서대문구',
@@ -185,14 +198,40 @@ for (var i = 0; i < positions.length; i ++) {
     // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
     // 이벤트 리스너로는 클로저를 만들어 등록합니다 
     // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-    kakao.maps.event.addListener(marker, 'click', makeOverListener(map, i, marker, infowindow));
-    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+    kakao.maps.event.addListener(marker, 'click', makeOverListener(map, i, marker));
 }
+
+
+
+var json;
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+// 구별 맛집 마커담는 배열
+var list = []
+var content = '<div class="wrap">' + 
+'    <div class="info">' + 
+'        <div class="title">' + 
+'            카카오' + 
+'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+'        </div>' + 
+'        <div class="body">' + 
+'            <div class="img">' +
+'                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+'           </div>' + 
+'            <div class="desc">' + 
+'                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
+'                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
+'                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+'            </div>' + 
+'        </div>' + 
+'    </div>' +    
+'</div>';
+
+
+
+
 //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, i, marker, infowindow) {
+function makeOverListener(map, i, marker) {
     return function() {
-    	console.log("!!!!!")
-    	console.log(positions[i].title)
     	map.setCenter(positions[i].latlng)
     	map.setLevel(3);
     	$.ajax({
@@ -201,15 +240,97 @@ function makeOverListener(map, i, marker, infowindow) {
 	         url : "/main/map/titlecheck",
 	         dataType : "html",
 			 success : function (data) {
-				console.log(data)
+// 				console.log(data)
 				$("#toprank").html(data);
+				
+				json = JSON.parse(json)
+				
+				for(var i=0; i<json.length; i++) {
+// 					console.log(json[i])
+					console.log(json[i].y_dents)
+					console.log(json[i].x_cnts)
+					var locImageSize = new kakao.maps.Size(24, 35);
+					// 마커를 생성합니다
+				    var locmarker = new kakao.maps.Marker({
+// 				        map: map, // 마커를 표시할 지도
+				        position: new kakao.maps.LatLng(json[i].y_dents, json[i].x_cnts), // 마커를 표시할 위치
+				        title : json[i].upso_nm, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+				        image :  new kakao.maps.MarkerImage(imageSrc, locImageSize)// 마커 이미지 
+				    });
+				    
+				
+					// 클릭 이벤트 리스너
+				    kakao.maps.event.addListener(locmarker, 'click', makeClickOverlay(map,json,i, locmarker));
+				    
+					// 생성된 마커 지도에 보여주기
+					locmarker.setMap(map)
+					// 마커 배열에 담음
+					list.push(locmarker);
+					
+					console.log(list);
+					
+				}//for(var i=0; i<json.length; i++) end
+				
 			 }
-		})
-    
-        infowindow.open(map, marker);
+		})//$.ajax({ end
     };
 }
+var overlay = null;
+// 생성된 마커 클릭시!
+function makeClickOverlay(map, json, i, locmarker ) {   
+	return function() {
+		console.log("클릭클릭")
+		closeOverlay()
+	    
+	 // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+	 overlay = new kakao.maps.CustomOverlay({
+	     content: 
+	    	 '<div class="wrap">' + 
+	    	 '    <div class="info">' + 
+	    	 '        <div class="title">' + 
+	    	 '           ' + json[i].upso_nm +
+	    	 '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+	    	 '        </div>' + 
+	    	 '        <div class="body">' + 
+	    	 '            <div class="img">' +
+	    	 '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+	    	 '           </div>' + 
+	    	 '            <div class="desc">' + 
+	    	 '                <div class="ellipsis">'+ json[i].rdn_code_nm +'</div>' + 
+	    	 '            </div>' + 
+	    	 '        </div>' + 
+	    	 '    </div>' +    
+	    	 '</div>',
+// 	     map: map,
+	     position: new kakao.maps.LatLng(json[i].y_dents, json[i].x_cnts)      
+	 });
+		
+	overlay.setMap(map);
+	}
+}
 
+//커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay() {
+	if(overlay != null)	overlay.setMap(null);
+}
+    
+    
+function setMarkers(map) {
+    for (var i = 0; i < list.length; i++) {
+        list[i].setMap(map);
+    }            
+}
+//"마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
+function showMarkers() {
+    setMarkers(map)    
+}
+
+// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+function hideMarkers() {
+    setMarkers(null);    
+}   
+    
+    
 
 // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
 function makeOutListener(infowindow) {
@@ -233,11 +354,14 @@ function panTo() {
 
 </script>
 
+
 </div>
 
 
 <div style="margin: 50px auto;">
 <button class="btn btn-default btn-lg" onclick="panTo()">원위치로</button>
+<button class="btn btn-default btn-lg" onclick="showMarkers()">위치보기</button>
+<button class="btn btn-default btn-lg" onclick="hideMarkers()">위치지우기</button>
 </div>
 <div>
 		  <img alt="" src="/Resources/img/맛집리스트.png" style="width: 20%; margin:0 auto;">
@@ -250,7 +374,7 @@ function panTo() {
 	<tr>
 		<td style="font-size: 50px; width: 150px;" >#<%=i+1 %></td>
 		
-		<td style="height: 100px;width: 300px; height: 150px;"><img width="100%" src="https://lh3.googleusercontent.com/proxy/5jQIs5mtkl_NYt3HUzlkYargOb7QKOe3dAe2nzfgUx28LH6PiTmg63WzNnHkmQ4u4VpuMNzH095lMpSGeCCIlzIMJwdxbpa1zb_X5stZG5LTfTHsNNX2R7ZJVuzWQCjOUAzzyxoIx-gpTjWwnS47LU26N-7VPzxqvRNt11QL4YgZ8-NEVfMJw_2CLAGNdiqC9mBsZi-mg5Q-HMk0H4ZRbjMF6hCeMOAzEdraFQd0w9V76g3ALezJ-tF9-UoyixkB9n5WRA"></td>
+		<td style="height: 100px;width: 300px; height: 150px;"><img width="100%" src="/Resources/img/headerImg.jpg"></td>
 		<td style="font-size: 16px; width: 300px; text-align: left;">이름:<%=list.get(i).getUpso_nm() %><br><br><br>주소:<%=list.get(i).getRdn_code_nm() %><br><br><br>전화번호:<%=list.get(i).getTel_no() %></td>
 			
 	</tr>

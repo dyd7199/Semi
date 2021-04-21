@@ -11,6 +11,7 @@
    
    
 <div>
+		  <img alt="" src="/Resources/img/테마별맛집.png" style="width: 20%; margin:0 auto; margin-top: 80px;">
 <table class="table table-striped">
 	<%for(int i=0;i<list.size();i++){ %>
 	<tr>
