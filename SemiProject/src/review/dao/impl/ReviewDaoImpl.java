@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.SeoulGrade;
 import review.common.JDBCTemplate;
 import review.dao.face.ReviewDao;
 import review.dto.BoardFile;
@@ -323,6 +324,83 @@ public class ReviewDaoImpl implements ReviewDao {
 				return boardFile;
 				
 			}
+	@Override
+	public List getListByUserno(Connection conn, int userno) {
+		
+		String sql = "";
+		sql += "SELECT * FROM review";
+		sql += "	WHERE userno = ?";
+		sql += "	ORDER BY reviewno";
+		
+		List<Review> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				Review review = new Review();
+				
+				review.setReviewno( rs.getInt("reviewno"));
+				review.setUpso_sno( rs.getString("upso_sno"));
+				review.setCreate_date( rs.getDate("create_date"));
+				review.setTitle( rs.getString("title"));
+				review.setUserno( rs.getInt("userno"));
+				review.setInq_content( rs.getString("inq_content"));
+				review.setStar_score( rs.getInt("star_score"));
+				
+				list.add(review);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+	
+	
+	@Override
+	public List<SeoulGrade> getSeoul(Connection conn) {
+
+		String sql = "";
+		sql += "SELECT * FROM seoulgrade";
+		
+		List<SeoulGrade> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				SeoulGrade s = new SeoulGrade();
+				
+				s.setUpso_sno( rs.getString("upso_sno"));
+				s.setUpso_nm( rs.getString("upso_nm"));
+				
+				list.add(s);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+	
 	
 	
 

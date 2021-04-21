@@ -15,6 +15,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dto.Member;
+import dto.SeoulGrade;
 import review.common.JDBCTemplate;
 import review.dao.face.ReviewDao;
 import review.dao.impl.ReviewDaoImpl;
@@ -285,6 +286,24 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.selectFile(JDBCTemplate.getConnection(), viewReview);
 	
 	}
+
+	@Override
+	public List getMadeList(int userno) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return reviewDao.getListByUserno(conn, userno);
+	}
+
+	@Override
+	public List<SeoulGrade> getSeoul() {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return reviewDao.getSeoul(conn);
+	}
+
+	
 
 
 		

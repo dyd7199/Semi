@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
+import dto.SeoulGrade;
 import review.dto.BoardFile;
 import review.dto.Review;
 import review.dto.Seoul;
@@ -67,5 +68,21 @@ public interface ReviewService {
 	 * @return 첨부파일 정보 객체
 	 */
 	BoardFile viewFile(Review viewReview);
+
+	/**
+	 * 로그인한 회원이 마이페이지에서 볼 수 있는 본인의 리뷰리스트
+	 * 
+	 * @param userno 로그인한 회원의 회원번호
+	 * @return 해당 회원의 모든 리뷰리스트
+	 */
+	List<dto.Review> getMadeList(int userno);
+
+	/**
+	 * 해당 userno가 포함된 리뷰의 상점리스트를 얻어온다
+	 * 
+	 * @param userno
+	 * @return 해당 유저가 리뷰를 작성한 식당 목록
+	 */
+	List<SeoulGrade> getSeoul();
 
 }

@@ -14,7 +14,6 @@ public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/mypage [GET]");
 
 		//로그인 안되어 있을 경우 리다이렉트
 		if (req.getSession().getAttribute("login") == null) {

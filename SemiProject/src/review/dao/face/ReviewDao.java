@@ -3,6 +3,7 @@ package review.dao.face;
 import java.sql.Connection;
 import java.util.List;
 
+import dto.SeoulGrade;
 import review.dto.BoardFile;
 import review.dto.Review;
 import review.dto.Seoul;
@@ -81,6 +82,24 @@ public interface ReviewDao {
 	 * @return
 	 */
 	public BoardFile selectFile(Connection connection, Review viewReview);
+
+	/**
+	 * 로그인한 회원의 모든 리뷰리스트 반환
+	 * 
+	 * @param conn DB연결 객체
+	 * @param userno 로그인한 회원의 회원번호
+	 * @return 해당 회원이 작성한 모든 리뷰리스트
+	 */
+	public List<Review> getListByUserno(Connection conn, int userno);
+
+	/**
+	 * 상점리스트를 불러온다
+	 * 
+	 * @param conn
+	 * @param userno
+	 * @return
+	 */
+	public List<SeoulGrade> getSeoul(Connection conn);
 
 
 	
