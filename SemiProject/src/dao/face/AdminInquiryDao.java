@@ -67,4 +67,6 @@ public interface AdminInquiryDao {
 	 */
 	public int insertAnswer(Connection conn, InquiryAnswer answer);
 
+
+
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import service.face.AdminInquiryService;
 import service.impl.AdminInquiryServiceImpl;
 
@@ -27,6 +29,7 @@ public class AdminInquiryViewController extends HttpServlet {
 		
 		//상세보기 결과 조회
 		Inquiry viewInquiry = adminInquiryService.viewInq(inquiryno);
+		
 		
 		//닉네임 전달
 		req.setAttribute("nick", adminInquiryService.getNick(viewInquiry));

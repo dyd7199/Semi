@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import dto.InquiryFile;
 import inquiry.util.Paging;
 
@@ -78,11 +79,10 @@ public interface InquiryService {
 	
 	
 	/**
-	 * 첨부파일의 정보 얻기
-	 * 
-	 * @param viewInquiry - 첨부파일에 포함된 문의번호(inquiryno)
-	 * @return InquiryFile - 첨부파일 정보 객체
+	 * 문의답변(댓글) 리스트 조회하기
+	 * @param inquiryno - 해당 문의와 같은 inquiryno
+	 * @return List<InquiryAnswer> - 해당 문의글과 inquriyno가 같은 답변 리스트
 	 */
-//	public InquiryFile viewFile(Inquiry viewInquiry);
+	public List<InquiryAnswer> getAnsList(Inquiry inquiryno);
 
 }

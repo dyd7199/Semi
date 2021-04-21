@@ -12,6 +12,7 @@ import common.JDBCTemplate;
 import dao.face.InquiryDao;
 import dao.impl.InquiryDaoImpl;
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import dto.InquiryFile;
 import inquiry.util.Paging;
 import service.face.InquiryService;
@@ -115,6 +116,12 @@ public class InquiryServiceImpl implements InquiryService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
+	}
+	
+	
+	@Override
+	public List<InquiryAnswer> getAnsList(Inquiry inquiryno) {
+		return inquiryDao.selectAllAnsList(JDBCTemplate.getConnection(), inquiryno);
 	}
 
 

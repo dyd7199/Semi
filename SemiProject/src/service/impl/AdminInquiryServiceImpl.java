@@ -107,4 +107,6 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 			JDBCTemplate.rollback(conn);
 		}
 	}
+
+
 }
