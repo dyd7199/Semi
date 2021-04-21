@@ -25,9 +25,10 @@ public interface InquiryService {
 	 * 	 페이징 처리
 	 * 
 	 * @param paging - 페이징 정보 객체
+	 * @param req 
 	 * @return List<Inquiry> - 문의내역 전체 조회 결과 리스트
 	 */
-	public List<Inquiry> getInqList(Paging paging);
+	public List<Inquiry> getInqList(Paging paging, HttpServletRequest req);
 
 
 	/**

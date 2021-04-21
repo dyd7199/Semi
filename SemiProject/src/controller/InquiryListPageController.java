@@ -32,7 +32,7 @@ public class InquiryListPageController extends HttpServlet {
 //		List<Inquiry> inquiryList = inquiryService.getInqList();
 		
 		//페이징 적용한 문의목록 조회
-		List<Inquiry> inquiryList = inquiryService.getInqList(paging);
+		List<Inquiry> inquiryList = inquiryService.getInqList(paging, req);
 		
 		
 		//paging객체 MODEL값 전달
