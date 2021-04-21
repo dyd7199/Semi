@@ -68,5 +68,24 @@ public interface AdminInquiryDao {
 	public int insertAnswer(Connection conn, InquiryAnswer answer);
 
 
+	/**
+	 * 문의에 대한 답변 개수 가져오기
+	 * @param inquiryno 
+	 * 
+	 * @param connection - DB연결 객체
+	 * @return int - 해당 문의에 대한 답변 개수
+	 */
+	public int selectCntAllAns(Connection conn, Inquiry inquiryno);
+
+	
+	/**
+	 * 문의글 삭제하기
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param inquiry - 삭제할 문의번호를 가지고 있는 객체
+	 */
+	public int deleteInq(Connection conn, Inquiry inquiry);
+
+
 
 }

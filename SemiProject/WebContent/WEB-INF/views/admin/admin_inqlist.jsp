@@ -102,7 +102,7 @@ th {
         <div class="title">게시판 관리</div>
        	<ul class="sub">
             <li><a href="#">레시피 공유</a></li>
-            <li><a href="#">공지사항</a></li>
+            <li><a href="/admin/noticelist">공지사항</a></li>
             <li><a href="/admin/inqlist">문의하기</a></li>
        	</ul>
     </li>
