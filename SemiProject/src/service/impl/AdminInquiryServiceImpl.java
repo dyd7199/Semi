@@ -108,5 +108,25 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 		}
 	}
 
+	
+	@Override
+	public int cntAns(Inquiry inquiryno) {
+		return adminInquiryDao.selectCntAllAns(JDBCTemplate.getConnection(), inquiryno);
+	}
+	
+	
+	@Override
+	public void deleteInq(Inquiry inquiry) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if(adminInquiryDao.deleteInq(conn, inquiry) > 0) {
+			JDBCTemplate.commit(conn);;
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
+
+
+
 
 }

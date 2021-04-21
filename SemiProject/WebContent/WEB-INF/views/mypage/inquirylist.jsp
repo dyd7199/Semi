@@ -152,9 +152,7 @@ th {
 	<th style="width: 15%;">작성일</th>
 </tr>
 
-<%	for(int i = 0; i < list.size(); i++) { 
-		Inquiry myInquiry = (Inquiry)list.get(i);
-		if (session.getAttribute("userno").equals(myInquiry.getUserno())) { %>
+<%	for(int i = 0; i < list.size(); i++)  { %>
 <tr>
 	<td><%=list.get(i).getInquiryno() %></td>
 	<td>
@@ -165,7 +163,6 @@ th {
 	<td><%=list.get(i).getNick() %></td>
 	<td><%=list.get(i).getCreateDate() %></td>
 </tr>
-	<%	} %>
 <%	} %>
 </table>
 </div>

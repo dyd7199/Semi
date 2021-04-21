@@ -59,7 +59,7 @@ public class InquiryDaoImpl implements InquiryDao {
 
 	
 	@Override
-	public List<Inquiry> selectAllInqList(Connection conn, Paging paging) {
+	public List<Inquiry> selectAllInqList(Connection conn, Paging paging, int userno) {
 		
 		//SQL 구문
 		String sql = "";
@@ -68,6 +68,7 @@ public class InquiryDaoImpl implements InquiryDao {
 		sql += "        SELECT inquiryno, title, userno, createDate,";
 		sql += " 		(SELECT nick FROM user_table U WHERE U.userno = INQ.userno ) nick";
 		sql += "        FROM inquiry INQ";
+		sql += "        WHERE userno = ?";
 		sql += "        ORDER BY inquiryno DESC";
 		sql += "    ) I";
 		sql += " ) INQUIRY";
@@ -79,8 +80,9 @@ public class InquiryDaoImpl implements InquiryDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, paging.getStartNo());
-			ps.setInt(2, paging.getEndNo());
+			ps.setInt(1, userno);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			
@@ -279,6 +281,69 @@ public class InquiryDaoImpl implements InquiryDao {
 		}
 		
 		return answerList;
+	}
+	
+	
+	@Override
+	public int selectCntAllAns(Connection conn, Inquiry inquiryno) {
+		
+		//SQL 구문
+		String sql = "";
+		sql += "SELECT count(*) FROM InquiryAnswer A"; 
+		sql += "	WHERE A.inquiryno IN (SELECT I.inquiryno";
+		sql += "    					  FROM Inquiry I";
+		sql += "						  WHERE I.inquiryno = ?)";
+		
+		//총 답변 수
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, inquiryno.getInquiryno());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return cnt;
+	}
+
+
+	@Override
+	public int deleteInq(Connection conn, Inquiry inquiry) {
+		
+		//SQL 구문
+		String sql = "";
+		sql += "DELETE inquiry";
+		sql += " WHERE inquiryno = ?";
+		
+		int result = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, inquiry.getInquiryno());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null)	 ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 
 	

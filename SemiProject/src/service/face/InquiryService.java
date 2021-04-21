@@ -25,9 +25,10 @@ public interface InquiryService {
 	 * 	 페이징 처리
 	 * 
 	 * @param paging - 페이징 정보 객체
+	 * @param req 
 	 * @return List<Inquiry> - 문의내역 전체 조회 결과 리스트
 	 */
-	public List<Inquiry> getInqList(Paging paging);
+	public List<Inquiry> getInqList(Paging paging, HttpServletRequest req);
 
 
 	/**
@@ -84,5 +85,22 @@ public interface InquiryService {
 	 * @return List<InquiryAnswer> - 해당 문의글과 inquriyno가 같은 답변 리스트
 	 */
 	public List<InquiryAnswer> getAnsList(Inquiry inquiryno);
+
+
+	/**
+	 * 문의사항 답변 수 조회
+	 * 
+	 * @param inquiryno - inquiryno로 조회될 객체
+	 * @return int - 조회될 답변 수
+	 */
+	public int cntAns(Inquiry inquiryno);
+
+
+	/**
+	 * 문의글 삭제하기
+	 * 
+	 * @param inquiry - 삭제할 문의번호(inquiryno)를 가진 객체
+	 */
+	public void deleteInq(Inquiry inquiry);
 
 }

@@ -6,6 +6,7 @@
     
 <%	Inquiry inq = (Inquiry) request.getAttribute("viewInquiry"); %>
 <%	List<InquiryAnswer> list = (List) request.getAttribute("getAnswer"); %>
+<%	int inqCnt = (int) request.getAttribute("cntAnswer"); %>
 
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
@@ -18,7 +19,11 @@ $(document).ready(function() {
 	});
 	
 	//삭제 버튼 클릭 시
-	$("#btnDelete").click(function() {
+	$("#btnDeleteInq").click(function() {
+		
+		if (confirm("[확인]버튼 클릭 시 해당 문의글이 삭제되고 되돌릴 수 없습니다.\n 삭제하시겠습니까?")) {
+			$(location).attr("href", "/mypage/inqdelete?inquiryno=<%=inq.getInquiryno() %>");
+		}
 	});
 });
 </script>
@@ -94,6 +99,11 @@ ul.sub li:hover {
 	float: right;
 }
 
+table td:nth-child(2n) {
+	text-align: left;
+}
+
+
 </style>
 
 
@@ -145,8 +155,8 @@ ul.sub li:hover {
 <div>
 <table class="table" style="border: 1px solid #ccc;">
 <tr>
-	<td class="active">문의번호</td><td><%=inq.getInquiryno() %></td>
-	<td class="active">문의종류</td><td><%=inq.getInqsort() %></td>
+	<td class="active" style="width: 20%;">문의번호</td><td style="width: 35%;"><%=inq.getInquiryno() %></td>
+	<td class="active" style="width: 20%;">문의종류</td><td style="width: 25%;"><%=inq.getInqsort() %></td>
 </tr>
 <tr>
 	<td class="active">회원번호</td><td><%=inq.getUserno() %></td>
@@ -167,7 +177,7 @@ ul.sub li:hover {
 
 
 <div class="inqAnswer_container">
-<table class="table table-bordered" style="margin-top: 100px;">
+<table class="table table-bordered" style="margin: 80px 0 50px 0;">
 <tr>
 	<th style="width: 15%;">답변 작성일</th>
 	<th style="width: 80%;">답변 내용</th>
@@ -187,7 +197,13 @@ ul.sub li:hover {
 
 <div>
 	<button type="button" id="btnListInq" class="btn btn-default">목록으로</button>
+	
+	<%	if( inqCnt > 0) { %> 
+	<!-- 문의에 대한 답변이 있을 경우 삭제 버튼 비활성화 -->
+	<button type="button" id="btnDeleteInq" class="btn btn-danger" disabled="disabled">삭제</button>
+	<%	} else { %>
 	<button type="button" id="btnDeleteInq" class="btn btn-danger">삭제</button>
+	<%	} %>
 </div>
 
 

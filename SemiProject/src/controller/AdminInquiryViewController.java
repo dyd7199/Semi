@@ -30,11 +30,16 @@ public class AdminInquiryViewController extends HttpServlet {
 		//상세보기 결과 조회
 		Inquiry viewInquiry = adminInquiryService.viewInq(inquiryno);
 		
+		//문의 답변 개수 조회
+		int cntAnswer = adminInquiryService.cntAns(inquiryno);
+		
 		
 		//닉네임 전달
 		req.setAttribute("nick", adminInquiryService.getNick(viewInquiry));
 		
 		req.setAttribute("viewInquiry", viewInquiry);
+		
+		req.setAttribute("cntAnswer", cntAnswer);
 		
 		req.getRequestDispatcher("/WEB-INF/views/admin/admin_inqview.jsp").forward(req, resp);
 
