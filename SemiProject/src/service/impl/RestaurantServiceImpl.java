@@ -28,5 +28,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 		return list;
 	}
+	@Override
+	public List<SeoulGrade> getThemeList(String theme) {
+		// TODO Auto-generated method stub
+		return restaurantDao.selectThemeByBiz(JDBCTemplate.getConnection(),theme);
+	}
 
 }

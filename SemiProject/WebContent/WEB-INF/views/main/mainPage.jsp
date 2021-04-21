@@ -45,6 +45,7 @@
        </section>
       <hr size="10px" width="100%" style="border-top: 1px solid #ccc; margin-top: 100px;">
 
+
       
       
       
@@ -57,6 +58,7 @@
 		  <!-- Swiper -->
 		  <img alt="" src="/Resources/img/테마별맛집.png" style="width: 20%; margin:0 auto; margin-top: 50px;">
 
+
 		  <div class="swiper-container">
 		    <div class="swiper-wrapper">
 		      <div class="swiper-slide">
@@ -64,7 +66,7 @@
 		      	<h3>한식</h3>
 				<span>K-FOOD</span>
 		      </div>
-		      <a href="/main/theme"><img class="slide_img" src="https://i.pinimg.com/564x/5d/06/59/5d0659b43a84e2962eba9ed3386928cb.jpg"></a>
+		      <a href="/main/theme?theme=한식"><img class="slide_img" src="https://i.pinimg.com/564x/5d/06/59/5d0659b43a84e2962eba9ed3386928cb.jpg"></a>
 		      </div>
 		      
 		      <div class="swiper-slide">
@@ -72,13 +74,13 @@
 		      	<h3>일식</h3>
 				<span>J-FOOD</span>
 		      </div>
-		      <img class="slide_img" src="https://i.pinimg.com/564x/c2/71/00/c2710056bd8bcca6dfefa215d65bbb52.jpg"></div>
+		      <a href="/main/theme?theme=일식"><img class="slide_img" src="https://i.pinimg.com/564x/c2/71/00/c2710056bd8bcca6dfefa215d65bbb52.jpg"></a></div>
 		      <div class="swiper-slide">
 		      <div class="img_write">
 		      	<h3>중식</h3>
 				<span>J-FOOD</span>
 		      </div>
-		      <img class="slide_img" src="https://mp-seoul-image-production-s3.mangoplate.com/281547/753280_1550146766591_11966?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80"></div>
+		      <a href="/main/theme?theme=중국식"><img class="slide_img" src="https://mp-seoul-image-production-s3.mangoplate.com/281547/753280_1550146766591_11966?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80"></a></div>
 		      <div class="swiper-slide">Slide 3</div>
 		      <div class="swiper-slide">Slide 4</div>
 		      <div class="swiper-slide">Slide 5</div>

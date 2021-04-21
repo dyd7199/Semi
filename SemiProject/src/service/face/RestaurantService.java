@@ -20,6 +20,12 @@ public interface RestaurantService {
 	 * @return
 	 */
 	public List<SeoulGrade> getTopRest(HttpServletRequest req);
+	/**
+	 * 테마별 맛집 리스트 가져오기
+	 * @param parameter
+	 * @return
+	 */
+	public List<SeoulGrade> getThemeList(String parameter);
 
 
 
