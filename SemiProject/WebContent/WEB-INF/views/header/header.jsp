@@ -39,6 +39,7 @@
 		.fill {
 			width: 100%;
 			height: 360px;
+			margin-top: 80px;
 		}
 		.size {
 			width: 250px;

@@ -13,20 +13,20 @@ import review.dto.Seoul;
 import test.service.face.TestService;
 import test.service.impl.TestServiceImpl;
 
-
 @WebServlet("/test")
 public class RestauTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private TestService testService = new TestServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		List<Seoul> seoulList = testService.getList();
-		//조회결과 MODEL값 전달
+		// 조회결과 MODEL값 전달
 		req.setAttribute("seoulList", seoulList);
-		
+
 		req.getRequestDispatcher("/WEB-INF/views/RestauTest.jsp").forward(req, resp);
-		
+
 	}
 }
