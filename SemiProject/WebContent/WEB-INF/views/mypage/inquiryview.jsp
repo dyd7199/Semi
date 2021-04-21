@@ -1,8 +1,11 @@
+<%@page import="dto.InquiryAnswer"%>
+<%@page import="java.util.List"%>
 <%@page import="dto.Inquiry"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%	Inquiry inq = (Inquiry) request.getAttribute("viewInquiry"); %>
+<%	List<InquiryAnswer> list = (List) request.getAttribute("getAnswer"); %>
 
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
@@ -164,6 +167,19 @@ ul.sub li:hover {
 
 
 <div class="inqAnswer_container">
+<table class="table table-bordered" style="margin-top: 100px;">
+<tr>
+	<th style="width: 15%;">답변 작성일</th>
+	<th style="width: 80%;">답변 내용</th>
+</tr>
+
+<%	for(int i=0; i<list.size(); i++) { %>
+<tr style="height: 100px; width: 200px;">
+	<td><%=list.get(i).getCreateDate() %></td>
+	<td><%=list.get(i).getAnswercontent() %></td>
+</tr>
+<%	} %>
+</table>
 
 <!-- .inqAnswer_container end -->
 </div>

@@ -234,4 +234,6 @@ public class AdminInquiryDaoImpl implements AdminInquiryDao {
 		
 		return result;
 	}
+
+
 }

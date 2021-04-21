@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
 public interface InquiryDao {
@@ -67,6 +68,14 @@ public interface InquiryDao {
 	public int insertInq(Connection conn, Inquiry inquiry);
 
 
+	/**
+	 * 해당 문의번호를 가진 답변 리스트 조회하기
+	 * 
+	 * @param connection - DB연결 객체
+	 * @param inquiryno - 해당 inquiryno를 가진 객체
+	 * @return List<InquiryAnswer> - 해당 문의번호를 가진 inquiryAnswer 테이블 전체 조회결과 리스트
+	 */
+	public List<InquiryAnswer> selectAllAnsList(Connection conn, Inquiry inquiryno);
 
 	
 }
