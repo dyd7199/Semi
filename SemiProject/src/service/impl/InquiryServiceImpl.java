@@ -123,6 +123,24 @@ public class InquiryServiceImpl implements InquiryService {
 	public List<InquiryAnswer> getAnsList(Inquiry inquiryno) {
 		return inquiryDao.selectAllAnsList(JDBCTemplate.getConnection(), inquiryno);
 	}
+	
+	
+	@Override
+	public int cntAns(Inquiry inquiryno) {
+		return inquiryDao.selectCntAllAns(JDBCTemplate.getConnection(), inquiryno);
+	}
+
+	
+	@Override
+	public void deleteInq(Inquiry inquiry) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if(inquiryDao.deleteInq(conn, inquiry) > 0) {
+			JDBCTemplate.commit(conn);;
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
 
 
 }

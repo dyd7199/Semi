@@ -85,4 +85,21 @@ public interface InquiryService {
 	 */
 	public List<InquiryAnswer> getAnsList(Inquiry inquiryno);
 
+
+	/**
+	 * 문의사항 답변 수 조회
+	 * 
+	 * @param inquiryno - inquiryno로 조회될 객체
+	 * @return int - 조회될 답변 수
+	 */
+	public int cntAns(Inquiry inquiryno);
+
+
+	/**
+	 * 문의글 삭제하기
+	 * 
+	 * @param inquiry - 삭제할 문의번호(inquiryno)를 가진 객체
+	 */
+	public void deleteInq(Inquiry inquiry);
+
 }
