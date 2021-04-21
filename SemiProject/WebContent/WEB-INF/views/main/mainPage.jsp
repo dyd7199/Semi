@@ -56,11 +56,12 @@
         <section>
 		
 		  <!-- Swiper -->
-		  <img alt="" src="/Resources/img/테마별맛집.png" style="width: 20%; margin:0 auto; margin-top: 50px;">
+		  <img alt="" src="/Resources/img/테마별맛집.png" style="width: 20%; margin:0 auto; margin-top: 10px;">
 
 
 		  <div class="swiper-container">
 		    <div class="swiper-wrapper">
+		    
 		      <div class="swiper-slide">
 		      <div class="img_write">
 		      	<h3>한식</h3>
@@ -75,20 +76,36 @@
 				<span>J-FOOD</span>
 		      </div>
 		      <a href="/main/theme?theme=일식"><img class="slide_img" src="https://i.pinimg.com/564x/c2/71/00/c2710056bd8bcca6dfefa215d65bbb52.jpg"></a></div>
+		      
 		      <div class="swiper-slide">
 		      <div class="img_write">
 		      	<h3>중식</h3>
 				<span>J-FOOD</span>
 		      </div>
-		      <a href="/main/theme?theme=중국식"><img class="slide_img" src="https://mp-seoul-image-production-s3.mangoplate.com/281547/753280_1550146766591_11966?fit=around|512:512&crop=512:512;*,*&output-format=jpg&output-quality=80"></a></div>
-		      <div class="swiper-slide">Slide 3</div>
-		      <div class="swiper-slide">Slide 4</div>
-		      <div class="swiper-slide">Slide 5</div>
-		      <div class="swiper-slide">Slide 6</div>
-		      <div class="swiper-slide">Slide 7</div>
-		      <div class="swiper-slide">Slide 8</div>
-		      <div class="swiper-slide">Slide 9</div>
-		      <div class="swiper-slide">Slide 10</div>
+		      <a href="/main/theme?theme=중국식"><img src="https://i.pinimg.com/564x/78/39/60/783960c4de004668eae095f8949d5a30.jpg"></a></div>
+		      
+		      <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>경양식</h3>
+				<span>J-FOOD</span>
+		      </div>
+		      <a href="/main/theme?theme=경양식"><img class="slide_img" src="https://i.pinimg.com/564x/a3/7e/e2/a37ee2fc67697af8fc97d8d6ff66ac14.jpg"></a></div>
+		      
+		       <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>뷔페식</h3>
+				<span>J-FOOD</span>
+		      </div>
+		      <a href="/main/theme?theme=뷔페식"><img class="slide_img" src="https://i.pinimg.com/564x/f4/90/0f/f4900fe47b9db94b9438d448988555d9.jpg"></a></div>
+		      
+		       <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>고기</h3>
+				<span>J-FOOD</span>
+		      </div>
+		      <a href="/main/theme?theme=식육취급"><img class="slide_img" src="https://i.pinimg.com/564x/77/72/39/77723909a3129bd3c97245843409740f.jpg"></a></div>
+		      
+		      
 		    </div>
 		    <!-- Add Pagination -->
 		    <div class="swiper-pagination"></div>
@@ -122,8 +139,8 @@
              <hr size="10px" width="100%" style="border-top: 1px solid #ccc; margin-top: 100px;">
        
        <section>
-		  <img alt="" src="/Resources/img/맛집리스트.png" style="width: 20%; margin:0 auto; margin-top: 50px;">
-
+		  <img alt="" src="/Resources/img/맛집리스트.png" style="width: 20%; margin:0 auto; margin-top: 10px;">
+		<h3 ></h3>
 		  <!-- Swiper -->
 		  <div class="swiper-container">
 		    <div class="swiper-wrapper">
