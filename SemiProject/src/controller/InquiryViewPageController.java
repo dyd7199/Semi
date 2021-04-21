@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import service.face.InquiryService;
 import service.impl.InquiryServiceImpl;
 
@@ -28,12 +30,17 @@ public class InquiryViewPageController extends HttpServlet {
 		//상세보기 결과 조회
 		Inquiry viewInquiry = inquiryService.viewInq(inquiryno);
 		
+		//문의 답변 조회
+		List<InquiryAnswer> getAnswer = inquiryService.getAnsList(inquiryno);
+		
 		//닉네임 전달
 		req.setAttribute("nick", inquiryService.getNick(viewInquiry));
 		
 		//TEST 1)))
 //		System.out.println("viewInquiry: " + viewInquiry);
 		req.setAttribute("viewInquiry", viewInquiry);
+		
+		req.setAttribute("getAnswer", getAnswer);
 		
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquiryview.jsp").forward(req, resp);
 	}

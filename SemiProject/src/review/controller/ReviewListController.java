@@ -23,6 +23,7 @@ public class ReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ReviewService reviewService = new ReviewServiceImpl();
+	private DetailService detailService = new DetailServiceImpl();
 
 	
 	
@@ -34,8 +35,9 @@ public class ReviewListController extends HttpServlet {
 		Paging paging = reviewService.getPaging(req);
 //		System.out.println("ReviewListController - " + paging);
 		
+		Seoul upso_sno = detailService.getupsono(req);
 		//페이징을 적용한 게시글 조회
-		List<Review> reviewList = reviewService.getList(paging);
+		List<Review> reviewList = reviewService.getList(paging, upso_sno);
 
 		//페이징 객체를 MODEL값으로 전달
 		req.setAttribute("paging", paging);

@@ -11,6 +11,7 @@ import review.common.JDBCTemplate;
 import review.dao.face.ReviewDao;
 import review.dto.BoardFile;
 import review.dto.Review;
+import review.dto.Seoul;
 import review.util.Paging;
 
 public class ReviewDaoImpl implements ReviewDao {
@@ -47,13 +48,13 @@ public class ReviewDaoImpl implements ReviewDao {
 		return cnt;
 	}
 	@Override
-	public List<Review> selectAll(Connection conn, Paging paging) {
+	public List<Review> selectAll(Connection conn, Paging paging, Seoul upso_sno) {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += " 	SELECT rownum rnum, R.* FROM (";
 		sql += " 		SELECT";
-		sql += " 			reviewno, title, userno, inq_content, create_date, star_score";
-		sql += " 		FROM review";
+		sql += " 			reviewno, upso_sno, title, userno, inq_content, create_date, star_score";
+		sql += " 		FROM review  WHERE = ?";
 		sql += " 		ORDER BY reviewno DESC";
 		sql += "	) R";
 		sql += " ) REVIEW";
@@ -63,8 +64,9 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, paging.getStartNo());
-			ps.setInt(2, paging.getEndNo());
+			ps.setString(1, upso_sno.getUpso_sno());
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
 			//조회 결과 처리
@@ -72,6 +74,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			Review r = new Review(); //결과값 저장 객체
 			
 			r.setReviewno(rs.getInt("reviewno"));
+			r.setUpso_sno(rs.getString("upso_sno"));
 			r.setTitle(rs.getString("title"));
 			r.setUserno(rs.getInt("userno"));
 			r.setInq_content(rs.getString("inq_content"));
@@ -130,8 +133,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int insert(Connection conn, Review review) {
 		
 		String sql = "";
-		sql += "INSERT INTO review(reviewno, title, userno, inq_content, star_score)";
-		sql += " VALUES (?, ?, review_seq.nextval, ?, ?)";
+		sql += "INSERT INTO review(reviewno, title, userno, inq_content, star_score, upso_sno)";
+		sql += " VALUES (?, ?, ?, ?, ?, ?)";
 		int res = 0;
 		
 		//DB작업
@@ -139,8 +142,10 @@ public class ReviewDaoImpl implements ReviewDao {
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, review.getReviewno());
 				ps.setString(2, review.getTitle());
-				ps.setString(3, review.getInq_content());
-				ps.setInt(4, review.getStar_score());
+				ps.setInt(3, review.getUserno());
+				ps.setString(4, review.getInq_content());
+				ps.setInt(5, review.getStar_score());
+				ps.setString(6, review.getUpso_sno());
 				
 				res = ps.executeUpdate();
 			} catch (SQLException e) {

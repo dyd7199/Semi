@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <!-- 스마트에디터2 -->
 <style type="text/css">
    #inq_content {
@@ -31,7 +31,7 @@
     height: 30px;
 
 	/* 투명한 별 표현 */
-	background-image: url(/resources/se2/img/empty.png);
+	background-image: url(/Resources/se2/img/empty.png);
 	background-repeat: no-repeat;
 	background-size: 200%;
 }
@@ -48,7 +48,7 @@
 
 .on {
 	/* 채워진 별로 이미지 변경 */
-	background-image: url(/resources/se2/img/star.png);
+	background-image: url(/Resources/se2/img/star.png);
 }
 </style>
 

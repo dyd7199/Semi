@@ -6,30 +6,27 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.filters.SetCharacterEncodingFilter;
-
 import common.JDBCTemplate;
-import dao.face.InquiryDao;
-import dao.impl.InquiryDaoImpl;
+import dao.face.AdminInquiryDao;
+import dao.impl.AdminInquiryDaoImpl;
 import dto.Inquiry;
 import dto.InquiryAnswer;
-import dto.InquiryFile;
 import inquiry.util.Paging;
-import service.face.InquiryService;
+import service.face.AdminInquiryService;
 
-public class InquiryServiceImpl implements InquiryService {
+public class AdminInquiryServiceImpl implements AdminInquiryService {
 	
 	//InquiryDao 객체 생성
-	private InquiryDao inquiryDao = new InquiryDaoImpl();
+	private AdminInquiryDao adminInquiryDao = new AdminInquiryDaoImpl();
 
 	@Override
 	public List<Inquiry> getInqList() {
-		return inquiryDao.selectAllInqList(JDBCTemplate.getConnection());
+		return adminInquiryDao.selectAllInqList(JDBCTemplate.getConnection());
 	}
 
 	@Override
 	public List<Inquiry> getInqList(Paging paging) {
-		return inquiryDao.selectAllInqList(JDBCTemplate.getConnection(), paging);
+		return adminInquiryDao.selectAllInqList(JDBCTemplate.getConnection(), paging);
 	}
 
 	@Override
@@ -43,7 +40,7 @@ public class InquiryServiceImpl implements InquiryService {
 		}
 		
 		//Board 테이블의 총 게시글 수 조회
-		int totalCount = inquiryDao.selectCntAllInq(JDBCTemplate.getConnection());
+		int totalCount = adminInquiryDao.selectCntAllInq(JDBCTemplate.getConnection());
 		
 		//Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
@@ -60,8 +57,6 @@ public class InquiryServiceImpl implements InquiryService {
 		
 		//inquiryno 전달파라미터 검증
 		String param = req.getParameter("inquiryno");
-		//TEST 3)))
-//		System.out.println("param: " + param);
 		
 		if (param != null && !"".equals(param)) {
 			inquiryno.setInquiryno(Integer.parseInt(param));
@@ -75,20 +70,20 @@ public class InquiryServiceImpl implements InquiryService {
 	
 	@Override
 	public Inquiry viewInq(Inquiry inquiryno) {
-		return inquiryDao.selectInqByInquiryno(JDBCTemplate.getConnection(), inquiryno);
+		return adminInquiryDao.selectInqByInquiryno(JDBCTemplate.getConnection(), inquiryno);
 	}
 
 	
 	@Override
 	public String getNick(Inquiry viewInquiry) {
-		return inquiryDao.selectNickByUserno(JDBCTemplate.getConnection(), viewInquiry);
+		return adminInquiryDao.selectNickByUserno(JDBCTemplate.getConnection(), viewInquiry);
 	}
-	
+
 	
 	@Override
-	public void writeInq(HttpServletRequest req) {
+	public void writeAnswer(HttpServletRequest req) {
 		
-		Inquiry inquiry = new Inquiry();
+		InquiryAnswer answer = new InquiryAnswer();
 		
 		try {
 			req.setCharacterEncoding("UTF-8");
@@ -96,32 +91,21 @@ public class InquiryServiceImpl implements InquiryService {
 			e.printStackTrace();
 		}
 		
-		inquiry.setInqsort(req.getParameter("inqsort"));
-		inquiry.setTitle(req.getParameter("title"));
-		inquiry.setInqcontent(req.getParameter("content"));
-		inquiry.setUserno((int)req.getSession().getAttribute("userno"));
+		answer.setInquiryno(Integer.parseInt(req.getParameter("inquiryno")));
+		answer.setUserno((int)req.getSession().getAttribute("userno"));
+		answer.setAnswercontent(req.getParameter("answercontent"));
+		System.out.println("answer: " + answer);
 		
-		
-		//작성자 번호 처리
-//		inquiry.setUserno((int) req.getSession().getAttribute("userno"));
-		
-		//title이 null이거나 빈칸일 때 처리
-		if (inquiry.getTitle() == null || "".equals(inquiry.getTitle())) {
-			inquiry.setTitle("(제목 없음)");
+		if (req.getParameter("answercontent") != null && !"".equals(req.getParameter("answercontent"))) {
+			answer.setAnswercontent(req.getParameter("answercontent"));
 		}
 		
 		Connection conn = JDBCTemplate.getConnection();
-		if (inquiryDao.insertInq(conn, inquiry) > 0) {
+		if (adminInquiryDao.insertAnswer(conn, answer) > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-	}
-	
-	
-	@Override
-	public List<InquiryAnswer> getAnsList(Inquiry inquiryno) {
-		return inquiryDao.selectAllAnsList(JDBCTemplate.getConnection(), inquiryno);
 	}
 
 

@@ -1,9 +1,18 @@
 package dao.face;
 
-import dto.Restaurant;
+import java.sql.Connection;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import dto.SeoulGrade;
+import review.dto.Seoul;
 
 public interface RestaurantDao {
 
-	public Restaurant selectByTopRest();
+	public List<Seoul> selectByTopRest(Connection conn);
+
+	public List<SeoulGrade> selectTopRestByTitle(Connection connection, HttpServletRequest req);
+
 
 }

@@ -1,26 +1,41 @@
-<%@page import="dto.InquiryAnswer"%>
-<%@page import="java.util.List"%>
 <%@page import="dto.Inquiry"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%	Inquiry inq = (Inquiry) request.getAttribute("viewInquiry"); %>
-<%	List<InquiryAnswer> list = (List) request.getAttribute("getAnswer"); %>
 
-<%@include file="/WEB-INF/views/header/header.jsp" %>
+<%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
 
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	//답변 등록 버튼 클릭 시
+	$("#btnWriteAns").click(function() {
+// 		var answertext = $("#answertext").val(); //댓글 내용
+// 		var inquiryno = "${dto.inquiryno}"; //게시물 번호
+// 		var param = {"answertext": answertext, "inquiryno": inquiryno};
+		
+// 		$.ajax({
+// 			type: "POST",
+// 			url: "${path}/admin/inqview", //데이터 보낼 url
+// 			data: param, //보낼 데이터
+// 			success: function() {
+// 				alert("댓글이 등록되었습니다.")
+// 			}
+// 		})
+	});
+	
 	//목록 버튼 클릭 시
 	$("#btnListInq").click(function() {
-		$(location).attr("href", "/mypage/inqlist");
+		$(location).attr("href", "/admin/inqlist");
 	});
 	
 	//삭제 버튼 클릭 시
 	$("#btnDelete").click(function() {
 	});
 });
+
+
 </script>
 
 <style>
@@ -87,57 +102,45 @@ ul.sub li:hover {
 }
 
 
-.inqView_container {
+.admininqView_container {
 	width: 80%;
 	padding: 30px;
 	
 	float: right;
 }
 
+.inqAnswer_container {
+	padding: 40px;
+}
+
+
 </style>
 
 
 
 <ul id="navi">
-	
-	<li class="group">
-        <div class="maintitle">나의맛객</div>
+	<li style="height: 50px; padding: 10px;">
     </li>
     <li class="group">
-        <div class="title">MyPage</div>
-        <ul class="sub">
-            <li><a href="#">찜한식당</a></li>
-            <li><a href="#">최근 본 식당</a></li>
-            <li><a href="#">내가 작성한 후기</a></li>
-            <li><a href="#">내가 작성한 레시피</a></li>
-        </ul>
+        <div class="title">게시판 관리</div>
+       	<ul class="sub">
+            <li><a href="#">레시피 공유</a></li>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="/admin/inqlist">문의하기</a></li>
+       	</ul>
     </li>
     <li class="group">
-        <div class="title">MY혜택</div>
+        <div class="title">데이터 관리</div>
         <ul class="sub">
-            <li><a href="#">프리미엄 가입하기</a></li>                
-            <li><a href="#">프리미엄 혜택보기</a></li>                
+            <li><a href="#">회원 관리</a></li>                
+            <li><a href="#">식당관리</a></li>                
         </ul>
     </li>
-    <li class="group">
-        <div class="title">MY 활동</div>
-        <ul class="sub">
-            <li><a href="/mypage/inqwrite">문의하기</a></li>                
-            <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
-        </ul>
-    </li>        
-	<li class="group">
-        <div class="title">MY 회원정보</div>
-        <ul class="sub">
-            <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
-            <li><a href="#">결제 수단 관리</a></li>    
-        </ul>
-    </li>        
 </ul>
 
 
 
-<div class="inqView_container">
+<div class="admininqView_container">
 
 <h2>문의내용 상세보기</h2>
 <br><br>
@@ -165,24 +168,27 @@ ul.sub li:hover {
 </table>
 </div>
 
+<%-- <%	if(   ) { %> --%>
+<!-- 해당 문의글에 대한 답변이 존재할 경우
+	답변을 보여줌 -->
+<!-- 	<strong>답변완료!</strong> -->
 
-<div class="inqAnswer_container">
-<table class="table table-bordered" style="margin-top: 100px;">
-<tr>
-	<th style="width: 15%;">답변 작성일</th>
-	<th style="width: 80%;">답변 내용</th>
-</tr>
-
-<%	for(int i=0; i<list.size(); i++) { %>
-<tr style="height: 100px; width: 200px;">
-	<td><%=list.get(i).getCreateDate() %></td>
-	<td><%=list.get(i).getAnswercontent() %></td>
-</tr>
-<%	} %>
-</table>
+<%-- <%	} else {  %> --%>
+<!-- 해당 문의글에 대한 답변이 없을 경우
+	답변 작성 form을 보여줌 -->
+	<div class="inqAnswer_container">
+	<form action="/admin/inqanswer" method="post">
+	<input type="hidden" name="inquiryno" value="<%=request.getParameter("inquiryno") %>">
+		<div>
+			<textarea id="answertext" name="answercontent" rows="10" cols="100" placeholder="해당 문의에 대한 답변 작성하기"></textarea>
+			<input type="submit" id="btnWriteAns" class="btn btn-default" value="답변등록">
+		</div>
+	</form>
 
 <!-- .inqAnswer_container end -->
 </div>
+
+<%-- <%	} %> --%>
 
 
 <div>
@@ -195,11 +201,4 @@ ul.sub li:hover {
 </div>
 
 <div class="clearfix"></div>
-
-
-
-
-<%@include file="/WEB-INF/views/footer/footer.jsp" %>
-
-
 

@@ -8,14 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import detail.service.face.DetailService;
+import detail.service.impl.DetailServiceImpl;
+import dto.Member;
+import review.dto.Seoul;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
+import service.face.MemberService;
+import service.impl.MemberServiceImpl;
 
 @WebServlet("/review/write")
 public class ReviewWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ReviewService reviewService = new ReviewServiceImpl();
+	private MemberService memberService = new MemberServiceImpl();
+	private DetailService detailService = new DetailServiceImpl();
 	@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//로그인 되어있지 않으면 리다이렉트 
@@ -34,9 +42,10 @@ public class ReviewWriteController extends HttpServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			//인코딩
 			req.setCharacterEncoding("UTF-8");
-			
+			Member member = memberService.getLoginMember(req);
+			Seoul upso_sno = detailService.getupsono(req); 
 			//작성글 삽입
-			reviewService.write(req);
+			reviewService.write(req, member, upso_sno);
 			
 			//목록으로 리다이렉션
 			resp.sendRedirect("/review/info");

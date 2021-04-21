@@ -25,12 +25,15 @@
         </header>
         <!--  -->
        
-       
+
      
        <!-- 본문입니다! -->
        <section>
-			<div id="wrapper">
-			<h1>맛지도</h1><br><br>
+<!-- 	      	 <h1 style="margin-top: 100px; text-align: left; color: orange;">맛지도</h1> -->
+	      	 <img alt="" src="/Resources/img/mapLogo.png" style="width: 20%; margin:0 auto;">
+			<div id="wrapper" style="margin: 0 auto">
+				<br><br>
+			
 			<div class="swiper-wrapper">
 		      <div class="img_write">
 				<h3>서울시</h3>
@@ -40,7 +43,8 @@
 		      </div>
 			</div>
        </section>
-      
+      <hr size="10px" width="100%" style="border-top: 1px solid #ccc; margin-top: 100px;">
+
       
       
       
@@ -51,7 +55,8 @@
         <section>
 		
 		  <!-- Swiper -->
-		  <h1>테마별 맛집</h1>
+		  <img alt="" src="/Resources/img/테마별맛집.png" style="width: 20%; margin:0 auto; margin-top: 50px;">
+
 		  <div class="swiper-container">
 		    <div class="swiper-wrapper">
 		      <div class="swiper-slide">
@@ -59,7 +64,7 @@
 		      	<h3>한식</h3>
 				<span>K-FOOD</span>
 		      </div>
-		      <img class="slide_img" src="https://i.pinimg.com/564x/5d/06/59/5d0659b43a84e2962eba9ed3386928cb.jpg">
+		      <a href="/main/theme"><img class="slide_img" src="https://i.pinimg.com/564x/5d/06/59/5d0659b43a84e2962eba9ed3386928cb.jpg"></a>
 		      </div>
 		      
 		      <div class="swiper-slide">
@@ -112,10 +117,11 @@
 
        </section>
        
-       
+             <hr size="10px" width="100%" style="border-top: 1px solid #ccc; margin-top: 100px;">
        
        <section>
-		  <h1>맛집리스트</h1>
+		  <img alt="" src="/Resources/img/맛집리스트.png" style="width: 20%; margin:0 auto; margin-top: 50px;">
+
 		  <!-- Swiper -->
 		  <div class="swiper-container">
 		    <div class="swiper-wrapper">

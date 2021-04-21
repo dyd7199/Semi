@@ -7,8 +7,8 @@ import dto.Inquiry;
 import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
-public interface InquiryDao {
-
+public interface AdminInquiryDao {
+	
 	/**
 	 * Inquiry 테이블 전체 조회하기
 	 *   (페이징 없음)
@@ -52,33 +52,21 @@ public interface InquiryDao {
 	/**
 	 * userno를 이용해 nick을 조회한다
 	 * 
-	 * @param connection - DB연결 객체
+	 * @param conn - DB연결 객체
 	 * @param writeInquiry - 조회할 userno를 가진 객체
 	 * @return String - 작성자 닉네임
 	 */
 	public String selectNickByUserno(Connection conn, Inquiry viewInquiry);
 
-	
+
 	/**
-	 * 게시글 삽입하기
+	 * 문의에 대한 답변 삽입하기
 	 * 
 	 * @param conn - DB연결 객체
-	 * @param inquiry - 삽입되는 게시글 제목, 내용
+	 * @param answer - 삽입되는 답변 내용
 	 */
-	public int insertInq(Connection conn, Inquiry inquiry);
+	public int insertAnswer(Connection conn, InquiryAnswer answer);
 
 
-	/**
-	 * 해당 문의번호를 가진 답변 리스트 조회하기
-	 * 
-	 * @param connection - DB연결 객체
-	 * @param inquiryno - 해당 inquiryno를 가진 객체
-	 * @return List<InquiryAnswer> - 해당 문의번호를 가진 inquiryAnswer 테이블 전체 조회결과 리스트
-	 */
-	public List<InquiryAnswer> selectAllAnsList(Connection conn, Inquiry inquiryno);
 
-	
 }
-
-	
-	

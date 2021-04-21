@@ -5,12 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Inquiry;
-import dto.InquiryAnswer;
-import dto.InquiryFile;
 import inquiry.util.Paging;
 
-public interface InquiryService {
-	
+public interface AdminInquiryService {
+
 	/**
 	 * 문의내역 전체 조회하기
 	 * 	 (페이징 없음)
@@ -67,22 +65,17 @@ public interface InquiryService {
 	 * @return String - 게시글 작성자의 닉네임
 	 */
 	public String getNick(Inquiry viewInquiry);
-	
-	
+
+
 	/**
-	 * 문의글 작성하기
+	 * 문의사항에 대한 답변 작성하기
 	 *  입력한 내용을 DB에 저장
 	 * 
-	 * @param req - 요청정보 객체(게시글 내용)
+	 * @param req - 요청정보 객체(답변을 추가할 해당 게시글)
 	 */
-	public void writeInq(HttpServletRequest req);
-	
-	
-	/**
-	 * 문의답변(댓글) 리스트 조회하기
-	 * @param inquiryno - 해당 문의와 같은 inquiryno
-	 * @return List<InquiryAnswer> - 해당 문의글과 inquriyno가 같은 답변 리스트
-	 */
-	public List<InquiryAnswer> getAnsList(Inquiry inquiryno);
+	public void writeAnswer(HttpServletRequest req);
+
+
+
 
 }
