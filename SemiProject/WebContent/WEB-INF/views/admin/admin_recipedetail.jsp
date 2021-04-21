@@ -1,3 +1,4 @@
+<%@page import="dto.UploadFile"%>
 <%@page import="dto.Member"%>
 <%@page import="dto.Recipe"%>
 <%@page import="java.util.List"%>
@@ -101,39 +102,48 @@ ul.sub li:hover {
     </li>
 </ul>
 
-<% List<Recipe> list = (List) request.getAttribute("List"); %>
+
+<% Recipe recipe = (Recipe) request.getAttribute("Recipe"); %>
 <% List<Member> mList = (List) request.getAttribute("mList"); %>
+<% List<UploadFile> fList = (List) request.getAttribute("fileList"); %>
 
-<div style="font-size: large; text-align: left; margin-top: 20px; padding-left: 225px;">레시피 게시글 관리</div>
-<hr style="border: 0; height: 1px; background: black;">
 
-<div id="content" style="height: 548px;">
-<table class="table table-hover" style="width: 83%;">
-	<tr class="active">
-		<th style='text-align: center; width="8%"'>글번호</th>
-		<th style='text-align: center; width="67%"'>제목</th>
-		<th style='text-align: center; width="10%"'>작성자</th>
-		<th style='text-align: center; width="15%"'>작성일</th>
-	</tr>
-	<%	for(int i=0; i<list.size(); i++) { %>
+
+<div id="content" style="height: 613px;">
+<table id="detail" class="table" style="marget-top: 250px; width: 83%;">
+
 	<tr>
-		<td><%=list.get(i).getPostno() %></td>
-		<td>
-			<a href="/admin/recipedetail?postno=<%=list.get(i).getPostno() %>">
-			<%=list.get(i).getTitle() %>
-			</a>
+		<td colspan="4" style="text-align: left;"><%=recipe.getTitle() %></td>
+	</tr>
+	<tr>
+		<td>닉네임</td>
+		<td style="width: 450px;">
+			<% for(int i=0; i<mList.size(); i++) { %>
+			<% if( recipe.getUserno() == mList.get(i).getUserno() ) { %>
+			<%=mList.get(i).getNick() %>
+			<% } %>
+			<% } %>
 		</td>
-		<td><% for(int j=0; j<mList.size(); j++){ %>
-				<% if( list.get(i).getUserno() == mList.get(j).getUserno() ) { %>
-				 <%=mList.get(j).getUsername() %>
-					<% } %>
+		<td>작성일 : <%=recipe.getCreate_date() %></td>
+	</tr>
+	<tr>
+		<td colspan="4" style="height: 300px; text-align: left;"><%=recipe.getInq_content() %></td>
+	</tr>
+	<tr style="border: white;">
+		<td>첨부파일</td>
+		<td colspan="3">
+			<% for(int j=0; j<fList.size(); j++) {%>
+				<% if( recipe.getPostno() == fList.get(j).getPostno() ){%>
+					<%=fList.get(j).getStoredName() %>
 				<% } %>
+			<% } %>
 		</td>
-		<td><%=list.get(i).getCreate_date() %></td>
-	<%	} %>
 	</tr>
 </table>
 <hr>
-</div>
 
+<button id="btnDelete" name="delete" onclick='location.href="/admin/recipedelete?userno=<%=recipe.getUserno() %>&postno=<%=recipe.getPostno() %>";'>삭제</button>
+<button id="btnList" name="btnReturn" onclick='location.href="/admin/recipelist";'>목록으로</button>
+
+</div>
 

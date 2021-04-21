@@ -20,8 +20,8 @@ import service.impl.FileServiceImpl;
 import service.impl.MemberServiceImpl;
 import service.impl.RecipeServiceImpl;
 
-@WebServlet("/recipe/detail")
-public class RecipeDetailController extends HttpServlet {
+@WebServlet("/admin/recipedetail")
+public class AdminRecipeDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private RecipeService recipeService = new RecipeServiceImpl();
@@ -29,8 +29,7 @@ public class RecipeDetailController extends HttpServlet {
 	private FileService fileService = new FileServiceImpl();
 	
 	@Override
-	protected void 
-		doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//받는 값을 utf-8로 인코딩
 		req.setCharacterEncoding("UTF-8");
@@ -64,9 +63,7 @@ public class RecipeDetailController extends HttpServlet {
 		req.setAttribute("fileList", list);
 		
 		//JSP로 연결
-		req.getRequestDispatcher("/WEB-INF/views/board/recipe/detail.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/admin/admin_recipedetail.jsp")
 			.forward(req, resp);
 	}
-	
 }
-

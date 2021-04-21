@@ -258,20 +258,6 @@ public class RecipeServiceImpl implements RecipeService {
 				
 				//-------------------------------
 				
-				
-				
-				//--- 기본 처리 방식 ---
-//				out.println("- - - 폼 필드 - - -<br>");
-//				out.println(" 키 : " + item.getFieldName() + "<br>");
-//				try {
-//					out.println(" 값 : " + item.getString("UTF-8") + "<br>");
-//				} catch (UnsupportedEncodingException e) {
-//					e.printStackTrace();
-//				}
-				//----------------------
-				
-				
-				
 				//--- 키값에 따른 처리 방식 ---
 				// -> 최종 결과를 DTO객체에 저장한다
 				
@@ -469,6 +455,11 @@ public class RecipeServiceImpl implements RecipeService {
 	public void deleteRecipe(HttpServletRequest req) {
 		
 		Connection conn = JDBCTemplate.getConnection();
+		
+		//uploadfile과 paramdata 테이블에서 해당 게시글의 첨부파일 삭제
+		// 삭제하지않으면 FK로 설정된 postno때문에 삭제되지않는다
+		//fileDao.deletefile(conn, req);
+		
 		
 		if( recipeDao.deleteRecipe(conn, req) > 0 ) {
 			JDBCTemplate.commit(conn);

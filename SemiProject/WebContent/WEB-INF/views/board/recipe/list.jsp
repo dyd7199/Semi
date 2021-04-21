@@ -7,10 +7,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-
 <% List<Recipe> list = (List) request.getAttribute("List"); %>
 <% List<Member> mList = (List) request.getAttribute("mList"); %>
-
 
 <ul class="nav nav-pills" style="margin: 10px;">
   <li role="presentation" class="active"><a href="/recipe/list">레시피공유</a></li>
