@@ -10,6 +10,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.InquiryDao;
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
 public class InquiryDaoImpl implements InquiryDao {
@@ -238,6 +239,47 @@ public class InquiryDaoImpl implements InquiryDao {
 		return result;
 	}
 
+	
+	@Override
+	public List<InquiryAnswer> selectAllAnsList(Connection conn, Inquiry inquiryno) {
+
+		//SQL 구문
+		String sql = "";
+		sql += "SELECT * FROM InquiryAnswer A"; 
+		sql += "	WHERE A.inquiryno IN (SELECT I.inquiryno";
+		sql += "    					  FROM Inquiry I";
+		sql += "						  WHERE I.inquiryno = ?)";
+		
+		//결과 저장할 List
+		List<InquiryAnswer> answerList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, inquiryno.getInquiryno());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				InquiryAnswer ans = new InquiryAnswer();
+				
+				ans.setAnswerno(rs.getInt("answerno"));
+				ans.setAnswercontent(rs.getString("answercontent"));
+				ans.setCreateDate(rs.getDate("createDate"));
+				ans.setInquiryno(rs.getInt("inquiryno"));
+				ans.setUserno(rs.getInt("userno"));
+				
+				answerList.add(ans);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return answerList;
+	}
 
 	
 

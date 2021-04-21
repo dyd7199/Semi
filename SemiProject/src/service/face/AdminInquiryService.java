@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Inquiry;
-import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
 public interface AdminInquiryService {
@@ -75,6 +74,8 @@ public interface AdminInquiryService {
 	 * @param req - 요청정보 객체(답변을 추가할 해당 게시글)
 	 */
 	public void writeAnswer(HttpServletRequest req);
-	
+
+
+
 
 }
