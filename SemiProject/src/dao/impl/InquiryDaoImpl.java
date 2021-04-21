@@ -59,7 +59,7 @@ public class InquiryDaoImpl implements InquiryDao {
 
 	
 	@Override
-	public List<Inquiry> selectAllInqList(Connection conn, Paging paging) {
+	public List<Inquiry> selectAllInqList(Connection conn, Paging paging, int userno) {
 		
 		//SQL 구문
 		String sql = "";
@@ -68,6 +68,7 @@ public class InquiryDaoImpl implements InquiryDao {
 		sql += "        SELECT inquiryno, title, userno, createDate,";
 		sql += " 		(SELECT nick FROM user_table U WHERE U.userno = INQ.userno ) nick";
 		sql += "        FROM inquiry INQ";
+		sql += "        WHERE userno = ?";
 		sql += "        ORDER BY inquiryno DESC";
 		sql += "    ) I";
 		sql += " ) INQUIRY";
@@ -79,8 +80,9 @@ public class InquiryDaoImpl implements InquiryDao {
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, paging.getStartNo());
-			ps.setInt(2, paging.getEndNo());
+			ps.setInt(1, userno);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			

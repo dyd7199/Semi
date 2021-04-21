@@ -25,9 +25,10 @@ public interface InquiryDao {
 	 * 
 	 * @param connection - DB연결 객체
 	 * @param paging - 페이징 정보 객체
+	 * @param userno 
 	 * @return List<Inquiry> - Inquiry 테이블 전체 조회 결과 리스트
 	 */
-	public List<Inquiry> selectAllInqList(Connection conn, Paging paging);
+	public List<Inquiry> selectAllInqList(Connection conn, Paging paging, int userno);
 
 
 	/**

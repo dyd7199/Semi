@@ -28,8 +28,11 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 
 	@Override
-	public List<Inquiry> getInqList(Paging paging) {
-		return inquiryDao.selectAllInqList(JDBCTemplate.getConnection(), paging);
+	public List<Inquiry> getInqList(Paging paging, HttpServletRequest req) {
+		
+		int userno = (int)req.getSession().getAttribute("userno");
+		
+		return inquiryDao.selectAllInqList(JDBCTemplate.getConnection(), paging, userno);
 	}
 
 	@Override
