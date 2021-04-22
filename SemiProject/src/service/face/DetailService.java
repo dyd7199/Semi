@@ -3,6 +3,7 @@ package service.face;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Seoul;
+import dto.SeoulGrade;
 
 public interface DetailService {
 
@@ -26,5 +27,12 @@ public interface DetailService {
 	 * @return
 	 */
 	Seoul writegetupso_sno(HttpServletRequest req);
+
+	/**
+	 * 업소번호에 따른 리뷰 평점 가져오기
+	 * @param upso_sno
+	 * @return
+	 */
+	SeoulGrade getGrade(Seoul upso_sno);
 
 }

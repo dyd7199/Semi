@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import common.PagingReview;
 import dto.Review;
 import dto.Seoul;
+import dto.SeoulGrade;
 import service.face.DetailService;
 import service.face.ReviewService;
 import service.impl.DetailServiceImpl;
@@ -35,6 +36,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		req.setAttribute("upso_sno", upso_sno);
 		req.setAttribute("viewupso", viewupso);
 		
+		SeoulGrade grade = detailService.getGrade(upso_sno);
+		req.setAttribute("grade", grade);
+//		System.out.println("컨트롤러 grade"+ grade);
 		
 		//1안--------------------------------------------------
 //		Paging paging = reviewService.getPaging(req);		
