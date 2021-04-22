@@ -116,6 +116,7 @@ $(document).ready(function() {
 	$("#btnUpdate").click(function() {
 // 		var formdata = $(form1).serialize()
 		$("form").submit();
+		opener.location.reload();
 	});
 	
 	//취소버튼 동작

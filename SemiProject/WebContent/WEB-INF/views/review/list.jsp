@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <style>
 a {
 	color: #cc8700
@@ -79,20 +80,22 @@ button {
 
 }
 
-
+tr th {
+	text-align: center;
+}
 
 </style>
 
 <h1 style="text-align: left;">리뷰</h1>
 
-<table class="table table-condensed">
+<table class="table">
 <div style="text-align:left;" id="btnBox">
 	<button class="btn btn-warning" onclick=
 	"window.open('/review/write?upso_sno=<%=sn.getUpso_sno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes');">
 	글쓰기</button>
 </div>
 <br>
-<tr>
+<tr class = "text-center">
 	<th>회원</th>
 	<th>리뷰</th>
 	<th>작성일</th>
@@ -107,7 +110,7 @@ button {
 <tr>
 
 	<td> <%=list.get(i).getNick()%> </td>
-	<td> <%=list.get(i).getInq_content()%> </td>
+	<td><details><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
 	<td> <%=list.get(i).getCreate_date()%></td>
     <td><%=list.get(i).getStar_score()%></td>
 	<td><button onclick="window.open('review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>

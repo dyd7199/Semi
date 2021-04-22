@@ -3,7 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <meta charset="UTF-8">
+<script>
+$(document).ready(function() {
+
+		window.open('', '_self', '');
+		window.close();
+		
+})
+</script>
 <title>info</title>
 </head>
 <body>
