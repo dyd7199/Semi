@@ -36,7 +36,7 @@ ul#navi {
     
     background: #f4f4f4;
     float: left;
-    min-height: 590px;
+    min-height: 600px;
         
 }
 ul#navi, ul#navi ul {
