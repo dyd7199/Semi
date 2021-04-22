@@ -29,6 +29,13 @@ public interface RestaurantDao {
 	 * @return
 	 */
 	public List<SeoulGrade> selectThemeByBiz(Connection connection, String theme);
+	/**
+	 * 메뉴별 리스트 조회
+	 * @param connection
+	 * @param restaurant
+	 * @return
+	 */
+	public List<SeoulGrade> selectByFoodMenu(Connection connection, SeoulGrade restaurant);
 
 
 }

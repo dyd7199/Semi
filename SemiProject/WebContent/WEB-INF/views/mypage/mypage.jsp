@@ -71,6 +71,7 @@ body {
 </style>
 
 <ul id="navi">
+<<<<<<< HEAD
  		<li class="group">
             <div class="maintitle">나의맛객</div>
         </li>
@@ -105,6 +106,42 @@ body {
             </ul>
         </li>        
     </ul>
+=======
+<li class="group">
+    <div class="maintitle">나의맛객</div>
+</li>
+<li class="group">
+	<div class="title">MyPage</div>
+         <ul class="sub">
+             <li><a href="#">찜한식당</a></li>
+             <li><a href="#">최근 본 식당</a></li>
+             <li><a href="#">내가 작성한 후기</a></li>
+             <li><a href="#">내가 작성한 레시피</a></li>
+         </ul>
+</li>
+<li class="group">
+    <div class="title">MY혜택</div>
+         <ul class="sub">
+             <li><a href="#">프리미엄 가입하기</a></li>                
+             <li><a href="#">프리미엄 혜택보기</a></li>                
+         </ul>
+</li>
+     <li class="group">
+         <div class="title">MY 활동</div>
+         <ul class="sub">
+             <li><a href="/mypage/inqwrite">문의하기</a></li>                
+             <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
+         </ul>
+     </li>        
+<li class="group">
+     <div class="title">MY 회원정보</div>
+         <ul class="sub">
+             <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
+             <li><a href="#">결제 수단 관리</a></li>    
+         </ul>
+</li>        
+ </ul>
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 
 
 

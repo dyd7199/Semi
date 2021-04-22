@@ -94,6 +94,23 @@ public interface MemberService {
 	 * @return 일치할 경우 true, 불일치할 경우 false 반환
 	 */
 	public boolean UsernoChk(HttpServletRequest req);
+
+	/**
+	 * 아이디 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findId(HttpServletRequest req);
+
+	/**
+	 * 비밀번호 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findPw(HttpServletRequest req);
+
+
+	
 	
 	
 

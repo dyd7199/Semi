@@ -1,32 +1,17 @@
-<%@page import="review.dto.BoardFile"%>
-<%@page import="review.dto.Review"%>
+<%@page import="dto.Seoul"%>
+<%@page import="dto.Review"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%	List<Review> list = (List) request.getAttribute("reviewList"); %>
-<%	Review r = (Review) request.getAttribute("viewReview"); %>
-<%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<%
+	List<Review> list = (List) request.getAttribute("reviewList");
+%>
+<%
+	Seoul sn = (Seoul) request.getAttribute("upso_sno");
+%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	
-
-	
-
-	//삭제버튼 동작
-	$("#btnDelete").click(function() {
-	});
-	
-});
-</script>
 
 <style>
 a {
@@ -95,57 +80,58 @@ button {
 
 }
 
+tr th {
+	text-align: center;
+}
 
 
 </style>
-<title>::: 맛객 :::</title>
-</head>
-<body>
-<h2 style="text-align:left; font-family: '바탕';">리뷰</h2>
-<hr>
-<div id="btnBox">
-	<button id="btnWrite" class="btn btn-warning" onclick="window.open('/review/write','write','width=600,height=800,location=no,status=no,scrollbars=yes');">글쓰기</button>
+
+<h1 style="text-align: left; font-family: '바탕';">리뷰</h1>
+
+<table class="table">
+<div style="text-align:left;" id="btnBox">
+	<button class="btn btn-warning" onclick=
+	"window.open('/review/write?upso_sno=<%=sn.getUpso_sno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes');">
+	글쓰기</button>
 </div>
 <br>
-<table class="table table-condensed">
-<tr>
-	<th style="width: 5%;">글번호</th>
-	<th style="width: 5%;">회원</th>
-	<th style="width: 60%;">리뷰</th>
-	<th style="width: 10%;">작성일</th>
-	<th style="width: 30%;">&nbsp;&nbsp;&nbsp;수정/삭제</th>
+<tr class = "text-center">
+	<th>회원</th>
+	<th>리뷰</th>
+	<th>작성일</th>
+	<th>별점</th>
+	<th>수정/삭제</th>
 
 </tr>
-<%	for(int i=0; i<list.size(); i++) { %>
+
+<%
+	for(int i=0; i<list.size(); i++) {
+%>
 <tr>
 
-	<td style="width: 5%;"><a href="#none" onclick="window.open('/review/view?reviewno=<%=list.get(i).getReviewno() %>','write','width=600,height=800,location=no,status=no,scrollbars=yes');"><%=list.get(i).getReviewno() %></a></td>
-	<td style="width: 5%;"><%=list.get(i).getUserno() %></td>
-	<td>
-	<details style="width: 60%;"><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
-	<td style="width: 10%;"><%=list.get(i).getCreate_date() %></td>
+	<td> <%=list.get(i).getNick()%> </td>
+	<td><details><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
+	<td> <%=list.get(i).getCreate_date()%></td>
+    <td><img id="star" src="/Resources/img/star<%=list.get(i).getStar_score() %>.png"></td>
+	<td><button onclick="window.open('/review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
 	
-	<td><button onclick="window.open('review/update?reviewno=<%=list.get(i).getReviewno() %>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
-	<a href="/review/delete?reviewno=<%=list.get(i).getReviewno() %>"><button class="btn btn-warning" type="button" id="btnDelete">삭제</button></a>
-	&nbsp;&nbsp;
-	<img id="star" src="/Resources/se2/img/star<%=list.get(i).getStar_score() %>.png">
-		</td>
-	<td><%	if( boardFile != null ) { %>
-
-<a href="/upload/<%=boardFile.getStoredName() %>"
- download="<%=boardFile.getOriginName() %>">
-	<%=boardFile.getOriginName() %>
-</a>
-
-<%	} %>
-
+	<button class="btnDelete" class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
+<%
+	}
+%>
 </tr>
-<%	} %>
 </table>
-<%@ include file="/WEB-INF/views/layout/paging.jsp" %>
+
+<script type="text/javascript">
+function delReview( reviewno ) {
+	if(confirm("[확인]을 누르시면 되돌릴 수 없습니다. 삭제하시겠습니까?") ) {
+		window.open('/review/delete?reviewno='+reviewno,'삭제','width=600,height=800,location=no,status=no,scrollbars=yes');
+		
+		location.reload();
+	}
+}
+</script>
 
 
-<!-- .container -->
-</div>
-</body>
-</html>
+<%@ include file="/WEB-INF/views/layout/pagingReview.jsp" %>
