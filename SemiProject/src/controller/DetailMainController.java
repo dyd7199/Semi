@@ -40,6 +40,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		req.setAttribute("grade", grade);
 //		System.out.println("컨트롤러 grade"+ grade);
 		
+		int cnt = reviewService.getCnt(upso_sno);
+		req.setAttribute("cnt", cnt);
+		
 		//1안--------------------------------------------------
 //		Paging paging = reviewService.getPaging(req);		
 //		req.setAttribute("paging", paging);

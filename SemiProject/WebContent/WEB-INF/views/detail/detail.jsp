@@ -10,6 +10,7 @@
 <%	Seoul sn = (Seoul) request.getAttribute("upso_sno"); %>
 <%	List<Review> list = (List) request.getAttribute("reviewList"); %>
 <% SeoulGrade grade = (SeoulGrade) request.getAttribute("grade"); %>
+<% int cnt = (int) request.getAttribute("cnt"); %>
 
 <html>
 <head>
@@ -98,14 +99,15 @@ $(document).ready(function(){
 <title>맛집 상세 화면</title>
 </head>
 <body>
+
 <div id="container" class="container">
 <img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg">
-<span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 36px;"><img src="/Resources/img/empty.png" width=50; height=50;><%=grade.getAvg() %></span>
+<span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 36px;"><img src="/Resources/img/empty.png" width=50; height=50;><%=grade.getAvg() %><img src="/Resources/img/pencil.png" width=30; height=30;><%= cnt %></span>
 <br>
 <br>
 
 <div class="btn-type1" style="text-align:center;">
-공유하기&nbsp;<img width=30; height=30; src="/Resources/img/iconshare.png">
+ 공유하기&nbsp;<img width=30; height=30; src="/Resources/img/iconshare.png">
 <!-- SNS버튼 시작 --> 
 <span style="width: 100%; text-align: left; margin-bottom: 64px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!-- 페이스북 공유 버튼 --> 
