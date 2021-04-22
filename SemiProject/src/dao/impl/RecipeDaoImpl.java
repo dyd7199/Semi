@@ -420,6 +420,126 @@ public class RecipeDaoImpl implements RecipeDao {
 		return postno;
 	}
 
+	@Override
+	public List<Recipe> getRecipe(Connection conn, int userno) {
+
+		String sql = "";
+		sql += "SELECT * FROM recipe";
+		sql += "	WHERE userno = ?";
+		sql += "	ORDER BY postno DESC";
+		
+		List<Recipe> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				Recipe r = new Recipe();
+				
+				r.setPostno( rs.getInt("postno"));
+				r.setCreate_date( rs.getDate("create_date"));
+				r.setTitle( rs.getString("title"));
+				r.setUserno( rs.getInt("userno"));
+				r.setInq_content( rs.getString("inq_content"));
+				r.setViews( rs.getInt("views"));
+				
+				list.add(r);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<Recipe> getRecipe(Connection conn, Paging paging, int userno) {
+
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, R.* FROM (";
+		sql += "		SELECT * FROM recipe";
+		sql += "		WHERE userno = ?";
+		sql += "		ORDER BY postno DESC";
+		sql += "	) R";
+		sql += " ) RECIPE";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		List<Recipe> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				Recipe r = new Recipe();
+				
+				r.setPostno( rs.getInt("postno") );
+				r.setCreate_date( rs.getDate("create_date") );
+				r.setTitle( rs.getString("title") );
+				r.setUserno( rs.getInt("userno") );
+				r.setInq_content( rs.getString("inq_content") );
+				r.setViews( rs.getInt("views") );
+				
+				list.add(r);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int selectCntByUserno(Connection conn, int userno) {
+		
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM recipe";
+		sql += "	WHERE userno = ?";
+		
+		//총 게시글 수
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return cnt;
+	}
+
 }
 
 

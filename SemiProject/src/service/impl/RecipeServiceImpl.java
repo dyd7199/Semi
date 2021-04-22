@@ -501,6 +501,41 @@ public class RecipeServiceImpl implements RecipeService {
 //		}
 	}
 
+	@Override
+	public List<Recipe> getRecipe(int userno) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return recipeDao.getRecipe(conn, userno);
+	}
+
+	@Override
+	public List<Recipe> getRecipe(Paging paging, int userno) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return recipeDao.getRecipe(conn, paging, userno);
+	}
+
+	@Override
+	public Paging getPaging(HttpServletRequest req, int userno) {
+
+		//전달파라미터 curPage 파싱
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param != null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+		}
+				
+		//Board 테이블의 총 게시글 수를 조회한다
+		int totalCount = recipeDao.selectCntByUserno(JDBCTemplate.getConnection(), userno);
+				
+		//Paging객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+				
+		return paging;
+	}
+
 
 
 }

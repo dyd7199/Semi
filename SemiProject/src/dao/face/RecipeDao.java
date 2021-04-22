@@ -118,7 +118,31 @@ public interface RecipeDao {
 	 */
 	int getPostno(Connection conn);
 
+	/**
+	 * 해당 회원이 작성한 모든 레시피 리스트를 반환한다
+	 * 
+	 * @param conn
+	 * @param userno 로그인한 회원의 회원번호
+	 * @return 회원번호에 일치하는 모든 레시피 리스트
+	 */
+	List<Recipe> getRecipe(Connection conn, int userno);
 
+	/**
+	 * 해당 회원이 작성한 모든 레시피 리스트를 반환한다(페이징 적용)
+	 * 
+	 * @param conn
+	 * @param userno 로그인한 회원의 회원번호
+	 * @return 회원번호에 일치하는 모든 레시피 리스트
+	 */
+	List<Recipe> getRecipe(Connection conn, Paging paging, int userno);
+
+	/**
+	 * Recipe 테이블이 담고있는 특정 회원의 행의 수를 가져온다
+	 * 
+	 * @param conn DB연결 객체
+	 * @return Recipe 테이블의 특정회원의 행의 수
+	 */
+	int selectCntByUserno(Connection conn, int userno);
 
 
 

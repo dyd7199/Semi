@@ -90,5 +90,29 @@ public interface RecipeService {
 	 */
 	void Update(HttpServletRequest req, HttpServletResponse resp);
 
+	/**
+	 * 로그인한 회원이 작성한 레시피 리스트를 반환한다
+	 * 
+	 * @param userno
+	 * @return 해당 회원이 작성한 레시피 리스트
+	 */
+	List<Recipe> getRecipe(int userno);
+
+	/**
+	 * 회원의 모든 레시피 리스트를 반환한다(페이징 적용)
+	 * @param paging
+	 * @param userno
+	 * @return
+	 */
+	List<Recipe> getRecipe(Paging paging, int userno);
+
+	/**
+	 * Paging에 필요한 모든 정보를 산출하여 페이지네이션을 설정한다
+	 * 
+	 * @param req
+	 * @return Paging에 필요한 startno 등 모든 데이터
+	 */
+	Paging getPaging(HttpServletRequest req, int userno);
+
 
 }

@@ -53,7 +53,7 @@
 <button class="btn btn-default" style="float: right;" onclick='location.href="/recipe/write";'>글쓰기</button>
 </div>
 
-<%@ include file="/WEB-INF/views/board/recipe/paging.jsp" %>
+<%@include file="/WEB-INF/views/board/recipe/paging.jsp" %>
     
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
     
