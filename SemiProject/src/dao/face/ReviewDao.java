@@ -1,0 +1,52 @@
+package dao.face;
+
+import java.sql.Connection;
+import java.util.List;
+
+import common.PagingReview;
+import dto.Member;
+import dto.Review;
+import dto.Seoul;
+
+public interface ReviewDao {
+	/**
+	 * Review 테이블의 총 게시글 수를 조회
+	 * @param connection
+	 * @return 총게시글 수 cnt
+	 */
+	int selectCntAll(Connection connection);
+
+	/**
+	 * 페이징, 업소번호를 받은 리스트 조회
+	 * @param connection
+	 * @param paging
+	 * @param upso_sno
+	 * @return reviewList
+	 */
+	List<Review> selectList(Connection connection, PagingReview paging, Seoul upso_sno);
+
+	/**
+	 * 글 DB에 삽입
+	 * @param conn
+	 * @param review
+	 * @return res
+	 */
+	int insert(Connection conn, Review review);
+
+	/**
+	 * 글 DB에 수정
+	 * @param conn
+	 * @param review
+	 * @return res
+	 */
+	int update(Connection conn, Review review);
+
+	/**
+	 * 글 DB에서 삭제
+	 * @param conn
+	 * @param review
+	 * @return res
+	 */
+	int delete(Connection conn, Review review);
+
+}

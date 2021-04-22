@@ -1,4 +1,6 @@
+<%@page import="dto.Seoul"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%	Seoul sn = (Seoul) request.getAttribute("upso_sno"); %>
     <!DOCTYPE html>
     <html>
 
@@ -9,13 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<!-- 스마트에디터2 -->
-<style type="text/css">
-   #inq_content {
- width: 95%;
-   }
-</style>
+
 <style type="text/css">
 .star-box {
 	/* 별과 별 사이 공백 제거 */
@@ -31,7 +27,7 @@
     height: 30px;
 
 	/* 투명한 별 표현 */
-	background-image: url(/Resources/se2/img/empty.png);
+	background-image: url(/Resources/img/empty.png);
 	background-repeat: no-repeat;
 	background-size: 200%;
 }
@@ -48,7 +44,7 @@
 
 .on {
 	/* 채워진 별로 이미지 변경 */
-	background-image: url(/Resources/se2/img/star.png);
+	background-image: url(/Resources/img/star.png);
 }
 </style>
 
@@ -115,6 +111,17 @@ $(document).ready(function() {
 		}
 		
 	})
+	
+	//작성버튼 동작
+	$("#btnWrite").click(function() {
+// 		var formdata = $(form1).serialize()
+		$("form").submit();
+	});
+	
+	//취소버튼 동작
+	$("#btnCancel").click(function() {
+		history.go(-1);
+	});
 })
 
 //별 선택 값을 숫자로 보여주는 함수
@@ -136,7 +143,8 @@ function showStarValue(val) {
   <div class="container">
      <h2 style="text-align:center">리뷰 작성</h2>
 <br>
-<h5 style="color: #808080; font-family:'바탕';">&nbsp;당 식당에 대한 평가를 별점으로 나타내주세요 </h5>
+<h5 style="color: #808080; font-family:'바탕';">
+&nbsp;당 식당에 대한 평가를 별점으로 나타내주세요 </h5>
 <div class="star-box">
 <span class="star star_left"></span>
 <span class="star star_right"></span>
@@ -151,29 +159,29 @@ function showStarValue(val) {
 </div>
     <hr>
 <div>
-<form action="/review/write" method="post" enctype="multipart/form-data">
+<form id="form1" name="form1" action="/review/write" method="post">
 <div Class="star-value" id="grade">0</div>
 <input type="hidden" id="star" name="star_score" value=""/>
+<input type="hidden" id="upso_sno" name="upso_sno" value="<%= sn.getUpso_sno() %>"/>
 
  <table class="table table-bordered">
    <tr>
-	<td class="info" style="background-color: #FAA600; width: 100px;">회원번호</td>
+	<td class="info">회원닉네임</td>
     <td>
- 	<%=session.getAttribute("userno") %>
+ 	<%=session.getAttribute("usernick") %>
     </td>
 	</tr>
 	<tr>
-    <td class="info" style="background-color: #FAA600;">제목</td>
-     <td><input type="text" name="title" style="width:100%" /></td>
+    <td class="info">제목</td>
+     <td><input type="text" name="title"></td>
 	</tr>
      <tr>
-     <td class="info" style="background-color: #FAA600;" colspan="2">본문</td>
+     <td class="info" colspan="2">본문</td>
        </tr>
       <tr>
 	<td colspan="2"><textarea id="inq_content" name="inq_content"></textarea></td>
       </tr>
 </table>
-첨부파일 <input type="file" name="file" />
 
       </form>
        </div>
@@ -182,54 +190,7 @@ function showStarValue(val) {
       <button type="button" id="btnCancel" class="btn btn-default">취소</button>
         </div>
         </div>
- <script type="text/javascript">
-            
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-oAppRef: oEditors,
-elPlaceHolder: "inq_content", //에디터가 적용될 <textarea>의 id를 입력
-sSkinURI: "/Resources/se2/SmartEditor2Skin.html",
-fCreator: "createSEditor2"
- })
-
-            
-
-function submitContents(elClickedObj) {
-  //에디터의 내용을 #content에 반영한다
-    oEditors.getById["inq_content"].exec("UPDATE_CONTENTS_FIELD", []);
-
-    console.log(3);
-        try {
-            // <form>태그의 submit 수행
-            elClickedObj.form.submit();
-                } catch (e) { }
-
-            }
-
-            console.log(4);
-            $(document).ready(function () {
-
-                console.log(5);
-                //작성버튼 동작
-                $("#btnWrite").click(function () {
-                    //스마트 에디터의 내용을 <textarea>에 적용하는 함수를 호출한다
-                    console.log(6);
-                    submitContents($("#btnWrite"))
-                    //<form> submit
-                    
-                    
-                    $("form").submit();
-                        opener.location.reload();
-
-                });
-
-                //취소버튼 동작
-                $("#btnCancel").click(function () {
-                    console.log(7);
-                    history.go(-1);
-                });
-            });
-        </script>
+ 
     </body>
 
     </html>
