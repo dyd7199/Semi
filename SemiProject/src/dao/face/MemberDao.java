@@ -61,4 +61,20 @@ public interface MemberDao {
 
 	int delete(Connection connection, Object userid);
 
+	/**
+	 * username, userPW를 활용하여 USERID조회
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	Member selectByUserId(Connection connection, Member member);
+
+	/**
+	 * userid, nick을 활용하여 pw조회
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	Member selectByUserPw(Connection connection, Member member);
+
 }
