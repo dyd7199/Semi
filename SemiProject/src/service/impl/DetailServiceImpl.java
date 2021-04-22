@@ -5,6 +5,7 @@ import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Seoul;
+import dto.SeoulGrade;
 import common.JDBCTemplate;
 import dao.face.DetailDao;
 import dao.impl.DetailDaoImpl;
@@ -38,6 +39,13 @@ public class DetailServiceImpl implements DetailService{
 	public Seoul writegetupso_sno(HttpServletRequest req) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public SeoulGrade getGrade(Seoul upso_sno) {
+		SeoulGrade grade = detailDao.selectGradeByUpso_sno(JDBCTemplate.getConnection(), upso_sno);
+//		System.out.println("서비스 grade" + grade);
+		return grade;
 	}
 
 }

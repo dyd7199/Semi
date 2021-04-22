@@ -84,9 +84,10 @@ tr th {
 	text-align: center;
 }
 
+
 </style>
 
-<h1 style="text-align: left;">리뷰</h1>
+<h1 style="text-align: left; font-family: '바탕';">리뷰</h1>
 
 <table class="table">
 <div style="text-align:left;" id="btnBox">
@@ -112,14 +113,25 @@ tr th {
 	<td> <%=list.get(i).getNick()%> </td>
 	<td><details><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
 	<td> <%=list.get(i).getCreate_date()%></td>
-    <td><%=list.get(i).getStar_score()%></td>
-	<td><button onclick="window.open('review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
-	<button onclick="window.open('review/delete?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >삭제</button></td>
+    <td><img id="star" src="/Resources/img/star<%=list.get(i).getStar_score() %>.png"></td>
+	<td><button onclick="window.open('/review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
+	
+	<button class="btnDelete" class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
 <%
 	}
 %>
-
 </tr>
 </table>
+
+<script type="text/javascript">
+function delReview( reviewno ) {
+	if(confirm("[확인]을 누르시면 되돌릴 수 없습니다. 삭제하시겠습니까?") ) {
+		window.open('/review/delete?reviewno='+reviewno,'삭제','width=600,height=800,location=no,status=no,scrollbars=yes');
+		
+		location.reload();
+	}
+}
+</script>
+
 
 <%@ include file="/WEB-INF/views/layout/pagingReview.jsp" %>

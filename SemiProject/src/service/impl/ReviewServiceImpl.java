@@ -109,6 +109,11 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 		
 	}
+	@Override
+	public int getCnt(Seoul upso_sno) {
+		int cnt = reviewDao.getReviewCnt(JDBCTemplate.getConnection(), upso_sno);
+		return cnt;
+	}
 
 	
 

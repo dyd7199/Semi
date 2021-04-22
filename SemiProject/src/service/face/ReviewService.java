@@ -52,6 +52,13 @@ public interface ReviewService {
 	 * @param review
 	 */
 	void delete(Review review);
+	
+	/**
+	 * 업소 번호 마다의 리뷰 개수 받아오기
+	 * @param upso_sno
+	 * @return cnt
+	 */
+	int getCnt(Seoul upso_sno);
 
 
 }
