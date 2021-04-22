@@ -6,7 +6,7 @@
     pageEncoding="UTF-8"%>
     
 <%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
-
+<% UploadFile uf = (UploadFile) request.getAttribute("uploadfile"); %>
 
 <style type="text/css">
 body { 
@@ -147,3 +147,11 @@ ul.sub li:hover {
 
 </div>
 
+<div style="width: 500px; height: 400px">
+	<a href="/upload/<%=uf.getStoredName() %>"  download="/upload/<%=uf.getOriginName() %>">
+	<img src="/upload/<%=uf.getStoredName() %>" style="width: 500px; height: 334px;" />
+	</a>
+</div> 
+
+
+<%@include file="/WEB-INF/views/footer/footer.jsp" %>

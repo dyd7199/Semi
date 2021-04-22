@@ -1,3 +1,4 @@
+
 package service.impl;
 
 import java.io.File;
@@ -37,6 +38,14 @@ public class FileServiceImpl implements FileService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		return fileDao.getFilaData(conn, postno1);
+	}
+
+	@Override
+	public UploadFile getStoredName(int postno1) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return fileDao.getStoredName(conn, postno1);
 	}
 
 

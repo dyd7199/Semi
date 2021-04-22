@@ -201,6 +201,41 @@ public class FileDaoImpl implements FileDao {
 		return res;
 	}
 
+	@Override
+	public UploadFile getStoredName(Connection conn, int postno1) {
+
+		String sql = "";
+		sql += "SELECT * FROM uploadfile";
+		sql += "	WHERE postno = ?";
+		
+		UploadFile uploadFile = new UploadFile();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, postno1);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				uploadFile.setFileno( rs.getInt("fileno"));
+				uploadFile.setPostno( rs.getInt("postno"));
+				uploadFile.setOriginName( rs.getString("origin_name"));
+				uploadFile.setStoredName( rs.getString("stored_name"));
+			}
+		
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return uploadFile;
+	}
+
 
 
 }

@@ -82,7 +82,9 @@ input .title{
 				reader.onload = function(event) { 
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result); 
+					img.setAttribute("style", "width: 500px; height: 334px;" );
 					document.querySelector("div#image_container").appendChild(img);
+					
 				}; 
 					
 					reader.readAsDataURL(event.target.files[0]); 
@@ -97,15 +99,12 @@ input .title{
 </form>
 </div>
 
-<div id="image_container" style="width: 500px; height: 400px"></div> 
-
-
-
 <div>
 	<button type="button" id="btnWrite">완료</button>
 	<button type="button" id="btnCancel">취소</button>
 </div>
 
+<div id="image_container" style="width: 500px; height: 400px"></div> 
 
 <script type="text/javascript">
 var oEditors = [];

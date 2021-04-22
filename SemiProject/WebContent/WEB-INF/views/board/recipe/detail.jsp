@@ -12,6 +12,7 @@
 <% Recipe recipe = (Recipe) request.getAttribute("Recipe"); %>
 <% List<Member> mList = (List) request.getAttribute("mList"); %>
 <% List<UploadFile> fList = (List) request.getAttribute("fileList"); %>
+<% UploadFile uf = (UploadFile) request.getAttribute("uploadfile"); %>
 
 
 
@@ -54,5 +55,11 @@
 <button id="btnList" name="btnReturn" onclick='location.href="/recipe/list";'>목록으로</button>
 
 </div>
+
+<div style="width: 500px; height: 400px">
+	<a href="/upload/<%=uf.getStoredName() %>"  download="/upload/<%=uf.getOriginName() %>">
+	<img src="/upload/<%=uf.getStoredName() %>" style="width: 500px; height: 334px;" />
+	</a>
+</div> 
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>

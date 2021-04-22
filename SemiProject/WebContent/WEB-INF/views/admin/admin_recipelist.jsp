@@ -136,4 +136,8 @@ ul.sub li:hover {
 <hr>
 </div>
 
+<%@include file="/WEB-INF/views/admin/admin_recipepaging.jsp" %>
+
+<%@include file="/WEB-INF/views/footer/footer.jsp" %>
+
 

@@ -62,6 +62,15 @@ public interface FileDao {
 	 */
 	public int deleteUploadfile(Connection conn, HttpServletRequest req);
 
+	/**
+	 * 상세보기한 게시글의 첨부파일을 얻어온다
+	 * 
+	 * @param conn
+	 * @param postno1
+	 * @return
+	 */
+	public UploadFile getStoredName(Connection conn, int postno1);
+
 
 
 }

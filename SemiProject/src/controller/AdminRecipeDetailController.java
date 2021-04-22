@@ -52,8 +52,6 @@ public class AdminRecipeDetailController extends HttpServlet {
 		//세션에 속성값으로 mList 설정
 		req.setAttribute("mList", mList);
 		
-		System.out.println("해당 게시글의 postno : " + recipe.getPostno());
-		
 		int postno1 = recipe.getPostno();
 		
 		//첨부파일 정보 불러오기
@@ -61,6 +59,10 @@ public class AdminRecipeDetailController extends HttpServlet {
 		
 		//첨부파일 객체 속성값으로 설정
 		req.setAttribute("fileList", list);
+		
+		UploadFile uf = fileService.getStoredName(postno1);
+		
+		req.setAttribute("uploadfile", uf);
 		
 		//JSP로 연결
 		req.getRequestDispatcher("/WEB-INF/views/admin/admin_recipedetail.jsp")

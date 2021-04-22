@@ -143,7 +143,7 @@ public class RecipeServiceImpl implements RecipeService {
 		//-----------------------------------------------------------------
 		
 		//3. 업로드된 파일아이템의 용량이 설정값보다 작으면 메모리에서 처리
-		int maxMem = 1 * 1024 * 1024; //1MB
+		int maxMem = 1; //1MB
 		factory.setSizeThreshold(maxMem);
 		
 		//-----------------------------------------------------------------

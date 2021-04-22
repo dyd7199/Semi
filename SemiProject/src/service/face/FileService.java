@@ -26,6 +26,14 @@ public interface FileService {
 	 */
 	List<UploadFile> getFileData(int postno1);
 
+	/**
+	 * 해당 게시글의 첨부파일 storedName을 얻어온다
+	 * 
+	 * @param postno1
+	 * @return 조회한 게시글의 첨부파일 storedName
+	 */
+	UploadFile getStoredName(int postno1);
+
 	
 
 }

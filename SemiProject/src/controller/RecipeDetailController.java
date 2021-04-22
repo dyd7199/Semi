@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,6 +63,10 @@ public class RecipeDetailController extends HttpServlet {
 		
 		//첨부파일 객체 속성값으로 설정
 		req.setAttribute("fileList", list);
+		
+		UploadFile uf = fileService.getStoredName(postno1);
+		
+		req.setAttribute("uploadfile", uf);
 		
 		//JSP로 연결
 		req.getRequestDispatcher("/WEB-INF/views/board/recipe/detail.jsp")
