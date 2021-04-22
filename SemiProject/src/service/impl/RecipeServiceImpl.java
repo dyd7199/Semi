@@ -450,7 +450,7 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		return recipeDao.getRecipeDataFromReq(conn, postno);
 	}
-
+	
 	@Override
 	public void deleteRecipe(HttpServletRequest req) {
 		
@@ -459,7 +459,17 @@ public class RecipeServiceImpl implements RecipeService {
 		//uploadfile과 paramdata 테이블에서 해당 게시글의 첨부파일 삭제
 		// 삭제하지않으면 FK로 설정된 postno때문에 삭제되지않는다
 		//fileDao.deletefile(conn, req);
+		if( fileDao.deleteParamdata(conn, req) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
 		
+		if( fileDao.deleteUploadfile(conn, req) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
 		
 		if( recipeDao.deleteRecipe(conn, req) > 0 ) {
 			JDBCTemplate.commit(conn);

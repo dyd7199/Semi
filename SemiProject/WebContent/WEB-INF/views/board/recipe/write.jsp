@@ -65,7 +65,7 @@ input .title{
 
 <hr style="boarder: 0; height:1px; background: black;"><br>
 
-<div id="area" style="height: 500px;">
+<div id="area" style="height: 350px;">
 <form action="/recipe/write" method="post" enctype="multipart/form-data" >
 <table class="table table-bordered">
 
@@ -73,7 +73,22 @@ input .title{
 		<td>제목</td><td><input type="text" name="title" style="width: 100%;"/></td>
 	</tr>
 	<tr>
-		<td>파일 첨부</td><td><input type="file" name="upfile" /></td>
+		<td>파일 첨부</td>
+		<td>
+			<input type="file" name="upfile" id="image" accept="image/*" onchange="setThumbnail(event);"/> 
+			<script> function setThumbnail(event) { 
+				var reader = new FileReader(); 
+					
+				reader.onload = function(event) { 
+					var img = document.createElement("img"); 
+					img.setAttribute("src", event.target.result); 
+					document.querySelector("div#image_container").appendChild(img);
+				}; 
+					
+					reader.readAsDataURL(event.target.files[0]); 
+				} 
+			</script>
+		</td>
 	</tr>
 	<tr>		
 		<td colspan="2" style="height: 600px;"><textarea id="content" name="content"></textarea></td>
@@ -81,6 +96,8 @@ input .title{
 </table>
 </form>
 </div>
+
+<div id="image_container" style="width: 500px; height: 400px"></div> 
 
 
 

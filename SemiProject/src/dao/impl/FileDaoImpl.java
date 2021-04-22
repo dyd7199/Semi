@@ -17,6 +17,7 @@ import dto.UploadFile;
 public class FileDaoImpl implements FileDao {
 	
 	private PreparedStatement ps = null;
+	private ResultSet rs = null;
 	
 	@Override
 	public int insertParam(Connection conn, ParamData paramData, int postno) {
@@ -145,6 +146,61 @@ public class FileDaoImpl implements FileDao {
 		
 		return res;
 	}
+
+	@Override
+	public int deleteParamdata(Connection conn, HttpServletRequest req) {
+		
+		String sql = "";
+		sql += "DELETE FROM paramdata";
+		sql += " WHERE postno = ?";
+		
+		String post = req.getParameter("postno");
+		int postno = Integer.parseInt(post);
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, postno);
+			
+			res = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int deleteUploadfile(Connection conn, HttpServletRequest req) {
+		
+		String sql = "";
+		sql += "DELETE FROM uploadfile";
+		sql += " WHERE postno = ?";
+		
+		String post = req.getParameter("postno");
+		int postno = Integer.parseInt(post);
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, postno);
+			
+			res = ps.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 
 
 }

@@ -44,6 +44,24 @@ public interface FileDao {
 	 */
 	public int updateParamData(Connection conn, HttpServletRequest req);
 
+	/**
+	 * 삭제하려는 게시글의 첨부파일 paramdata를 지운다
+	 * 
+	 * @param conn
+	 * @param req
+	 * @return
+	 */
+	public int deleteParamdata(Connection conn, HttpServletRequest req);
+
+	/**
+	 * 삭제하려는 게시글의 첨부파일 uploadfile을 지운다
+	 * 
+	 * @param conn
+	 * @param req
+	 * @return
+	 */
+	public int deleteUploadfile(Connection conn, HttpServletRequest req);
+
 
 
 }

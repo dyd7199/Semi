@@ -23,7 +23,7 @@ public class AdminRecipeDeleteController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-			
+		
 		//삭제 method 호출
 		recipeService.deleteRecipe(req);
 			
