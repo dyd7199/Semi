@@ -88,6 +88,32 @@ public interface MemberService {
 	public void secession(Object attribute);
 
 	/**
+	 * 아이디 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findId(HttpServletRequest req);
+
+	/**
+	 * 비밀번호 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findPw(HttpServletRequest req);
+
+	/**
+	 * 이메일, 유저아이디 저장
+	 * @param req
+	 * @param tempPW 
+	 * @return
+	 */
+	public Member saveEmail(HttpServletRequest req, String tempPW);
+
+	/**
+	 * 비밀번호 변경
+	 * @param member
+	 */
+	public void chagePW(Member member);
 	 * session으로부터 받은 회원번호와 레시피 작성자의 회원번호를 비교
 	 * 
 	 * @param req

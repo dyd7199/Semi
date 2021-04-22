@@ -150,6 +150,7 @@ fieldset, img {
 </style>
 
 <script type="text/javascript">
+<script type="text/javascript">
 
 function openPopup(url) {
 	 
@@ -163,7 +164,6 @@ function openPopup(url) {
     window.open(url, 'find', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
  
 }
-
 
 
 

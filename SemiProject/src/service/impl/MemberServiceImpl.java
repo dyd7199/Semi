@@ -172,6 +172,32 @@ public class MemberServiceImpl implements MemberService {
 		member.setUserid(req.getParameter("id"));
 		member.setNick(req.getParameter("nick"));
 		
+		System.out.println("findPw()"+member);
+		
+		
+		return memberDao.selectByUserPw(JDBCTemplate.getConnection(),member);
+	}
+	@Override
+	public Member saveEmail(HttpServletRequest req, String tempPW) {
+		Member member = new Member();
+		member.setUserid(req.getParameter("userid"));
+		member.setEmail(req.getParameter("email"));
+		member.setUserpw(tempPW);
+		
+		
+		
+		return member;
+	}
+	@Override
+	public void chagePW(Member member) {
+		
+		int res = memberDao.updatePW(JDBCTemplate.getConnection(),member);
+		
+		if(res>0) {
+			JDBCTemplate.commit(JDBCTemplate.getConnection());
+		} else {
+			JDBCTemplate.rollback(JDBCTemplate.getConnection());
+		}
 		
 		
 		
