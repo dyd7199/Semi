@@ -8,7 +8,20 @@
 			<link href="/Resources/se2/css/slider/slider.css" rel="stylesheet"/>
 			<script type="text/javascript" src ="/Resources/se2/js/slider_edit.js"></script>
 
-		
+		<style>
+			h3{
+				font-size: 30px;
+				font-weight: bold;
+				color: white;
+			
+			}
+			h3 + span{
+				font-size: 16px;
+				font-weight: bold;
+				color: white;
+				
+			}
+		</style>
 
         <!-- Masthead-->
         <header class="padding-top bg-oranged text-white text-center">
@@ -146,21 +159,50 @@
 		    <div class="swiper-wrapper">
 		      <div class="swiper-slide">
 		      <div class="img_write">
-		      	<h3>BUFFET</h3>
-				<span>Sub-title #5</span>
+		      	<h3>#뜨끈한탕</h3>
+				<span>#갈비탕#매운탕#설렁탕</span>
+		      </div>
+		      <a href="/main/foodlist?food=탕"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
+		      </div>
+		      
+		       <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>#칼칼한국수</h3>
+				<span>#칼국수#메밀국수</span>
 		      </div>
 		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
 		      </div>
 		      
-		      <div class="swiper-slide"><img class="slide_img" src="https://i.pinimg.com/564x/00/8f/33/008f337bea98509afa59b48488c078aa.jpg"></div>
-		      <div class="swiper-slide">Slide 3</div>
-		      <div class="swiper-slide">Slide 4</div>
-		      <div class="swiper-slide">Slide 5</div>
-		      <div class="swiper-slide">Slide 6</div>
-		      <div class="swiper-slide">Slide 7</div>
-		      <div class="swiper-slide">Slide 8</div>
-		      <div class="swiper-slide">Slide 9</div>
-		      <div class="swiper-slide">Slide 10</div>
+		       <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>#보글보글찌개</h3>
+				<span>#된장찌개#부대찌개#김치찌개</span>
+		      </div>
+		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      </div>
+		      
+		       <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>#분위기좀 내볼까?</h3>
+				<span>#스테이크#스프#샐러드</span>
+		      </div>
+		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      </div>
+		      
+		       <div class="swiper-slide">
+		      <div class="img_write">
+		      	<h3>#중화요리어때?</h3>
+				<span>#짬뽕#짜장면#탕수육</span>
+		      </div>
+		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      </div>
+		      
+		      
+		      
+		      
+		      
+		      
+		      
 		    </div>
 		    <!-- Add Pagination -->
 		    <div class="swiper-pagination"></div>

@@ -26,6 +26,13 @@ $(document).ready(function () {
 
 	
 
+	<%if(member == null){%>
+		alert("등록된 정보를 찾을 수 없습니다!")
+		self.close();
+	<%} else {%>
+		alert("등록된 이메일로 발송합니다.")
+		self.close();
+	<%}%>
 })
 
 

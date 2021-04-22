@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import dao.face.DetailDao;
 import dto.Seoul;
+import dto.SeoulGrade;
 import common.JDBCTemplate;
 
 public class DetailDaoImpl implements DetailDao {
@@ -46,6 +47,36 @@ public class DetailDaoImpl implements DetailDao {
 		
 //		System.out.println(viewupso); //viewupso 객체값 확인
 		return viewupso;
+	}
+	@Override
+	public SeoulGrade selectGradeByUpso_sno(Connection conn, Seoul upso_sno) {
+		String sql="";
+
+		sql+="select"; 
+	    sql+=" S.*, ( SELECT avg(R.star_score) FROM review R where S.upso_sno = R.upso_sno ) avg";
+	    sql+=" from seoul S";
+	    sql+=" WHERE upso_sno = ?";
+	    
+	    SeoulGrade grade = new SeoulGrade();
+	    
+	    try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, upso_sno.getUpso_sno());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+			
+			grade.setAvg(rs.getInt("avg"));
+			}
+			System.out.println("Dao grade" +grade);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return grade;
 	}
 
 }
