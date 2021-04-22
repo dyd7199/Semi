@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 		// 객체에 로그인 정보 삽입
 		member.setUserid(req.getParameter("userid"));
 		member.setUserpw(req.getParameter("userpw"));
-		
+		member.setNick(req.getParameter("usernick"));
 		
 		return member;
 	}
