@@ -64,6 +64,7 @@ public class LoginPageController extends HttpServlet {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("usernick", member.getNick());
 			session.setAttribute("userno", member.getUserno());
+			System.out.println(session.getAttribute("grade"));
 			session.setAttribute("grade", member.getGrade());
 			
 			//메인페이지로
