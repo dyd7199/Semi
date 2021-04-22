@@ -82,6 +82,21 @@ public interface MemberService {
 	 */
 	public void secession(Object attribute);
 
+	/**
+	 * 아이디 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findId(HttpServletRequest req);
+
+	/**
+	 * 비밀번호 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findPw(HttpServletRequest req);
+
+
 	
 	
 	

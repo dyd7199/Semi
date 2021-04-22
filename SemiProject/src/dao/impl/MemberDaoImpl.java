@@ -375,4 +375,80 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+
+	@Override
+	public Member selectByUserId(Connection conn, Member member) {
+		String sql ="";
+		sql += "SELECT * FROM user_table";
+		sql += " WHERE username = ?";
+		sql += " AND userpw = ?";
+		sql += " AND nick = ?";
+		
+		Member res = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUsername());
+			ps.setString(2, member.getUserpw());
+			ps.setString(3, member.getNick());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = new Member();
+				
+				res.setUserid(rs.getString("userid"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public Member selectByUserPw(Connection conn, Member member) {
+
+		String sql ="";
+		sql += "SELECT * FROM user_table";
+		sql += " WHERE userid = ?";
+		sql += " AND nick = ?";
+		
+		Member res = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUserid());
+			ps.setString(2, member.getNick());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = new Member();
+				
+				res.setUserpw(rs.getString("userpw"));
+				res.setEmail(rs.getString("email"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
 }

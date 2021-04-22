@@ -152,6 +152,31 @@ public class MemberServiceImpl implements MemberService {
 			JDBCTemplate.rollback(JDBCTemplate.getConnection());
 		}
 	}
+	@Override
+	public Member findId(HttpServletRequest req) {
+		
+		Member member = new Member();
+		
+		member.setUsername(req.getParameter("name"));
+		member.setNick(req.getParameter("nick"));
+		member.setUserpw(req.getParameter("pw"));
+		
+		
+		return memberDao.selectByUserId(JDBCTemplate.getConnection(),member);
+	}
+	@Override
+	public Member findPw(HttpServletRequest req) {
+		
+		Member member = new Member();
+		
+		member.setUserid(req.getParameter("id"));
+		member.setNick(req.getParameter("nick"));
+		
+		
+		
+		
+		return memberDao.selectByUserPw(JDBCTemplate.getConnection(),member);
+	}
 	
 	
 
