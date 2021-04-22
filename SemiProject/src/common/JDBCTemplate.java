@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class JDBCTemplate {
 	// OJDBC 드라이버
-	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	private static final String DRIVAER = "oracle.jdbc.driver.OracleDriver";
 
 	//DB 연결 정보
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -27,7 +27,7 @@ public class JDBCTemplate {
 		if(conn == null) {
 			try {
 				// 드라이버 로드
-				Class.forName(DRIVER);
+				Class.forName(DRIVAER);
 				// DB 연결
 				conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
 

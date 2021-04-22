@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 		// 객체에 로그인 정보 삽입
 		member.setUserid(req.getParameter("userid"));
 		member.setUserpw(req.getParameter("userpw"));
-		
+		member.setNick(req.getParameter("usernick"));
 		
 		return member;
 	}
@@ -151,6 +151,31 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			JDBCTemplate.rollback(JDBCTemplate.getConnection());
 		}
+	}
+	@Override
+	public Member findId(HttpServletRequest req) {
+		
+		Member member = new Member();
+		
+		member.setUsername(req.getParameter("name"));
+		member.setNick(req.getParameter("nick"));
+		member.setUserpw(req.getParameter("pw"));
+		
+		
+		return memberDao.selectByUserId(JDBCTemplate.getConnection(),member);
+	}
+	@Override
+	public Member findPw(HttpServletRequest req) {
+		
+		Member member = new Member();
+		
+		member.setUserid(req.getParameter("id"));
+		member.setNick(req.getParameter("nick"));
+		
+		
+		
+		
+		return memberDao.selectByUserPw(JDBCTemplate.getConnection(),member);
 	}
 	
 	
