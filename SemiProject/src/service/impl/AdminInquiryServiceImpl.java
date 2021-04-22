@@ -120,7 +120,7 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		if(adminInquiryDao.deleteInq(conn, inquiry) > 0) {
-			JDBCTemplate.commit(conn);;
+			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
