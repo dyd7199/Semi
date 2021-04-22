@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    
+<%	String userGrade = (String)session.getAttribute("grade"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,13 +79,37 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+<!--                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/faq/view">게시판</a></li> -->
+<%--                         <%if(session.getAttribute("login") == null || !(boolean)session.getAttribute("login")){ %>  --%>
+<!--                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/login">로그인</a></li> -->
+                    	
+<%--                     	<%} else { %> --%>
+<!--                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/mypage">마이페이지</a></li> -->
+<%--                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><%=session.getAttribute("usernick") %> 님,</a></li> --%>
+<!--                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/logout">로그아웃</a></li> -->
+<%-- 						<%} %> --%>
+						
+						
+						                    
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/faq/view">게시판</a></li>
                         <%if(session.getAttribute("login") == null || !(boolean)session.getAttribute("login")){ %> 
+                        <!-- 로그인 X -->
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/login">로그인</a></li>
+                    	
                     	<%} else { %>
+                    	<!-- 로그인 O -->
+                    		<% if ( "관리자".equals(userGrade) ) { %>
+                    		<!-- 로그인 O, 관리자일 때 -->
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><%=session.getAttribute("usernick") %> 님,</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/logout">로그아웃</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><button type="button" onclick="location.href='/admin'" style="margin-top: 10px;">관리자페이지</button></li>
+						
+							<%} else { %>
+							<!-- 로그인 O, 관리자 아닐 때 -->
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/mypage">마이페이지</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><%=session.getAttribute("usernick") %> 님,</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/logout">로그아웃</a></li>
+							<%} %>
 						<%} %>
                     </ul>
                 
