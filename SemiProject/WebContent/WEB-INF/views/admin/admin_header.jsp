@@ -83,6 +83,7 @@
                     	<%} else { %>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">관리자 <%=session.getAttribute("usernick") %> 님,</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/logout">로그아웃</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><button type="button" onclick="location.href='/'" style="margin-top: 10px;">맛객메인페이지</button></li>
 						<%} %>
                     </ul>
                 
