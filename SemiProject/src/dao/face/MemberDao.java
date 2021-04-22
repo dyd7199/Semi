@@ -77,4 +77,12 @@ public interface MemberDao {
 	 */
 	Member selectByUserPw(Connection connection, Member member);
 
+	/**
+	 * 업데이트 비밀번호
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	int updatePW(Connection conn, Member member);
+
 }

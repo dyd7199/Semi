@@ -96,6 +96,20 @@ public interface MemberService {
 	 */
 	public Member findPw(HttpServletRequest req);
 
+	/**
+	 * 이메일, 유저아이디 저장
+	 * @param req
+	 * @param tempPW 
+	 * @return
+	 */
+	public Member saveEmail(HttpServletRequest req, String tempPW);
+
+	/**
+	 * 비밀번호 변경
+	 * @param member
+	 */
+	public void chagePW(Member member);
+
 
 	
 	
