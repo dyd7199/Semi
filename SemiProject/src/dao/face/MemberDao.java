@@ -1,9 +1,11 @@
+
 package dao.face;
 
 import java.sql.Connection;
 import java.util.List;
 
 import dto.Member;
+import dto.Payment;
 
 public interface MemberDao {
 	/**
@@ -60,5 +62,34 @@ public interface MemberDao {
 	int updateByNickEmail(Connection connection, Member member);
 
 	int delete(Connection connection, Object userid);
+
+	/**
+	 * username, userPW를 활용하여 USERID조회
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	Member selectByUserId(Connection connection, Member member);
+
+	/**
+	 * userid, nick을 활용하여 pw조회
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	Member selectByUserPw(Connection connection, Member member);
+
+	/**
+	 * 업데이트 비밀번호
+	 * @param connection
+	 * @param member
+	 * @return
+	 */
+	int updatePW(Connection conn, Member member);
+	
+	void insertPayment(Connection conn, Payment payment);
+
+	void updateMember(Connection connection, Payment payment);
+
 
 }

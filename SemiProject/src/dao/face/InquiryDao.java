@@ -25,9 +25,10 @@ public interface InquiryDao {
 	 * 
 	 * @param connection - DB연결 객체
 	 * @param paging - 페이징 정보 객체
+	 * @param userno 
 	 * @return List<Inquiry> - Inquiry 테이블 전체 조회 결과 리스트
 	 */
-	public List<Inquiry> selectAllInqList(Connection conn, Paging paging);
+	public List<Inquiry> selectAllInqList(Connection conn, Paging paging, int userno);
 
 
 	/**
@@ -76,6 +77,25 @@ public interface InquiryDao {
 	 * @return List<InquiryAnswer> - 해당 문의번호를 가진 inquiryAnswer 테이블 전체 조회결과 리스트
 	 */
 	public List<InquiryAnswer> selectAllAnsList(Connection conn, Inquiry inquiryno);
+
+	
+	/**
+	 * 문의에 대한 답변 개수 가져오기
+	 * 
+	 * @param inquiryno 
+	 * @param connection - DB연결 객체
+	 * @return int - 해당 문의에 대한 답변 개수
+	 */
+	public int selectCntAllAns(Connection conn, Inquiry inquiryno);
+
+
+	/**
+	 * 문의글 삭제하기
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param inquiry - 삭제할 문의번호를 가지고 있는 객체
+	 */
+	public int deleteInq(Connection conn, Inquiry inquiry);
 
 	
 }

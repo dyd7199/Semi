@@ -33,6 +33,10 @@ public class InquiryViewPageController extends HttpServlet {
 		//문의 답변 조회
 		List<InquiryAnswer> getAnswer = inquiryService.getAnsList(inquiryno);
 		
+		//문의 답변 개수 조회
+		int cntAnswer = inquiryService.cntAns(inquiryno);
+		
+		
 		//닉네임 전달
 		req.setAttribute("nick", inquiryService.getNick(viewInquiry));
 		
@@ -41,6 +45,7 @@ public class InquiryViewPageController extends HttpServlet {
 		req.setAttribute("viewInquiry", viewInquiry);
 		
 		req.setAttribute("getAnswer", getAnswer);
+		req.setAttribute("cntAnswer", cntAnswer);
 		
 		req.getRequestDispatcher("/WEB-INF/views/mypage/inquiryview.jsp").forward(req, resp);
 	}

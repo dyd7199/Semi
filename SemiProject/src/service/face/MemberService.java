@@ -1,3 +1,4 @@
+
 package service.face;
 
 import java.util.List;
@@ -5,9 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
+import dto.Payment;
 
 public interface MemberService {
 
+	
+	
 	/**
 	 * 로그인 정보 저장 id,pw
 	 * @param req
@@ -60,7 +64,12 @@ public interface MemberService {
 	 * @return
 	 */
 	public Member getuserInfo(Member member);
-
+  
+	/**
+	 * 레시피 게시글에 보여질 모든 회원정보 데이터
+	 * 
+	 * @return 모든 회원정보 데이터
+	 */
 	public List<Member> getUserdata();
 
 	/**
@@ -82,8 +91,45 @@ public interface MemberService {
 	 */
 	public void secession(Object attribute);
 
-	
-	
-	
+	/**
+	 * 아이디 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findId(HttpServletRequest req);
 
+	/**
+	 * 비밀번호 찾기
+	 * @param req
+	 * @return
+	 */
+	public Member findPw(HttpServletRequest req);
+
+	/**
+	 * 이메일, 유저아이디 저장
+	 * @param req
+	 * @param tempPW 
+	 * @return
+	 */
+	public Member saveEmail(HttpServletRequest req, String tempPW);
+
+	/**
+	 * 비밀번호 변경
+	 * @param member
+	 */
+	public void chagePW(Member member);
+	/**
+	 * session으로부터 받은 회원번호와 레시피 작성자의 회원번호를 비교
+	 * 
+	 * @param req
+	 * @return 일치할 경우 true, 불일치할 경우 false 반환
+	 */
+	public boolean UsernoChk(HttpServletRequest req);
+	
+	public void insertPayment(Payment payment);
+
+	public void updateMember(Payment payment);
+
+  
+  
 }

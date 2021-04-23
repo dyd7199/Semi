@@ -2,7 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%	Paging paging = (Paging) request.getAttribute("paging"); %>
+<%
+	Paging paging = (Paging) request.getAttribute("paging");
+%>
 
 <div class="text-center">
 	<ul class="pagination pagination-sm">

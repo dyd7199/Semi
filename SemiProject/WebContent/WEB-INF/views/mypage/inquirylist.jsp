@@ -36,7 +36,7 @@ ul#navi {
     
     background: #f4f4f4;
     float: left;
-    min-height: 590px;
+    min-height: 600px;
         
 }
 ul#navi, ul#navi ul {
@@ -152,9 +152,7 @@ th {
 	<th style="width: 15%;">작성일</th>
 </tr>
 
-<%	for(int i = 0; i < list.size(); i++) { 
-		Inquiry myInquiry = (Inquiry)list.get(i);
-		if (session.getAttribute("userno").equals(myInquiry.getUserno())) { %>
+<%	for(int i = 0; i < list.size(); i++)  { %>
 <tr>
 	<td><%=list.get(i).getInquiryno() %></td>
 	<td>
@@ -165,7 +163,6 @@ th {
 	<td><%=list.get(i).getNick() %></td>
 	<td><%=list.get(i).getCreateDate() %></td>
 </tr>
-	<%	} %>
 <%	} %>
 </table>
 </div>

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,13 +65,22 @@ public class LoginPageController extends HttpServlet {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("usernick", member.getNick());
 			session.setAttribute("userno", member.getUserno());
+			session.setAttribute("grade", member.getGrade());
+			System.out.println(session.getAttribute("grade"));
 			
 			//메인페이지로
 			resp.sendRedirect("/");
 		} else {
 			System.out.println(member);
 			System.out.println("로그인 실패");
-			resp.sendRedirect("/member/login");
+			
+			resp.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('아이디 또는 비밀번호를 확인해주세요'); location.href='/member/login';</script>");
+			
+			out.flush();
+			
+//			resp.sendRedirect("/member/login");
 		}
 
 		

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Inquiry;
+import dto.InquiryAnswer;
 import inquiry.util.Paging;
 
 public interface AdminInquiryService {
@@ -74,6 +75,23 @@ public interface AdminInquiryService {
 	 * @param req - 요청정보 객체(답변을 추가할 해당 게시글)
 	 */
 	public void writeAnswer(HttpServletRequest req);
+
+
+	/**
+	 * 문의사항 답변 수 조회
+	 * 
+	 * @param inquiryno - inquiryno로 조회될 객체
+	 * @return int - 조회된 답변 수
+	 */
+	public int cntAns(Inquiry inquiryno);
+	
+	
+	/**
+	 * 문의글 삭제하기
+	 * 
+	 * @param inquiry - 삭제할 문의번호(inquiryno)를 가진 객체
+	 */
+	public void deleteInq(Inquiry inquiry);
 
 
 

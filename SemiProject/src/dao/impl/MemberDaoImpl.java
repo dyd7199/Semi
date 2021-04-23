@@ -1,3 +1,4 @@
+
 package dao.impl;
 
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import dao.face.MemberDao;
 import dto.Member;
+import dto.Payment;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -36,6 +38,7 @@ public class MemberDaoImpl implements MemberDao {
 				res.setUserpw(rs.getString("userpw"));
 				res.setNick(rs.getString("nick"));
 				res.setUserno(rs.getInt("userno"));
+				res.setGrade(rs.getString("grade"));
 			}
 
 
@@ -375,4 +378,173 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+
+	@Override
+	public Member selectByUserId(Connection conn, Member member) {
+		String sql ="";
+		sql += "SELECT * FROM user_table";
+		sql += " WHERE username = ?";
+		sql += " AND userpw = ?";
+		sql += " AND nick = ?";
+		
+		Member res = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUsername());
+			ps.setString(2, member.getUserpw());
+			ps.setString(3, member.getNick());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = new Member();
+				
+				res.setUserid(rs.getString("userid"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public Member selectByUserPw(Connection conn, Member member) {
+
+		String sql ="";
+		sql += "SELECT * FROM user_table";
+		sql += " WHERE userid = ?";
+		sql += " AND nick = ?";
+		
+		Member res = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, member.getUserid());
+			ps.setString(2, member.getNick());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = new Member();
+				
+				res.setUserpw(rs.getString("userpw"));
+				res.setEmail(rs.getString("email"));
+				res.setUserid(rs.getString("userid"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public int updatePW(Connection conn, Member member) {
+		
+		//SQL 구문
+		String sql = "";
+		sql += "UPDATE user_table SET userpw = ?";
+		sql += " WHERE userid = ?";
+		
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getUserpw());
+			ps.setString(2, member.getUserid());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	@Override
+	public void insertPayment(Connection conn, Payment payment) {
+		System.out.println(payment.toString());
+		String sql = "";
+		sql += "INSERT INTO payment";
+		sql += " VALUES (?, ?, ?, ?)";
+		
+		int res = 0;
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+//			ps.setString(1, board.getTitle());
+//			ps.setString(2, board.getUserid());
+//			ps.setString(3, board.getContent());
+			ps.setString(1, payment.getPaymentUid());
+			ps.setString(2, payment.getAmt());
+			ps.setString(3, payment.getMerchant_uid());
+			ps.setString(4, payment.getUserid());
+
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+			JDBCTemplate.commit(conn);
+		}
+		
+	}
+
+
+	@Override
+	public void updateMember(Connection conn, Payment payment) {
+		System.out.println(payment.toString());
+		String sql = "";
+		sql +="UPDATE user_table SET"; 
+		sql +=" grade = 1 WHERE USERID = ?";
+		
+		int res = 0;
+		
+		try {
+			//DB작업
+			ps = conn.prepareStatement(sql);
+			//ps.setString(1, "1");
+			ps.setString(1, payment.getUserid());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+			JDBCTemplate.commit(conn);
+		}
+		
+	}
+
+
+	
 }

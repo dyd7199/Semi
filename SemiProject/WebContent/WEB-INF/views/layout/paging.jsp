@@ -1,8 +1,12 @@
-<%@page import="review.util.Paging"%>
 
+
+<%@page import="common.Paging"%>
+<%@page import="common.PagingReview"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Paging paging = (Paging) request.getAttribute("paging"); %>
+<%
+	Paging paging = (Paging) request.getAttribute("paging");
+%>
 <style>
 .my.pagination > .active > a, 
 .my.pagination > .active > span, 

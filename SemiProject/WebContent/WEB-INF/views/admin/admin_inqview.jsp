@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
     
 <%	Inquiry inq = (Inquiry) request.getAttribute("viewInquiry"); %>
+<%	int inqCnt = (int) request.getAttribute("cntAnswer"); %>
 
 <%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
 
@@ -11,18 +12,6 @@ $(document).ready(function() {
 	
 	//답변 등록 버튼 클릭 시
 	$("#btnWriteAns").click(function() {
-// 		var answertext = $("#answertext").val(); //댓글 내용
-// 		var inquiryno = "${dto.inquiryno}"; //게시물 번호
-// 		var param = {"answertext": answertext, "inquiryno": inquiryno};
-		
-// 		$.ajax({
-// 			type: "POST",
-// 			url: "${path}/admin/inqview", //데이터 보낼 url
-// 			data: param, //보낼 데이터
-// 			success: function() {
-// 				alert("댓글이 등록되었습니다.")
-// 			}
-// 		})
 	});
 	
 	//목록 버튼 클릭 시
@@ -31,7 +20,11 @@ $(document).ready(function() {
 	});
 	
 	//삭제 버튼 클릭 시
-	$("#btnDelete").click(function() {
+	$("#btnDeleteInq").click(function() {
+		
+		if(confirm("[확인]버튼 클릭 시 해당 문의글이 삭제되고 되돌릴 수 없습니다.\n 삭제하시겠습니까?")) {
+			$(location).attr("href", "/admin/inqdelete?inquiryno=<%=inq.getInquiryno() %>");
+		}
 	});
 });
 
@@ -113,6 +106,11 @@ ul.sub li:hover {
 	padding: 40px;
 }
 
+h3 {
+	font-weight: bolder;
+	padding: 20px;
+}
+
 
 </style>
 
@@ -124,15 +122,15 @@ ul.sub li:hover {
     <li class="group">
         <div class="title">게시판 관리</div>
        	<ul class="sub">
-            <li><a href="#">레시피 공유</a></li>
-            <li><a href="#">공지사항</a></li>
+            <li><a href="/admin/recipelist">레시피 공유</a></li>
+            <li><a href="/admin/noticelist">공지사항</a></li>
             <li><a href="/admin/inqlist">문의하기</a></li>
        	</ul>
     </li>
     <li class="group">
         <div class="title">데이터 관리</div>
         <ul class="sub">
-            <li><a href="#">회원 관리</a></li>                
+            <li><a href="/admin/member">회원 관리</a></li>                
             <li><a href="#">식당관리</a></li>                
         </ul>
     </li>
@@ -168,12 +166,12 @@ ul.sub li:hover {
 </table>
 </div>
 
-<%-- <%	if(   ) { %> --%>
+<%	if( inqCnt > 0 ) { %>
 <!-- 해당 문의글에 대한 답변이 존재할 경우
 	답변을 보여줌 -->
-<!-- 	<strong>답변완료!</strong> -->
+	<h3>답변완료!</h3>
 
-<%-- <%	} else {  %> --%>
+<%	} else {  %>
 <!-- 해당 문의글에 대한 답변이 없을 경우
 	답변 작성 form을 보여줌 -->
 	<div class="inqAnswer_container">
@@ -188,7 +186,7 @@ ul.sub li:hover {
 <!-- .inqAnswer_container end -->
 </div>
 
-<%-- <%	} %> --%>
+<%	} %>
 
 
 <div>

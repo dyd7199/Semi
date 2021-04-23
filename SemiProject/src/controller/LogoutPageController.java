@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import service.face.MemberService;
+import service.impl.MemberServiceImpl;
+
 /**
  * Servlet implementation class LogoutPageController
  */
@@ -16,6 +19,8 @@ import javax.servlet.http.HttpSession;
 public class LogoutPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//세션 객체

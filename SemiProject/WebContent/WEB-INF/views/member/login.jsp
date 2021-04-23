@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
@@ -148,6 +149,26 @@ fieldset, img {
 
 
 </style>
+
+<script type="text/javascript">
+function openPopup(url) {
+	 
+    var _width = '500';
+    var _height = '500';
+ 
+    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+    var _left = Math.ceil(( window.screen.width - _width )/2);
+    var _top = Math.ceil(( window.screen.height - _height )/2); 
+ 
+    window.open(url, 'find', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+ 
+}
+
+
+
+</script>
+
+
 <div class="totallogin">
     <div class="login_tistory">
 
@@ -168,9 +189,9 @@ fieldset, img {
             <div class="login_append">
         		<a href="/member/join" class="link_find">회원가입</a>
                 <span class="txt_find">
-                <a href="/member/find/loginId" class="link_find">아이디</a>
+                <a class="link_find"  onclick="openPopup('/member/find/loginId')">아이디</a>
                     / 
-                <a href="/member/find/password" class="link_find">비밀번호 찾기</a>
+                <a class="link_find" onclick="openPopup('/member/find/loginPw')" >비밀번호 찾기</a>
                 </span>
             </div>
             
@@ -194,3 +215,4 @@ fieldset, img {
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
 
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git

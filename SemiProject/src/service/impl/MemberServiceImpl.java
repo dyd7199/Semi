@@ -1,3 +1,4 @@
+
 package service.impl;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import common.JDBCTemplate;
 import dao.face.MemberDao;
 import dao.impl.MemberDaoImpl;
 import dto.Member;
+import dto.Payment;
 import service.face.MemberService;
 
 public class MemberServiceImpl implements MemberService {
@@ -28,8 +30,8 @@ public class MemberServiceImpl implements MemberService {
 		// 객체에 로그인 정보 삽입
 		member.setUserid(req.getParameter("userid"));
 		member.setUserpw(req.getParameter("userpw"));
-		
-		
+		member.setNick(req.getParameter("usernick"));
+
 		return member;
 	}
 	@Override
@@ -132,6 +134,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setNick(req.getParameter("nick"));
 		member.setEmail(req.getParameter("email"));
 		member.setUserid( (String)req.getSession().getAttribute("userid"));
+//		member.setGrade( (String)req.getSession().getAttribute("grade"));
 		
 		
 		return member;
@@ -152,7 +155,87 @@ public class MemberServiceImpl implements MemberService {
 			JDBCTemplate.rollback(JDBCTemplate.getConnection());
 		}
 	}
+	@Override
+	public Member findId(HttpServletRequest req) {
+		
+		Member member = new Member();
+		
+		member.setUsername(req.getParameter("name"));
+		member.setNick(req.getParameter("nick"));
+		member.setUserpw(req.getParameter("pw"));
+		
+		
+		return memberDao.selectByUserId(JDBCTemplate.getConnection(),member);
+	}
+	@Override
+	public Member findPw(HttpServletRequest req) {
+		
+		Member member = new Member();
+		
+		member.setUserid(req.getParameter("id"));
+		member.setNick(req.getParameter("nick"));
+		
+		System.out.println("findPw()"+member);
+		
+		
+		return memberDao.selectByUserPw(JDBCTemplate.getConnection(),member);
+	}
+	@Override
+	public Member saveEmail(HttpServletRequest req, String tempPW) {
+		Member member = new Member();
+		member.setUserid(req.getParameter("userid"));
+		member.setEmail(req.getParameter("email"));
+		member.setUserpw(tempPW);
+		
+		
+		
+		return member;
+	}
+	@Override
+	public void chagePW(Member member) {
+		
+		int res = memberDao.updatePW(JDBCTemplate.getConnection(),member);
+		
+		if(res>0) {
+			JDBCTemplate.commit(JDBCTemplate.getConnection());
+		} else {
+			JDBCTemplate.rollback(JDBCTemplate.getConnection());
+		}
+    
+    
+    
+	}
 	
-	
+	@Override
+	public boolean UsernoChk(HttpServletRequest req) {
 
+		//session으로부터 userno값을 받아온다
+		Object userno1 = req.getSession().getAttribute("userno");
+		System.out.println(userno1);
+		
+		//detail.jsp로부터 값을 받아온다
+		int userno2 = Integer.parseInt(req.getParameter("userno"));
+		System.out.println(userno2);
+		
+		if( userno1.equals(userno2) ) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	@Override
+	public void insertPayment(Payment payment) {
+		System.out.println(payment.toString());
+		memberDao.insertPayment(JDBCTemplate.getConnection(),payment);
+	}
+	@Override
+	public void updateMember(Payment payment) {
+		System.out.println(payment.toString());
+		memberDao.updateMember(JDBCTemplate.getConnection(),payment);
+	}
+
+  
+  
 }

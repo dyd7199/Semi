@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import dto.SeoulGrade;
 import service.face.RestaurantService;
 import service.impl.RestaurantServiceImpl;
@@ -33,9 +35,8 @@ public class MapTopListController extends HttpServlet {
 			System.out.println(c);
 		}
 		
-		
-		
 		req.setAttribute("list", list);
+
 		
 		req.getRequestDispatcher("/WEB-INF/views/main/ajax_map.jsp").forward(req, resp);
 		

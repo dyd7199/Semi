@@ -28,8 +28,11 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 
 	@Override
-	public List<Inquiry> getInqList(Paging paging) {
-		return inquiryDao.selectAllInqList(JDBCTemplate.getConnection(), paging);
+	public List<Inquiry> getInqList(Paging paging, HttpServletRequest req) {
+		
+		int userno = (int)req.getSession().getAttribute("userno");
+		
+		return inquiryDao.selectAllInqList(JDBCTemplate.getConnection(), paging, userno);
 	}
 
 	@Override
@@ -122,6 +125,24 @@ public class InquiryServiceImpl implements InquiryService {
 	@Override
 	public List<InquiryAnswer> getAnsList(Inquiry inquiryno) {
 		return inquiryDao.selectAllAnsList(JDBCTemplate.getConnection(), inquiryno);
+	}
+	
+	
+	@Override
+	public int cntAns(Inquiry inquiryno) {
+		return inquiryDao.selectCntAllAns(JDBCTemplate.getConnection(), inquiryno);
+	}
+
+	
+	@Override
+	public void deleteInq(Inquiry inquiry) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if(inquiryDao.deleteInq(conn, inquiry) > 0) {
+			JDBCTemplate.commit(conn);;
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
 	}
 
 
