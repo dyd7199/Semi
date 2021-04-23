@@ -170,7 +170,7 @@
 		      	<h3>#칼칼한국수</h3>
 				<span>#칼국수#메밀국수</span>
 		      </div>
-		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      <a href="/main/foodlist?food=국수"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -178,7 +178,7 @@
 		      	<h3>#보글보글찌개</h3>
 				<span>#된장찌개#부대찌개#김치찌개</span>
 		      </div>
-		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      <a href="/main/foodlist?food=찌개"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -186,7 +186,7 @@
 		      	<h3>#분위기좀 내볼까?</h3>
 				<span>#스테이크#스프#샐러드</span>
 		      </div>
-		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      <a href="/main/foodlist?food=스프"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -194,7 +194,7 @@
 		      	<h3>#중화요리어때?</h3>
 				<span>#짬뽕#짜장면#탕수육</span>
 		      </div>
-		      <img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg">
+		      <a href="/main/foodlist?food=짬뽕"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
 		      </div>
 		      
 		      

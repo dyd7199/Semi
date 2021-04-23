@@ -30,8 +30,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 	@Override
 	public List<SeoulGrade> getThemeList(String theme) {
-		// TODO Auto-generated method stub
-		return restaurantDao.selectThemeByBiz(JDBCTemplate.getConnection(),theme);
+		
+		 List<SeoulGrade> list = restaurantDao.selectThemeByBiz(JDBCTemplate.getConnection(),theme);
+		 Collections.sort(list,Collections.reverseOrder());
+		
+		return list;
 	}
 	@Override
 	public SeoulGrade setQueryString(HttpServletRequest req) {
