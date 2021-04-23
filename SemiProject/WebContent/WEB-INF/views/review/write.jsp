@@ -46,6 +46,7 @@
 	/* 채워진 별로 이미지 변경 */
 	background-image: url(/Resources/img/star.png);
 }
+
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -116,6 +117,7 @@ $(document).ready(function() {
 	$("#btnWrite").click(function() {
 // 		var formdata = $(form1).serialize()
 		$("form").submit();
+		 opener.location.reload();
 	});
 	
 	//취소버튼 동작
@@ -166,20 +168,20 @@ function showStarValue(val) {
 
  <table class="table table-bordered">
    <tr>
-	<td class="info">회원닉네임</td>
+	<td class="info" style="background-color: #FAA600;">회원닉네임</td>
     <td>
  	<%=session.getAttribute("usernick") %>
     </td>
 	</tr>
 	<tr>
-    <td class="info">제목</td>
+    <td class="info" style="background-color: #FAA600;">제목</td>
      <td><input type="text" name="title"></td>
 	</tr>
      <tr>
-     <td class="info" colspan="2">본문</td>
+     <td class="info" style="background-color: #FAA600;" colspan="2">본문</td>
        </tr>
       <tr>
-	<td colspan="2"><textarea id="inq_content" name="inq_content"></textarea></td>
+	<td colspan="2"><textarea id="inq_content" name="inq_content" style="width:700px; height:500px;"></textarea></td>
       </tr>
 </table>
 
