@@ -15,8 +15,6 @@
 <html>
 <head>
 <!-- 최신 제이쿼리 -->
-<script type="text/javascript"
-src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript"
 src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -83,9 +81,6 @@ $(document).ready(function(){
 
 </script>
 <style>
-.01 {
-	margin-top: 100px;
-}
 
 #container {
 	margin-top: 100px;
@@ -104,26 +99,6 @@ $(document).ready(function(){
 <title>맛집 상세 화면</title>
 </head>
 <body>
-<div class="container">
-<h1>맛집 상세 화면</h1>
-
-<table class="01">
-<tbody>
-<tr>
-<td>업체명</td>
-<td><%=s.getUpso_nm() %></td>
-</tr>
-<tr>
-<td>업종</td>
-<td><%=s.getBizcnd_code_nm() %>
-</tr>
-<td>주소</td>
-<td><%=s.getRdn_code_nm() %></td>
-</tbody>
-</table>
-
-
-<div id="div1" style="border: none; width:1100px; height:500x; "></div>
 
 <div id="container" class="container">
 <img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg">
