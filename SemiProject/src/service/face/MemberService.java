@@ -114,6 +114,8 @@ public interface MemberService {
 	 * @param member
 	 */
 	public void chagePW(Member member);
+	
+	/**
 	 * session으로부터 받은 회원번호와 레시피 작성자의 회원번호를 비교
 	 * 
 	 * @param req
