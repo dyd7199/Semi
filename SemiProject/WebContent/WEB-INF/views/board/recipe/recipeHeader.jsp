@@ -62,7 +62,7 @@
 		
 		#area {
 			width: 1200px;
-			height: 1200px;
+			height: 350px;
 			margin: 0;
 		}
 		
@@ -81,6 +81,7 @@
 		}
 		
 		</style>
+		
 		    
     </head>
     
@@ -99,7 +100,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/recipe/list">게시판</a></li>
-                        <%if(session.getAttribute("login") == null || !(boolean)session.getAttribute("login")){ %> 
+                        <% if(session.getAttribute("login") == null || !(boolean)session.getAttribute("login")){ %> 
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/member/login">로그인</a></li>
                     	<%} else { %>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/mypage">마이페이지</a></li>
@@ -111,5 +112,3 @@
                 </div>
             </div>
         </nav>
-
-       

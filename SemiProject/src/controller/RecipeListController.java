@@ -52,6 +52,7 @@ public class RecipeListController extends HttpServlet {
 		//세션에 속성값으로 mList 설정
 		req.setAttribute("mList", mList);
 		
+		
 		//JSP (view)로 데이터 전달
 		req.getRequestDispatcher("/WEB-INF/views/board/recipe/list.jsp")
 			.forward(req, resp);

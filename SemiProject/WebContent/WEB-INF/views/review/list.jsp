@@ -90,11 +90,10 @@ tr th {
 <h1 style="text-align: left; font-family: '바탕';">리뷰</h1>
 
 <table class="table">
-<div style="text-align:left;" id="btnBox">
-	<button class="btn btn-warning" onclick=
+<button class="btn btn-warning" style="text-align:left;" onclick=
 	"window.open('/review/write?upso_sno=<%=sn.getUpso_sno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes');">
 	글쓰기</button>
-</div>
+<br>
 <br>
 <tr class = "text-center">
 	<th>회원</th>
@@ -116,7 +115,7 @@ tr th {
     <td><img id="star" src="/Resources/img/star<%=list.get(i).getStar_score() %>.png"></td>
 	<td><button onclick="window.open('/review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
 	
-	<button class="btnDelete" class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
+	<button class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
 <%
 	}
 %>

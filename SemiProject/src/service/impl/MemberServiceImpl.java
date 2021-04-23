@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setUserid(req.getParameter("userid"));
 		member.setUserpw(req.getParameter("userpw"));
 		member.setNick(req.getParameter("usernick"));
-		
+
 		return member;
 	}
 	@Override
@@ -132,6 +132,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setNick(req.getParameter("nick"));
 		member.setEmail(req.getParameter("email"));
 		member.setUserid( (String)req.getSession().getAttribute("userid"));
+//		member.setGrade( (String)req.getSession().getAttribute("grade"));
 		
 		
 		return member;
@@ -172,12 +173,56 @@ public class MemberServiceImpl implements MemberService {
 		member.setUserid(req.getParameter("id"));
 		member.setNick(req.getParameter("nick"));
 		
-		
+		System.out.println("findPw()"+member);
 		
 		
 		return memberDao.selectByUserPw(JDBCTemplate.getConnection(),member);
 	}
+	@Override
+	public Member saveEmail(HttpServletRequest req, String tempPW) {
+		Member member = new Member();
+		member.setUserid(req.getParameter("userid"));
+		member.setEmail(req.getParameter("email"));
+		member.setUserpw(tempPW);
+		
+		
+		
+		return member;
+	}
+	@Override
+	public void chagePW(Member member) {
+		
+		int res = memberDao.updatePW(JDBCTemplate.getConnection(),member);
+		
+		if(res>0) {
+			JDBCTemplate.commit(JDBCTemplate.getConnection());
+		} else {
+			JDBCTemplate.rollback(JDBCTemplate.getConnection());
+		}
+    
+    
+    
+	}
 	
-	
+	@Override
+	public boolean UsernoChk(HttpServletRequest req) {
 
+		//session으로부터 userno값을 받아온다
+		Object userno1 = req.getSession().getAttribute("userno");
+		System.out.println(userno1);
+		
+		//detail.jsp로부터 값을 받아온다
+		int userno2 = Integer.parseInt(req.getParameter("userno"));
+		System.out.println(userno2);
+		
+		if( userno1.equals(userno2) ) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
+  
+  
 }

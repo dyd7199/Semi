@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +36,15 @@ public class LoginFindPwController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/member/find/loginPw [POST]");
+		
+		resp.setContentType("text/html;charset=UTF-8");
+		// 한글 인코딩 처리
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Member member = memberService.findPw(req);
 		

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.face.FileService;
 import service.face.RecipeService;
+import service.impl.FileServiceImpl;
 import service.impl.RecipeServiceImpl;
 
 @WebServlet("/recipe/write")
@@ -16,7 +18,8 @@ public class RecipeWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private RecipeService recipeService = new RecipeServiceImpl();
-
+	private FileService fileService = new FileServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -38,21 +41,11 @@ public class RecipeWriteController extends HttpServlet {
 		
 		req.setCharacterEncoding("utf-8");
 		
-		String str = (String) req.getSession().getAttribute("userid");
-		System.out.println( str );
+		//작성글 삽입 및 파일 업로드
+		recipeService.write(req, resp);
+
 		
-		String str1 = (String) req.getSession().getAttribute("usernick");
-		System.out.println( str1 );
-		
-		String str2 = req.getParameter("title");
-		String str3 = req.getParameter("content");
-		
-		System.out.println( str2 );
-		System.out.println( str3 );
-		
-		//작성글 삽입
-		recipeService.write(req);
-		
+
 		//목록으로 리다이렉트
 		resp.sendRedirect("/recipe/list");
 		

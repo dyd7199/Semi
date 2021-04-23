@@ -3,6 +3,7 @@ package dao.face;
 import java.sql.Connection;
 import java.util.List;
 
+import common.Paging;
 import common.PagingReview;
 import dto.Member;
 import dto.Review;
@@ -56,5 +57,22 @@ public interface ReviewDao {
 	 * @return cnt
 	 */
 	int getReviewCnt(Connection conn, Seoul upso_sno);
+	
+	/**
+	 * DB에서 회원번호에 따른 리뷰 개수 가져오기
+	 * @param conn
+	 * @param userno
+	 * @return
+	 */
+	int selectCntByUserno(Connection conn, int userno);
+	
+	/**
+	 * DB에서 회원번호에 따른 리뷰 목록 가져오기
+	 * @param conn
+	 * @param paging
+	 * @param userno
+	 * @return rvList
+	 */
+	List<Review> getReview(Connection conn, Paging paging, int userno);
 
 }

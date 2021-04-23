@@ -36,6 +36,7 @@ public class MemberDaoImpl implements MemberDao {
 				res.setUserpw(rs.getString("userpw"));
 				res.setNick(rs.getString("nick"));
 				res.setUserno(rs.getInt("userno"));
+				res.setGrade(rs.getString("grade"));
 			}
 
 
@@ -437,6 +438,7 @@ public class MemberDaoImpl implements MemberDao {
 				
 				res.setUserpw(rs.getString("userpw"));
 				res.setEmail(rs.getString("email"));
+				res.setUserid(rs.getString("userid"));
 				
 			}
 			
@@ -445,6 +447,33 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public int updatePW(Connection conn, Member member) {
+		
+		//SQL 구문
+		String sql = "";
+		sql += "UPDATE user_table SET userpw = ?";
+		sql += " WHERE userid = ?";
+		
+		int res = -1;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getUserpw());
+			ps.setString(2, member.getUserid());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			JDBCTemplate.close(ps);
 		}
 		
