@@ -200,6 +200,23 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
-	
+	@Override
+	public boolean UsernoChk(HttpServletRequest req) {
+
+		//session으로부터 userno값을 받아온다
+		Object userno1 = req.getSession().getAttribute("userno");
+		System.out.println(userno1);
+		
+		//detail.jsp로부터 값을 받아온다
+		int userno2 = Integer.parseInt(req.getParameter("userno"));
+		System.out.println(userno2);
+		
+		if( userno1.equals(userno2) ) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 
 }
