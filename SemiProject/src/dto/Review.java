@@ -11,6 +11,7 @@ private int userno;
 private String inq_content;
 private int star_score;
 private String nick;
+//
 @Override
 public String toString() {
 	return "Review [reviewno=" + reviewno + ", upso_sno=" + upso_sno + ", create_date=" + create_date + ", title="
