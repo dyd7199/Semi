@@ -29,11 +29,11 @@ public class ReviewWriteController extends HttpServlet {
 		Seoul upso_sno = detailService.getupso_sno(req);
 		req.setAttribute("upso_sno", upso_sno);
 		//로그인 되어있지 않으면 리다이렉트 
-////	if( req.getSession().getAttribute("login") == null ) {
-////		resp.sendRedirect("/");
-//				
-//				return;
-//			}
+	if( req.getSession().getAttribute("login") == null ) {
+		resp.sendRedirect("/error");
+				
+				return;
+			}
 		//VIEW 지정
 		req.getRequestDispatcher("/WEB-INF/views/review/write.jsp")
 					.forward(req, resp);
