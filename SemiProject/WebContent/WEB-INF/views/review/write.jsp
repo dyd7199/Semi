@@ -167,20 +167,20 @@ function showStarValue(val) {
 
  <table class="table table-bordered">
    <tr>
-	<td class="info">회원닉네임</td>
+	<td class="info" style="background-color: #FAA600;">회원닉네임</td>
     <td>
  	<%=session.getAttribute("usernick") %>
     </td>
 	</tr>
 	<tr>
-    <td class="info">제목</td>
+    <td class="info" style="background-color: #FAA600;">제목</td>
      <td><input type="text" name="title"></td>
 	</tr>
      <tr>
-     <td class="info" colspan="2">본문</td>
+     <td class="info" colspan="2" style="background-color: #FAA600;">본문</td>
        </tr>
       <tr>
-	<td colspan="2"><textarea id="inq_content" name="inq_content"></textarea></td>
+	<td colspan="2"><textarea id="inq_content" name="inq_content" style="width:700px; height:500px;"></textarea></td>
       </tr>
 </table>
 
