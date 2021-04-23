@@ -144,6 +144,13 @@ public interface RecipeDao {
 	 */
 	int selectCntByUserno(Connection conn, int userno);
 
+	/**
+	 * 전체 recipe테이블 리스트를 가져온다
+	 * 
+	 * @return
+	 */
+	List<Recipe> getRecipe(Connection conn);
+
 
 
 }
