@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
@@ -148,6 +149,26 @@ fieldset, img {
 
 
 </style>
+
+<script type="text/javascript">
+function openPopup(url) {
+	 
+    var _width = '500';
+    var _height = '500';
+ 
+    // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+    var _left = Math.ceil(( window.screen.width - _width )/2);
+    var _top = Math.ceil(( window.screen.height - _height )/2); 
+ 
+    window.open(url, 'find', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+ 
+}
+
+
+
+</script>
+
+
 <div class="totallogin">
     <div class="login_tistory">
 
@@ -166,17 +187,11 @@ fieldset, img {
             </div>
             <button type="submit" class="btn_login" >로그인</button>
             <div class="login_append">
-                <div class="inp_chk"> <!-- 체크시 checked 추가 -->
-                <input type="checkbox" id="keepLogin" class="inp_radio"  name="keepLogin">
-                <label for="keepLogin" class="lab_g">
-        <span class="img_top ico_check"></span>
-        <span class="txt_lab">로그인 상태 유지</span>
-        </label>
-                </div>
+        		<a href="/member/join" class="link_find">회원가입</a>
                 <span class="txt_find">
-                <a href="/member/find/loginId" class="link_find">아이디</a>
+                <a class="link_find"  onclick="openPopup('/member/find/loginId')">아이디</a>
                     / 
-                <a href="/member/find/password" class="link_find">비밀번호 찾기</a>
+                <a class="link_find" onclick="openPopup('/member/find/loginPw')" >비밀번호 찾기</a>
                 </span>
             </div>
             
@@ -185,34 +200,6 @@ fieldset, img {
         
     </div>
 </div>
-<!-- <div id="totallogin"> -->
-<!--  <form method="post" id="authForm" action="/member/login"> -->
-<!--     <fieldset> -->
-<!--       <legend class="screen_out">로그인</legend> -->
-<!--       <div class="box_login"> -->
-<!--         <div class="inp_text"> -->
-<!--           <label for="userid" class="screen_out">ID</label> -->
-<!--           <input type="text" id="userid" name="userid" placeholder="ID" > -->
-<!--         </div><br> -->
-<!--         <div class="inp_text"> -->
-<!--           <label for="userpw" class="screen_out">PW</label> -->
-<!--           <input type="password" id="userpw" name="userpw" placeholder="Password" > -->
-<!--         </div> -->
-<!--       </div><br> -->
-<!--       <button type="submit" class="btn btn-default" >로그인</button> -->
-<!--       <div class="login_append"> -->
-<!--       <br> -->
-        
-<!--         <span class="txt_find"> -->
-<!--            <a href="/member/find/loginId" class="link_find">아이디</a> -->
-<!--             / -->
-<!--            <a href="/member/find/password" class="link_find">비밀번호 찾기</a> -->
-<!--          </span> -->
-<!--       </div> -->
-      
-<!--     </fieldset> -->
-<!--   </form> -->
-<!-- </div> -->
 
 
 
@@ -228,3 +215,4 @@ fieldset, img {
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
 
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git

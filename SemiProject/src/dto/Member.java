@@ -8,12 +8,13 @@ public class Member {
 	private String userid;
 	private String username;
 	private String userpw;
-	private Date userbirth;
+	private String userbirth;
 	private String phoneno;
 	private String nick;
 	private String email;
 	private String gender;
 	private String grade;
+	
 	@Override
 	public String toString() {
 		return "Member [userno=" + userno + ", userid=" + userid + ", username=" + username + ", userpw=" + userpw
@@ -44,10 +45,10 @@ public class Member {
 	public void setUserpw(String userpw) {
 		this.userpw = userpw;
 	}
-	public Date getUserbirth() {
+	public String getUserbirth() {
 		return userbirth;
 	}
-	public void setUserbirth(Date userbirth) {
+	public void setUserbirth(String userbirth) {
 		this.userbirth = userbirth;
 	}
 	public String getPhoneno() {
