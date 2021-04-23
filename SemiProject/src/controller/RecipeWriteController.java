@@ -44,8 +44,6 @@ public class RecipeWriteController extends HttpServlet {
 		//작성글 삽입 및 파일 업로드
 		recipeService.write(req, resp);
 
-		
-
 		//목록으로 리다이렉트
 		resp.sendRedirect("/recipe/list");
 		

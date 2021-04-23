@@ -540,6 +540,43 @@ public class RecipeDaoImpl implements RecipeDao {
 		return cnt;
 	}
 
+	@Override
+	public List<Recipe> getRecipe(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT * FROM recipe";
+		
+		List<Recipe> list = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				Recipe recipe = new Recipe();
+				
+				recipe.setCreate_date( rs.getDate("create_date"));
+				recipe.setInq_content( rs.getString("inq_content"));
+				recipe.setPostno( rs.getInt("postno"));
+				recipe.setTitle( rs.getString("title"));
+				recipe.setUserno( rs.getInt("userno"));
+				recipe.setViews( rs.getInt("views"));
+				
+				list.add(recipe);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+
 }
 
 

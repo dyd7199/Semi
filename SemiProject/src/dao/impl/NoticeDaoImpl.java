@@ -7,9 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import common.JDBCTemplate;
 import common.Paging;
 import dto.Notice;
+import dto.NoticeFile;
 import dao.face.NoticeDao;
 
 public class NoticeDaoImpl implements NoticeDao {
@@ -208,6 +211,203 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		
 		return noticeList;
+	}
+
+
+
+
+	@Override
+	public int selectPostno(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT notice_seq.nextval FROM dual";
+		
+		int noticeno = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				noticeno = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return noticeno;
+	}
+
+
+
+
+	@Override
+	public int insert(Connection conn, Notice adminNotice) {
+		
+		String sql = "";
+		sql += "INSERT INTO notice(postno, title, inq_content, userno) ";
+		sql += "	VALUES (?, ?, ?, ?)";
+
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, adminNotice.getPostno());
+			ps.setString(2, adminNotice.getTitle());
+			ps.setString(3, adminNotice.getInq_content());
+			ps.setInt(4, adminNotice.getUserno());
+			System.out.println("adminNotice제목 : " +adminNotice.getTitle());
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		System.out.println("res" + res);
+		return res;
+	}
+
+
+
+
+	@Override
+	public int insertFile(Connection conn, NoticeFile noticeFile) {
+		
+		String sql = "";
+		sql += "INSERT INTO noticefile(fileno, postno, originname, storedname)";
+		sql += " VALUES ( NOTICEFILE_SEQ.nextval, ?, ?, ?)";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, noticeFile.getPostno());
+			ps.setString(2, noticeFile.getOriginName());
+			ps.setString(3, noticeFile.getStoredName());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+
+
+
+	@Override
+	public NoticeFile selectFileByPostno(Connection conn, int post) {
+
+		String sql = "";
+		sql += "SELECT * FROM noticeFile";
+		sql += "	WHERE postno = ?";
+		
+		NoticeFile noticeFile = new NoticeFile();
+		
+		
+		
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, post);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				
+				noticeFile.setFileno( rs.getInt("fileno"));
+				noticeFile.setPostno( rs.getInt("postno"));
+				noticeFile.setOriginName( rs.getString("originname"));
+				noticeFile.setStoredName( rs.getString("storedname"));
+				noticeFile.setFilesize( rs.getInt("filesize"));
+				noticeFile.setWriteDate( rs.getDate("writeDate"));
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return noticeFile;
+	}
+
+
+
+
+	@Override
+	public int deleteNoticeFile(Connection conn, HttpServletRequest req) {
+
+		String sql = "";
+		sql += "DELETE FROM noticefile";
+		sql += " WHERE postno = ?";
+		
+		String post = req.getParameter("postno");
+		int postno = Integer.parseInt(post);
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, postno);
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return res;
+	}
+
+
+
+
+	@Override
+	public int deleteNotice(Connection conn, HttpServletRequest req) {
+
+		String sql = "";
+		sql += "DELETE FROM notice";
+		sql += " WHERE postno = ?";
+		
+		String post = req.getParameter("postno");
+		int postno = Integer.parseInt(post);
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, postno);
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
 	}
 
 

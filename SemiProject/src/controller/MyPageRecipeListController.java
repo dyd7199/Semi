@@ -32,12 +32,17 @@ public class MyPageRecipeListController extends HttpServlet {
 
 		req.setAttribute("paging", paging);
 		
+		//전체 레시피 리스트
+		List<Recipe> list = recipeService.getRecipe(userno);
+		
+		req.setAttribute("list", list);
+		
 		//해당 회원이 작성한 레시피 리스트
 		List<Recipe> rList = recipeService.getRecipe(paging, userno);
 		
 		req.setAttribute("rList", rList);
 		
-		req.getRequestDispatcher("/WEB-INF/views/mypage/mypage_recipe.jsp")
+		req.getRequestDispatcher("/WEB-INF/views/mypage/mypage_recipelist.jsp")
 			.forward(req, resp);
 		
 	}

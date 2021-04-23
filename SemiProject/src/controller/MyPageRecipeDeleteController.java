@@ -8,24 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AdminNoticeWrite
- */
-@WebServlet("/admin/noticewrite")
-public class AdminNoticeWrite extends HttpServlet {
+import dto.Notice;
+import service.face.NoticeService;
+import service.face.RecipeService;
+import service.impl.RecipeServiceImpl;
+
+@WebServlet("/mypage/recipedelete")
+public class MyPageRecipeDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private RecipeService recipeService = new RecipeServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/admin/noticewrite [get]");
 		
-//		if( req.getSession().getAttribute("login") == null ) {
-//			
-//			resp.sendRedirect("/");
-//		}
-
-		req.getRequestDispatcher("/WEB-INF/views/admin/admin_noticewrite.jsp").forward(req, resp);
+		recipeService.deleteRecipe(req);
+		
+		resp.sendRedirect("/mypage/recipelist");
 		
 	}
-	
 }
