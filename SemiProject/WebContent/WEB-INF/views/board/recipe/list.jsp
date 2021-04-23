@@ -20,7 +20,7 @@
 <ul class="nav nav-pills" style="margin: 10px;">
   <li role="presentation" class="active"><a href="/recipe/list">레시피공유</a></li>
   <li role="presentation"><a href="/notice/list">공지사항</a></li>
-  <li role="presentation"><a href="/faq">FAQ</a></li>
+  <li role="presentation"><a href="/faq/view">FAQ</a></li>
 </ul>
 
 <hr style="border: 0; height: 1px; background: black;">

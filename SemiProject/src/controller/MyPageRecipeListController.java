@@ -14,7 +14,7 @@ import dto.Recipe;
 import service.face.RecipeService;
 import service.impl.RecipeServiceImpl;
 
-@WebServlet("/mypage/recipe")
+@WebServlet("/mypage/recipelist")
 public class MyPageRecipeListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
