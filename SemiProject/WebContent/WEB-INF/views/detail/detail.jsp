@@ -102,7 +102,7 @@ $(document).ready(function(){
 
 <div id="container" class="container">
 <%-- <img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg"> --%>
-<img style="width: 618px; background-color: #ffc200; height: 500px; border: 5px solid #ffc200;"id="menu" align="left" src="https://source.unsplash.com/collection/8774409">
+<img style="width: 618px; height: 500px; "id="menu" align="left" src="https://source.unsplash.com/collection/8774409">
 
 <span align="left" style="font-size: 34px; font-weight : bold;  font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %>&nbsp;<img src="/Resources/img/empty.png" width=50; height=50;><%=grade.getAvg() %>&nbsp;<img src="/Resources/img/pencil.png" width=30; height=30;>&nbsp;<%= cnt %>&nbsp;&nbsp;</span>
 <br>
@@ -161,7 +161,7 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
-<div style="width: 618px; background-color: #ffc200; height: 178px; border: 5px solid #ffc200;">
+<div style="width: 618px; height: 178px;">
 <a href="https://source.unsplash.com/collection/8774409.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" 
 src="https://source.unsplash.com/collection/8774409.jpg" alt="이미지 설명"> </a>
