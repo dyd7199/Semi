@@ -132,7 +132,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setNick(req.getParameter("nick"));
 		member.setEmail(req.getParameter("email"));
 		member.setUserid( (String)req.getSession().getAttribute("userid"));
-		member.setGrade( (String)req.getSession().getAttribute("grade"));
+//		member.setGrade( (String)req.getSession().getAttribute("grade"));
 		
 		
 		return member;
