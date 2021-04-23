@@ -198,6 +198,9 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			JDBCTemplate.rollback(JDBCTemplate.getConnection());
 		}
+    
+    
+    
 	}
 	
 	@Override
@@ -219,4 +222,6 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+  
+  
 }

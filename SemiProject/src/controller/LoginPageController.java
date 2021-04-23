@@ -64,6 +64,8 @@ public class LoginPageController extends HttpServlet {
 			session.setAttribute("userid", member.getUserid());
 			session.setAttribute("usernick", member.getNick());
 			session.setAttribute("userno", member.getUserno());
+			session.setAttribute("grade", member.getGrade());
+			System.out.println(session.getAttribute("grade"));
 			
 			//메인페이지로
 			resp.sendRedirect("/");

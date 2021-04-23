@@ -4,10 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<Review> list = (List) request.getAttribute("reviewList");
+   List<Review> list = (List) request.getAttribute("reviewList");
 %>
 <%
-	Seoul sn = (Seoul) request.getAttribute("upso_sno");
+   Seoul sn = (Seoul) request.getAttribute("upso_sno");
 %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -15,7 +15,7 @@
 
 <style>
 a {
-	color: #cc8700
+   color: #cc8700
 }
 
 
@@ -81,7 +81,7 @@ button {
 }
 
 tr th {
-	text-align: center;
+   text-align: center;
 }
 
 </style>
@@ -94,22 +94,22 @@ tr th {
 
 <table class="table">
 <div style="text-align:left;" id="btnBox">
-	<button class="btn btn-warning" onclick=
-	"window.open('/review/write?upso_sno=<%=sn.getUpso_sno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes');">
-	글쓰기</button>
+   <button class="btn btn-warning" onclick=
+   "window.open('/review/write?upso_sno=<%=sn.getUpso_sno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes');">
+   글쓰기</button>
 </div>
 <br>
 <tr class = "text-center">
-	<th>회원</th>
-	<th>리뷰</th>
-	<th>작성일</th>
-	<th>별점</th>
-	<th>수정/삭제</th>
+   <th>회원</th>
+   <th>리뷰</th>
+   <th>작성일</th>
+   <th>별점</th>
+   <th>수정/삭제</th>
 
 </tr>
 
 <%
-	for(int i=0; i<list.size(); i++) {
+   for(int i=0; i<list.size(); i++) {
 %>
 <tr>
 
@@ -121,18 +121,18 @@ tr th {
 	
 	<button class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
 <%
-	}
+   }
 %>
 </tr>
 </table>
 
 <script type="text/javascript">
 function delReview( reviewno ) {
-	if(confirm("[확인]을 누르시면 되돌릴 수 없습니다. 삭제하시겠습니까?") ) {
-		window.open('/review/delete?reviewno='+reviewno,'삭제','width=600,height=800,location=no,status=no,scrollbars=yes');
-		
-		location.reload();
-	}
+   if(confirm("[확인]을 누르시면 되돌릴 수 없습니다. 삭제하시겠습니까?") ) {
+      window.open('/review/delete?reviewno='+reviewno,'삭제','width=600,height=800,location=no,status=no,scrollbars=yes');
+      
+      location.reload();
+   }
 }
 </script>
 
