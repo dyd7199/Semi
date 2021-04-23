@@ -44,7 +44,7 @@
        <section>
 <!-- 	      	 <h1 style="margin-top: 100px; text-align: left; color: orange;">맛지도</h1> -->
 	      	 <img alt="" src="/Resources/img/mapLogo.png" style="width: 20%; margin:0 auto;">
-			<div id="wrapper" style="margin: 0 auto">
+			<div id="wrapper" style="margin: 0 auto; width: 830px; height: 650px;">
 				<br><br>
 			
 			<div class="swiper-wrapper">
@@ -52,7 +52,13 @@
 				<h3>서울시</h3>
 				<span>K-FOOD</span>
 		      </div>
-		      <a href="/main/map"><img class="slide_img" src="https://cis.seoul.go.kr/ko/totalalimi_new/images/map/map_0.png" width="80%"></a>
+		      <a href="/main/map"><img style="
+border: 3px solid gold;
+border-radius: 7px;
+-moz-border-radius: 7px;
+-khtml-border-radius: 7px;
+-webkit-border-radius: 7px;
+" class="slide_img" src="/Resources/img/map.jpg"></a>
 		      </div>
 			</div>
        </section>
