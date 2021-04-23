@@ -16,6 +16,7 @@
 %>
 
 
+
 <ul class="nav nav-pills" style="margin: 10px;">
   <li role="presentation" class="active"><a href="/recipe/list">레시피공유</a></li>
   <li role="presentation"><a href="/notice/list">공지사항</a></li>
@@ -74,5 +75,3 @@
 <%@include file="/WEB-INF/views/board/recipe/paging.jsp" %>
     
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
-    
-

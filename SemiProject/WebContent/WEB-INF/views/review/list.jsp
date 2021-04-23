@@ -114,12 +114,12 @@ tr th {
 <tr>
 
 <td> <%=list.get(i).getNick()%> </td>
-   <td><details><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
-   <td> <%=list.get(i).getCreate_date()%></td>
+	<td><details><summary><%=list.get(i).getTitle() %></summary><%=list.get(i).getInq_content() %></details></td>
+	<td> <%=list.get(i).getCreate_date()%></td>
     <td><img id="star" src="/Resources/img/star<%=list.get(i).getStar_score() %>.png"></td>
-   <td><button onclick="window.open('/review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
-   
-   <button class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
+	<td><button onclick="window.open('/review/update?reviewno=<%=list.get(i).getReviewno()%>','write','width=600,height=800,location=no,status=no,scrollbars=yes')" class="btn btn-warning" type="button" id="btnUpdate" >수정</button>
+	
+	<button class="btn btn-warning" type="button" onclick="delReview(<%=list.get(i).getReviewno()%>)">삭제</button></td>
 <%
    }
 %>
