@@ -67,7 +67,6 @@ body {
     ul.sub li:hover {
         background:#FFCC33;
 }
-
 </style>
 
 <% List<Recipe> rlist = (List) request.getAttribute("rList"); %>

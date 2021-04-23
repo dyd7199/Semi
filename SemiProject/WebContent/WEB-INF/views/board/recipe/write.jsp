@@ -50,12 +50,9 @@ $(document).ready(function() {
 	/* width: 100%; */
 	width: 98%;
 }
-
-
 input .title{
 	width: 98%;
 }
-
 </style>
 
 
