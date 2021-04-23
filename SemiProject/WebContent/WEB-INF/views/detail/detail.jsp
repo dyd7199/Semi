@@ -208,7 +208,6 @@ src="/Resources/img/upso/S3<%=sn.getUpso_sno() %>.jpg" alt="이미지 설명"> <
     </script>
 
 <div id="div1"></div>
-<div></div>
 
 <%-- <%@ include file="/WEB-INF/views/layout/paging.jsp" %> --%>
 </div>
