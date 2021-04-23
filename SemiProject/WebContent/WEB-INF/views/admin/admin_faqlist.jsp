@@ -1,8 +1,26 @@
+
+<%@page import="dto.Faq"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<% List<Faq> f = (List) request.getAttribute("faqlist");%>
+
 <%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$("#btnWrite").click(function(){
+		
+		$(location).attr("href", "/admin/faqwrite");
+		
+	});
+	
+});
+
+</script>
 
 <style type="text/css">
 body { 
@@ -74,9 +92,17 @@ ul.sub li:hover {
 	background:#FFCC33;
 }
 
+.adminfaqList_container {
+	width: 80%;
+	float: right;
+	
+}
+
+table, th, td {
+	text-align: center;
+}
+
 </style>
-
-
 
 <ul id="navi">
 	<li style="height: 50px; padding: 10px;">
@@ -99,11 +125,39 @@ ul.sub li:hover {
     </li>
 </ul>
 
-<div>
-<h1 style="padding: 100px;">관리자 페이지 입니다!</h1>
+<div class="adminfaqList_container">
+
+<table class="table table-striped table-hover table-condensed">
+
+<tr>
+	<th>게시물번호</th>
+	<th>제목</th>
+	<th>작성날짜</th>
+	<th>회원번호</th>
+</tr>
+
+<% for(int i=0; i<f.size(); i++ ) { %>
+
+<tr>
+	<td><%=f.get(i).getPostno() %></td>
+	<td>
+		<a href="/admin/faqview?postno=<%=f.get(i).getPostno() %>">
+		<%=f.get(i).getTitle() %>
+		</a>
+	</td>
+	<td><%=f.get(i).getCreate_date() %></td>
+	<td><%=f.get(i).getUserno() %></td>
+</tr>
+
+<% } %>
+
+</table>
+
 </div>
 
+<button type="button" id="btnWrite" class="btn btn-default">작성하기</button>
 
+<div class="clearfix"></div>
 
 
 

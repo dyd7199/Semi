@@ -9,6 +9,7 @@ public class Faq {
 	 private String title;
 	 private int userno;
 	 private String inq_content;
+	 
 	@Override
 	public String toString() {
 		return "Faq [postno=" + postno + ", create_date=" + create_date + ", title=" + title + ", userno=" + userno

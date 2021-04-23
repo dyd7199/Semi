@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,26 +13,25 @@ import dto.Faq;
 import service.face.FaqService;
 import service.impl.FaqServiceImpl;
 
-@WebServlet("/faq/view")
-public class FAQViewController extends HttpServlet {
+
+@WebServlet("/admin/faqlist")
+public class AdminFaqListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private FaqService faqService = new FaqServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(" /faq/view - [GET] ");
+		System.out.println("get");
 	
-		List<Faq> faqList = new ArrayList<>();
+		List<Faq> faqlist = faqService.faqlist();
 		
-		faqList = faqService.View();
+		req.setAttribute("faqlist", faqlist);
 		
-		req.setAttribute("faqList", faqList);
-	
-		req.getRequestDispatcher("/WEB-INF/views/faq/list.jsp").forward(req, resp);
+		
+		
+		req.getRequestDispatcher("/WEB-INF/views/admin/admin_faqlist.jsp").forward(req, resp);
 	
 	}
-	
-		
 	
 }

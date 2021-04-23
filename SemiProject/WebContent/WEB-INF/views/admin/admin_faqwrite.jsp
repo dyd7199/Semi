@@ -1,7 +1,42 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+ 
 <%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$("#btnWrite").click(function(){
+		
+		$("form").submit();
+	});
+	
+	$("#btnCancel").click(function(){
+			
+			$(location).attr("href", "/admin/faqlist");
+		});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
+
+</script>
+
+
+
+
+
+
 
 
 <style type="text/css">
@@ -74,6 +109,18 @@ ul.sub li:hover {
 	background:#FFCC33;
 }
 
+form { 
+width: 80%;
+float: right;
+padding: 30px;
+
+}
+
+textarea {
+width: 900px;
+height: 300px;
+
+}
 </style>
 
 
@@ -99,11 +146,36 @@ ul.sub li:hover {
     </li>
 </ul>
 
+
 <div>
-<h1 style="padding: 100px;">관리자 페이지 입니다!</h1>
+<form action="/admin/faqwrite" method="post">
+
+<table class="table">
+
+<tr>
+	<td class="active">제목</td>
+	<td><input type="text" name="title" style="width: 100%;"></td>
+</tr>
+
+<tr>
+	<td class="active" colspan="2">작성 내용</td>
+</tr>
+<tr>
+	<td colspan="2"><textarea id="content" name="content"></textarea></td>
+</tr>
+</table>
+
+</form>
 </div>
 
+<button type="button" id="btnWrite" class="btn btn-info">등록</button>
+<button type="button" id="btnCancel" class="btn btn-info">취소</button>
 
+
+
+
+
+<div class="clearfix"></div>
 
 
 

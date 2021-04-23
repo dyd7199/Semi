@@ -1,8 +1,25 @@
+
+<%@page import="dto.Faq"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+ 
 <%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$("#btnUpdate").click(function(){
+		
+		$("form").submit();
+	});
+	
+	$("#btnCancel").click(function(){
+		history.go(-1);
+	});
+});
+
+</script>
 
 <style type="text/css">
 body { 
@@ -74,9 +91,22 @@ ul.sub li:hover {
 	background:#FFCC33;
 }
 
+form { 
+width: 80%;
+float: right;
+padding: 30px;
+
+}
+
+textarea {
+width: 900px;
+height: 300px;
+
+}
+
 </style>
 
-
+<% Faq faq = (Faq) request.getAttribute("faq"); %>
 
 <ul id="navi">
 	<li style="height: 50px; padding: 10px;">
@@ -100,10 +130,31 @@ ul.sub li:hover {
 </ul>
 
 <div>
-<h1 style="padding: 100px;">관리자 페이지 입니다!</h1>
+<form action="/admin/faqupdate" method="post">
+
+<table class="table" style="text-align: center;">
+
+<tr>
+	<td class="active">제목</td>
+	<td><input type="text" name="title" style="width: 100%;" value="<%=faq.getTitle() %>"></td>
+</tr>
+
+<tr>
+	<td class="active" colspan="2">작성 내용</td>
+</tr>
+<tr>
+	<td colspan="2"><textarea id="content" name="content"><%=faq.getInq_content() %></textarea></td>
+</tr>
+</table>
+<input type="hidden" name="postno" value="<%=request.getParameter("postno") %>" />
+
+</form>
 </div>
 
+<button type="button" id="btnUpdate" class="btn btn-info">수정</button>
+<button type="button" id="btnCancel" class="btn btn-info">취소</button>
 
+<div class="clearfix"></div>
 
 
 
