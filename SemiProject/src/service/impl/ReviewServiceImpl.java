@@ -13,6 +13,7 @@ import dto.Member;
 import dto.Review;
 import dto.Seoul;
 import common.JDBCTemplate;
+import common.Paging;
 import service.face.ReviewService;
 
 public class ReviewServiceImpl implements ReviewService {
@@ -113,6 +114,29 @@ public class ReviewServiceImpl implements ReviewService {
 	public int getCnt(Seoul upso_sno) {
 		int cnt = reviewDao.getReviewCnt(JDBCTemplate.getConnection(), upso_sno);
 		return cnt;
+	}
+	@Override
+	public Paging getPaging(HttpServletRequest req, int userno) {
+		//전달파라미터 curPage 파싱
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param != null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+			}
+						
+		//review 테이블의 총 게시글 수를 조회한다
+		int totalCount = reviewDao.selectCntByUserno(JDBCTemplate.getConnection(), userno);
+						
+		//Paging객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+					
+			return paging;
+			}
+	@Override
+	public List<Review> getReview(Paging paging, int userno) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return reviewDao.getReview(conn, paging, userno);
 	}
 
 	

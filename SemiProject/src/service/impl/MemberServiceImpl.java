@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setUserid(req.getParameter("userid"));
 		member.setUserpw(req.getParameter("userpw"));
 		member.setNick(req.getParameter("usernick"));
-		
+
 		return member;
 	}
 	@Override
@@ -132,6 +132,7 @@ public class MemberServiceImpl implements MemberService {
 		member.setNick(req.getParameter("nick"));
 		member.setEmail(req.getParameter("email"));
 		member.setUserid( (String)req.getSession().getAttribute("userid"));
+//		member.setGrade( (String)req.getSession().getAttribute("grade"));
 		
 		
 		return member;

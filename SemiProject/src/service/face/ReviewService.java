@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import common.Paging;
 import common.PagingReview;
 import dto.Member;
 import dto.Review;
@@ -59,6 +60,22 @@ public interface ReviewService {
 	 * @return cnt
 	 */
 	int getCnt(Seoul upso_sno);
+
+	/**
+	 * 회원번호에 따른 페이징
+	 * @param req
+	 * @param userno
+	 * @return paging
+	 */
+	Paging getPaging(HttpServletRequest req, int userno);
+
+	/**
+	 * 페이징과 회원번호에 따른 리뷰 목록 조회
+	 * @param paging
+	 * @param userno
+	 * @return rvList
+	 */
+	List<Review> getReview(Paging paging, int userno);
 
 
 }
