@@ -1,9 +1,13 @@
+<%@page import="java.net.URLEncoder"%>
+<%@page import="dto.NoticeFile"%>
 <%@page import="dto.Notice"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <% Notice list = (Notice) request.getAttribute("viewNotice"); %>
+<% NoticeFile noticefile = (NoticeFile) request.getAttribute("noticeFile"); %>
+
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
@@ -12,7 +16,14 @@
 $(document).ready(function() {
 	
 	$("#btnList").click(function() {
-		$(location).attr("href", "/notice/list");
+		$(location).attr("href", "/admin/noticelist");
+	});
+	
+	
+	$("#btnDelete").click(function() {
+		$(location).attr("href", "/admin/noticeDelete?postno=<%=noticefile.getPostno() %>");
+		
+		
 	});
 	
 });
@@ -49,6 +60,11 @@ $(document).ready(function() {
 <tr>
 <td>글내용 </td><td><%=list.getInq_content() %></td>
 </tr>
+
+<tr>
+<td>첨부파일 </td><td><a href="/upload/<%=noticefile.getStoredName() %>" download="<%=noticefile.getOriginName() %>"><img src="/upload/<%=noticefile.getStoredName() %>"></a></td>
+</tr>
+
 
 </table>
 </div>
