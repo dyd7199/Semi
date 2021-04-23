@@ -1,9 +1,11 @@
+<%@page import="dto.Recipe"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 
-<style>
+<style type="text/css">
 body { 
     margin:20px auto; 
     padding: 0; 
@@ -18,7 +20,7 @@ body {
         padding-top: 80px;
         
         background: #f4f4f4;
-/*     	float: left; */
+     	float: left;
     	min-height: 800px;
         
 }
@@ -65,10 +67,10 @@ body {
     ul.sub li:hover {
         background:#FFCC33;
 }
-
-	
-
 </style>
+
+<% List<Recipe> rlist = (List) request.getAttribute("rList"); %>
+<% List<Recipe> list = (List) request.getAttribute("list"); %>
 
 <ul id="navi">
  		<li class="group">
@@ -80,7 +82,7 @@ body {
                 <li><a href="#">찜한 식당</a></li>
                 <li><a href="#">최근 본 식당</a></li>
                 <li><a href="#">내가 작성한 후기</a></li>
-                <li><a href="/mypage/recipelist">내가 작성한 레시피</a></li>
+                <li><a href="/mypage/recipe">내가 작성한 레시피</a></li>
             </ul>
         </li>
         <li class="group">
@@ -106,7 +108,43 @@ body {
         </li>        
 </ul>
 
+<div style="font-size: large; text-align: left; margin-top: 20px; padding-left: 225px;">내가 작성한 레시피</div>
+<hr style="border: 0; height: 1px; background: black;">
 
+<div id="content" style="height: 714px;">
+<table style="height: 50px; margin-right: 0; width: 75%; margin-left: 250px;">
+	<tr>
+		<td style="width: 45%; border-right: 40px solid white; background: #fbf8e3;">
+		<%=request.getSession().getAttribute("usernick") %>님
+		</td>
+		<td style="width: 45%; background: #fbf8e3;">
+		내가 작성한 레시피 수 : 
+		<% int res = 0; %>
+			<% for(int i=0; i<list.size(); i++) { %>
+				<% res++; %>
+			<% } %>
+		<%=res %>
+		</td>
+	</tr>
+</table>
+<table class="table table-hover" style="width: 83%; margin-top: 20px;">
+	<tr class="active">
+		<th style="text-align: center;">글 번호</th>
+		<th style="text-align: center;">제목</th>
+		<th style="text-align: center;">작성일</th>
+		<th style="text-align: center;">조회수</th>
+	</tr>
+	<% for(int i=0; i<rlist.size(); i++) { %>
+	<tr>
+		<td><%=rlist.get(i).getPostno() %></td>
+		<td><a href="/mypage/recipedetail?postno=<%=rlist.get(i).getPostno() %>"><%=rlist.get(i).getTitle() %></a></td>
+		<td><%=rlist.get(i).getCreate_date() %></td>
+		<td><%=rlist.get(i).getViews() %></td>
+	</tr>
+	<% } %>
+</table>
+</div>
 
+<%@include file="/WEB-INF/views/mypage/mypage_recipepaging.jsp" %>
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>

@@ -28,7 +28,7 @@ public class EmailServiceImpl implements EmailService {
 	public void send(Member member) {
 
 		// FROM
-				final String FROM = "byybick1127@gmail.com"; // <<------------------------------수정하세요
+				final String FROM = "imlim1440@gmail.com"; // <<------------------------------수정하세요
 				final String FROMNAME = "맛객"; // <<------------------------------수정하세요
 
 				// TO

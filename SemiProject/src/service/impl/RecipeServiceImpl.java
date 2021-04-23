@@ -477,8 +477,6 @@ public class RecipeServiceImpl implements RecipeService {
 			JDBCTemplate.rollback(conn);
 		}
 		
-		
-		
 	}
 
 	@Override
@@ -535,7 +533,5 @@ public class RecipeServiceImpl implements RecipeService {
 				
 		return paging;
 	}
-
-
 
 }

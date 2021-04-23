@@ -3,8 +3,11 @@ package dao.face;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import common.Paging;
 import dto.Notice;
+import dto.NoticeFile;
 
 public interface NoticeDao {
 
@@ -45,6 +48,60 @@ public interface NoticeDao {
 	
 	
 	public int selectCntAll(Connection conn);
+
+	
+	/**
+	 * 다음 게시글 번호 반환
+	 * 게시글 테이블과 첨부파일 테이블에 입력될 게시글번호를 시퀀스를 통해 추출한다
+	 * 
+	 * @return - 다음 게시글 번호
+	 */
+	public int selectPostno(Connection conn);
+
+	
+	/**
+	 * 게시글 입력
+	 * 
+	 * 
+	 * @param conn
+	 * @param adminNotice
+	 * @return
+	 */
+	public int insert(Connection conn, Notice adminNotice);
+
+	
+	/**
+	 * 게시글에 첨부파일 입력
+	 * 
+	 * @param noticeFile - 업로드 된 첨부파일 정보 객체
+	 * @return
+	 */
+	public int insertFile(Connection conn, NoticeFile noticeFile);
+
+	
+	
+	public NoticeFile selectFileByPostno(Connection conn, int post);
+
+	
+	
+	/**
+	 * 게시글에 파일 삭제
+	 * 
+	 * @param conn
+	 * @param req
+	 * @return
+	 */
+	public int deleteNoticeFile(Connection conn, HttpServletRequest req);
+
+	
+	/**
+	 * 게시글 삭제
+	 * 
+	 * @param conn
+	 * @param req
+	 * @return
+	 */
+	public int deleteNotice(Connection conn, HttpServletRequest req);
 	
 
 

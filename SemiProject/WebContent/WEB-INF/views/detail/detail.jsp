@@ -101,7 +101,9 @@ $(document).ready(function(){
 <body>
 
 <div id="container" class="container">
-<img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg">
+<%-- <img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg"> --%>
+<img id="menu" align="left" src="https://source.unsplash.com/collection/8774409">
+
 <span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 36px;"><img src="/Resources/img/empty.png" width=50; height=50;><%=grade.getAvg() %><img src="/Resources/img/pencil.png" width=30; height=30;><%= cnt %></span>
 <br>
 <br>
@@ -160,20 +162,18 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
+
 <br>
 <br>
-<br>
-<br>
-<br>
-<a href="/Resources/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+<a href="https://source.unsplash.com/collection/8774409.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" 
-src="/Resources/img/upso/S1<%=sn.getUpso_sno() %>.jpg" alt="이미지 설명"> </a>
-<a href="/Resources/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+src="https://source.unsplash.com/collection/8774409.jpg" alt="이미지 설명"> </a>
+<a href="https://source.unsplash.com/collection/9689180.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" 
-src="/Resources/img/upso/S2<%=sn.getUpso_sno() %>.jpg" alt="이미지 설명"> </a>
-<a href="/Resources/img/upso/S1<%=sn.getUpso_sno() %>.jpg" 
+src="https://source.unsplash.com/collection/9689180.jpg" alt="이미지 설명"> </a>
+<a href="https://source.unsplash.com/collection/4817197.jpg" 
 data-fancybox data-caption="캡션"> <img style="float:left; width:200px; height:200px; padding-bottom: 30px;" 
-src="/Resources/img/upso/S3<%=sn.getUpso_sno() %>.jpg" alt="이미지 설명"> </a>
+src="https://source.unsplash.com/collection/4817197.jpg" alt="이미지 설명"> </a>
 
 <h2 style="clear:left; text-align: left; font-family: '바탕';">찾아오시는 길</h2>
 <hr>
