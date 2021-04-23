@@ -13,7 +13,6 @@ body {
     padding: 0; 
     padding-top: 80px; 
 }
-
 ul#navi {
 	margin:20px auto;
     padding: 0;
@@ -26,17 +25,14 @@ ul#navi {
     float: left;
     min-height: 700px;
 }
-
 ul#navi, ul#navi ul {
     margin:0;
     padding:0;
     list-style:none;
 }
-
 li.group {
     margin-bottom: 0;
 }
-
 li.group div.title {
     height: 35px;
     line-height: 35px;
@@ -46,7 +42,6 @@ li.group div.title {
     font-weight: bolder;
     padding-bottom: 30px;
 }
-
 li.group div.maintitle {
     height: 50px;
     line-height: 50px;
@@ -56,7 +51,6 @@ li.group div.maintitle {
     font-weight: bolder;
     padding-bottom: 70px;
 }
-
 ul.sub li {
     margin-bottom: 0px;
     height:35px;
@@ -64,7 +58,6 @@ ul.sub li {
     background:#f4f4f4;
     cursor:pointer;
 }
-
 ul.sub li a {
     display: block;
     width: 100%;
@@ -72,11 +65,9 @@ ul.sub li a {
     text-decoration:none;
     color:#000;
 }
-
 ul.sub li:hover {
 	background:#FFCC33;
 }
-
 </style>
 
 
@@ -139,5 +130,3 @@ ul.sub li:hover {
 <%@include file="/WEB-INF/views/admin/admin_recipepaging.jsp" %>
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
-
-
