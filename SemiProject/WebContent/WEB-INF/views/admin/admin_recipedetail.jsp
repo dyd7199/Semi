@@ -142,7 +142,8 @@ ul.sub li:hover {
 	<a href="/upload/<%=uf.getStoredName() %>"  download="/upload/<%=uf.getOriginName() %>">
 	<img src="/upload/<%=uf.getStoredName() %>" style="width: 500px; height: 334px;" />
 	</a>
-</div> 
+</div>
+<div></div>
 
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
