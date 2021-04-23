@@ -1,7 +1,24 @@
+<%@page import="dto.Member"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<%	List<Member> list = (List) request.getAttribute("memList"); %>
+
 <%@include file="/WEB-INF/views/admin/admin_header.jsp" %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$(".btnDelMem").click(function() {
+		
+		if(confirm("[확인]버튼 클릭 시 해당 회원이 삭제되고 되돌릴 수 없습니다.\n 삭제하시겠습니까?")) {
+			$(location).attr("href", "/admin/memberdel?userno=" + $(this).attr("data-userno"));
+		}
+	});
+});
+
+</script>
 
 
 <style type="text/css">
@@ -74,6 +91,17 @@ ul.sub li:hover {
 	background:#FFCC33;
 }
 
+.adminmemList_container {
+	width: 80%;
+	padding: 30px;
+	
+	float: right;
+}
+
+th {
+	text-align: center;
+}
+
 </style>
 
 
@@ -98,9 +126,44 @@ ul.sub li:hover {
     </li>
 </ul>
 
-<div>
-<h1 style="padding: 100px;">관리자 페이지 입니다!</h1>
+
+
+<div class="adminmemList_container">
+
+<h2>회원 관리</h2>
+<br><br>
+
+<table class="table table-striped table-hover table-condensed">
+<tr>
+	<th>회원번호</th>
+	<th>아이디</th>
+	<th>이름</th>
+	<th>이메일</th>
+	<th>등급</th>
+	<th>/</th>
+</tr>
+
+
+<%	for(int i = 0; i < list.size(); i++) { %>
+<tr>
+	<td><%=list.get(i).getUserno() %></td>
+	<td><%=list.get(i).getUserid() %></td>
+	<td><%=list.get(i).getUsername() %></td>
+	<td><%=list.get(i).getEmail() %></td>
+	<td><%=list.get(i).getGrade() %></td>
+	<td>
+		<button type="button" class="btnDelMem" data-userno="<%=list.get(i).getUserno() %>">회원삭제</button>
+	</td>
+</tr>
+<%	} %>
+</table>
+
+<!-- .adminmemList_container end -->
 </div>
+
+
+<div class="clearfix"></div>
+
 
 
 
