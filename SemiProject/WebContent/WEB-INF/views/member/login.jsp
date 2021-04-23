@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/header/header.jsp" %>
@@ -214,3 +215,4 @@ function openPopup(url) {
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>
 
+>>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git

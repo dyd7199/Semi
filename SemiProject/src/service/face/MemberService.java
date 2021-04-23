@@ -1,3 +1,4 @@
+
 package service.face;
 
 import java.util.List;
@@ -5,9 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
+import dto.Payment;
 
 public interface MemberService {
 
+	
+	
 	/**
 	 * 로그인 정보 저장 id,pw
 	 * @param req
@@ -121,9 +125,10 @@ public interface MemberService {
 	 * @return 일치할 경우 true, 불일치할 경우 false 반환
 	 */
 	public boolean UsernoChk(HttpServletRequest req);
+	
+	public void insertPayment(Payment payment);
 
-	
-	
+	public void updateMember(Payment payment);
 
   
   

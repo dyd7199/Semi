@@ -1,9 +1,11 @@
+
 package dao.face;
 
 import java.sql.Connection;
 import java.util.List;
 
 import dto.Member;
+import dto.Payment;
 
 public interface MemberDao {
 	/**
@@ -84,5 +86,10 @@ public interface MemberDao {
 	 * @return
 	 */
 	int updatePW(Connection conn, Member member);
+	
+	void insertPayment(Connection conn, Payment payment);
+
+	void updateMember(Connection connection, Payment payment);
+
 
 }

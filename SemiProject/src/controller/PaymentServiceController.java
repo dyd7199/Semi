@@ -8,14 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/error")
-public class ErrorPageController extends HttpServlet {
+/**
+ * Servlet implementation class PaymentServiceController
+ */
+@WebServlet("/payment/service")
+public class PaymentServiceController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/error.jsp").forward(req, resp);
+	
+	req.getRequestDispatcher("/WEB-INF/views/payment/paymentService.jsp").forward(req, resp);
+	
+	
 	}
 }
