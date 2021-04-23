@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Notice;
-import service.face.NoticeService;
-import service.impl.NoticeServiceImpl;
+import dto.NoticeFile;
+import service.face.AdminNoticeService;
+import service.impl.AdminNoticeServiceImpl;
 
 /**
  * Servlet implementation class AdminNoticeViewController
@@ -19,19 +20,26 @@ import service.impl.NoticeServiceImpl;
 public class AdminNoticeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private NoticeService noticeService = new NoticeServiceImpl(); 
+	private AdminNoticeService adminNoticeService = new AdminNoticeServiceImpl(); 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/notice/view [get]");
 		
 		//전달 파라미터 얻기 - postno 
-		Notice postno = noticeService.getPostno(req);
+		Notice postno = adminNoticeService.getPostno(req);
 		
 		int post = postno.getPostno();
 		
 		//상세보기 결과 조회   
-		Notice viewNotice = noticeService.view(post);
+		Notice viewNotice = adminNoticeService.view(post);
 		System.out.println(viewNotice.getHit());
+		
+		//
+		NoticeFile noticeFile = adminNoticeService.viewFile(post);
+		System.out.println("noticeFIle : " + noticeFile.getFileno());
+		
+		req.setAttribute("noticeFile", noticeFile);
+		
 		
 		//조회결과 MODEL값 전달    
 		req.setAttribute("viewNotice", viewNotice); // jsp로 데이터 전달

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.Paging;
 import dto.Notice;
+import dto.NoticeFile;
 
 public interface AdminNoticeService {
 
@@ -51,6 +52,36 @@ public interface AdminNoticeService {
 	 * @return 페이징 계산이 완료된 Paging객체를 생성한
 	 */
 	public Paging getPaging(HttpServletRequest req);
+
+	
+	/**
+	 * 게시글 작성 
+	 *  입력한 게시글 내용을 DB에 저
+	 * 
+	 *  첨부파일을 함께 업로드 할 수 있도록 처
+	 * 
+	 * @param req - 요청정보 객체(게시글내용 + 첨부파일)
+	 * @return 
+	 * 
+	 */
+	public void write(HttpServletRequest req);
+
+	/**
+	 * 게시글에 첨부파일 저장할 객체
+	 * 
+	 * @param post
+	 * @return
+	 */
+	public NoticeFile viewFile(int post);
+
+	
+	/**
+	 * 게시글 삭제  
+	 * 
+	 * 
+	 * @param req
+	 */
+	public void deleteNotice(HttpServletRequest req);
 
 
 	
