@@ -26,6 +26,18 @@ public interface RestaurantService {
 	 * @return
 	 */
 	public List<SeoulGrade> getThemeList(String parameter);
+	/**
+	 * 메뉴별 쿼리 세팅
+	 * @param req
+	 * @return
+	 */
+	public SeoulGrade setQueryString(HttpServletRequest req);
+	/**
+	 * 음식별 분류 리스트 가져오기
+	 * @param restaurant
+	 * @return
+	 */
+	public List<SeoulGrade> getFoodList(SeoulGrade restaurant);
 
 
 

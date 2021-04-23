@@ -193,5 +193,31 @@ public class ReviewDaoImpl implements ReviewDao {
 				}
 				return res;
 			}
+	@Override
+	public int getReviewCnt(Connection conn, Seoul upso_sno) {
+		String sql = "SELECT count(*) cnt FROM review WHERE upso_sno = ?";
+		//총 게시글 수
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, upso_sno.getUpso_sno());
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+			//cnt 확인
+//			System.out.println(cnt);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return cnt;
+	}
 
 }

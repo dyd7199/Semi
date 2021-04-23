@@ -1,10 +1,10 @@
-
-    
+<%@page import="dto.Member"%>
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
     
 <!-- 스마트에디터 2 -->
 <script type="text/javascript"
  src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+ 
  
 <!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
 <script type="text/javascript">
@@ -45,40 +45,66 @@ $(document).ready(function() {
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<style type="text/css">
+#content {
+	/* width: 100%; */
+	width: 98%;
+}
 
-<h1>레시피 쓰기</h1><br>
 
-<hr><br>
+input .title{
+	width: 98%;
+}
 
-<div id="area">
-<form action="/recipe/write" method="post" >
-<table>
+</style>
+
+
+<div style="text-align: left; height:15px;">
+<h3>레시피 글쓰기</h3><br>
+</div>
+
+<hr style="boarder: 0; height:1px; background: black;"><br>
+
+<div id="area" style="height: 350px;">
+<form action="/recipe/write" method="post" enctype="multipart/form-data" >
+<table class="table table-bordered">
 
 	<tr>
-		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
+		<td>제목</td><td><input type="text" name="title" style="width: 100%;"/></td>
 	</tr>
 	<tr>
-		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
-	</tr>
-	<tr>
-		<td>제목</td><td><input type="text" name="title" /></td>
-	</tr>
-	<tr>
-		<td colspan="2">내용</td>
+		<td>파일 첨부</td>
+		<td>
+			<input type="file" name="upfile" id="image" accept="image/*" onchange="setThumbnail(event);"/> 
+			<script> function setThumbnail(event) { 
+				var reader = new FileReader(); 
+					
+				reader.onload = function(event) { 
+					var img = document.createElement("img"); 
+					img.setAttribute("src", event.target.result); 
+					img.setAttribute("style", "width: 500px; height: 334px;" );
+					document.querySelector("div#image_container").appendChild(img);
+					
+				}; 
+					
+					reader.readAsDataURL(event.target.files[0]); 
+				} 
+			</script>
+		</td>
 	</tr>
 	<tr>		
-		<td colspan="2"><textarea id="content" name="content"></textarea></td>
+		<td colspan="2" style="height: 600px;"><textarea id="content" name="content"></textarea></td>
 	</tr>
-
 </table>
 </form>
-
 </div>
+
 <div>
 	<button type="button" id="btnWrite">완료</button>
 	<button type="button" id="btnCancel">취소</button>
 </div>
 
+<div id="image_container" style="width: 500px; height: 400px"></div> 
 
 <script type="text/javascript">
 var oEditors = [];

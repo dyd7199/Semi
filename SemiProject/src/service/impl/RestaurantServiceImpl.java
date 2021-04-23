@@ -33,5 +33,24 @@ public class RestaurantServiceImpl implements RestaurantService {
 		// TODO Auto-generated method stub
 		return restaurantDao.selectThemeByBiz(JDBCTemplate.getConnection(),theme);
 	}
+	@Override
+	public SeoulGrade setQueryString(HttpServletRequest req) {
+		SeoulGrade restaurant = new SeoulGrade();
+		
+		
+		String str = "%"+req.getParameter("food")+"%";
+		
+		restaurant.setFood_menu(str);
+		
+		
+		return restaurant;
+	}
+	@Override
+	public List<SeoulGrade> getFoodList(SeoulGrade restaurant) {
+		 List<SeoulGrade> list = restaurantDao.selectByFoodMenu(JDBCTemplate.getConnection(),restaurant);
+		// avg순서로 정렬
+		Collections.sort(list,Collections.reverseOrder());
+		return list;
+	}
 
 }

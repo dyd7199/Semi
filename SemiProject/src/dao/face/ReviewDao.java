@@ -49,4 +49,12 @@ public interface ReviewDao {
 	 */
 	int delete(Connection conn, Review review);
 
+	/**
+	 * DB에서 업소번호에 따른 총 리뷰 개수 가져오기
+	 * @param conn 
+	 * @param upso_sno
+	 * @return cnt
+	 */
+	int getReviewCnt(Connection conn, Seoul upso_sno);
+
 }
