@@ -8,6 +8,7 @@ import common.JDBCTemplate;
 import dao.face.MemberDao;
 import dao.impl.MemberDaoImpl;
 import dto.Member;
+import dto.Payment;
 import service.face.MemberService;
 
 public class MemberServiceImpl implements MemberService {
@@ -40,9 +41,19 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member info(Member member) {
 		
-		
-		
 		return memberDao.selectMemberByUserid(JDBCTemplate.getConnection(),member);
 	}
+	@Override
+	public void insertPayment(Payment payment) {
+		System.out.println(payment.toString());
+		memberDao.insertPayment(JDBCTemplate.getConnection(),payment);
+	}
+	@Override
+	public void updateMember(Payment payment) {
+		System.out.println(payment.toString());
+		memberDao.updateMember(JDBCTemplate.getConnection(),payment);
+	}
+	
+	
 
 }

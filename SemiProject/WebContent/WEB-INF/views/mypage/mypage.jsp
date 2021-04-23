@@ -3,7 +3,6 @@
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
 
-
 <style>
     body {
         margin:20px auto;
@@ -62,8 +61,10 @@
 
 	
 
+
 </style>
 
+<div class="pull-left">
 <ul id="navi">
  		<li class="group">
             <div class="maintitle">나의맛객</div>
@@ -80,8 +81,8 @@
         <li class="group">
             <div class="title">MY혜택</div>
             <ul class="sub">
-                <li><a href="#">프리미엄 가입하기</a></li>                
-                <li><a href="#">프리미엄 혜택보기</a></li>                
+                <li><a href="/payment">프리미엄 가입하기</a></li>                
+                <li><a href="/payment/service">프리미엄 혜택보기</a></li>                
             </ul>
         </li>
         <li class="group">
@@ -94,13 +95,13 @@
     	<li class="group">
             <div class="title">MY 회원정보</div>
             <ul class="sub">
-                <li><a href="#">회원정보 변경/탈퇴</a></li>                
-                <li><a href="#">결제 수단 관리</a></li>    
+                <li><a href="#">회원정보 변경/탈퇴</a></li>                    
             </ul>
         </li>        
     </ul>
+    </div>
+    
 
-
-
+<div class="clearfix"></div>
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>

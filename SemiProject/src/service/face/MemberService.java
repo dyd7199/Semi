@@ -3,6 +3,7 @@ package service.face;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.Member;
+import dto.Payment;
 
 public interface MemberService {
 
@@ -21,5 +22,9 @@ public interface MemberService {
 	public boolean login(Member member);
 
 	public Member info(Member member);
+
+	public void insertPayment(Payment payment);
+
+	public void updateMember(Payment payment);
 
 }

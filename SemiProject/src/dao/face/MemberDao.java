@@ -3,6 +3,7 @@ package dao.face;
 import java.sql.Connection;
 
 import dto.Member;
+import dto.Payment;
 
 public interface MemberDao {
 	/**
@@ -14,5 +15,9 @@ public interface MemberDao {
 	int selectCntMemberUseridUserpw(Connection conn, Member member);
 
 	Member selectMemberByUserid(Connection conn, Member member);
+
+	void insertPayment(Connection conn, Payment payment);
+
+	void updateMember(Connection connection, Payment payment);
 
 }
