@@ -30,7 +30,7 @@ public class ReviewWriteController extends HttpServlet {
 		req.setAttribute("upso_sno", upso_sno);
 		//로그인 되어있지 않으면 리다이렉트 
 	if( req.getSession().getAttribute("login") == null ) {
-		resp.sendRedirect("/error");
+		resp.sendRedirect("/member/login");
 				
 				return;
 			}

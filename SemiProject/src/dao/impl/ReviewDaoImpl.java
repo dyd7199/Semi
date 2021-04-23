@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.face.ReviewDao;
-import dto.Member;
 import dto.Review;
 import dto.Seoul;
 import common.JDBCTemplate;
+import common.Paging;
 import common.PagingReview;
 
 public class ReviewDaoImpl implements ReviewDao {
@@ -219,5 +219,77 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return cnt;
 	}
-
+	@Override
+	public int selectCntByUserno(Connection conn, int userno) {
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM review";
+		sql += "	WHERE userno = ?";
+		
+		//총 게시글 수
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return cnt;
+	}
+	@Override
+	public List<Review> getReview(Connection conn, Paging paging, int userno) {
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, R.* FROM (";
+		sql += "		SELECT * FROM review";
+		sql += "		WHERE userno = ?";
+		sql += "		ORDER BY reviewno DESC";
+		sql += "	) R";
+		sql += " ) REVIEW";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		List<Review> rvList = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, userno);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while ( rs.next() ) {
+				Review r = new Review();
+				
+				r.setReviewno( rs.getInt("reviewno") );
+				r.setUpso_sno(rs.getString("upso_sno"));
+				r.setCreate_date(rs.getDate("create_date"));
+				r.setTitle(rs.getString("title"));
+				r.setInq_content(rs.getString("inq_content"));
+				r.setStar_score(rs.getInt("star_score"));
+				
+				rvList.add(r);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return rvList;
+	}
 }
