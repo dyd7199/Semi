@@ -104,14 +104,10 @@ $(document).ready(function(){
 <%-- <img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg"> --%>
 <img style="width: 618px; height: 500px; "id="menu" align="left" src="https://source.unsplash.com/collection/8774409">
 
-<<<<<<< HEAD
-<span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 36px;">
+<span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 24px;">
 <%for(int i=0;i<grade.getAvg();i++){%>
 <span style="font-size: 24px;">⭐</span>
 <%} %><img src="/Resources/img/pencil.png" width=30; height=30;><%= cnt %></span>
-=======
-<span align="left" style="font-size: 34px; font-weight : bold;  font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %>&nbsp;<img src="/Resources/img/empty.png" width=50; height=50;><%=grade.getAvg() %>&nbsp;<img src="/Resources/img/pencil.png" width=30; height=30;>&nbsp;<%= cnt %>&nbsp;&nbsp;</span>
->>>>>>> branch 'master' of https://github.com/dyd7199/Semi.git
 <br>
 <br>
 
