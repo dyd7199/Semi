@@ -104,7 +104,10 @@ $(document).ready(function(){
 <%-- <img id="menu" align="left" src="/resources/se2/img/upso/M<%=sn.getUpso_sno() %>.jpg"> --%>
 <img id="menu" align="left" src="https://source.unsplash.com/collection/8774409">
 
-<span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 36px;"><img src="/Resources/img/empty.png" width=50; height=50;><%=grade.getAvg() %><img src="/Resources/img/pencil.png" width=30; height=30;><%= cnt %></span>
+<span align="left" style="font-size: 36px; font-family: '바탕';">&nbsp;&nbsp;&nbsp;<%=s.getUpso_nm() %></span> <span style="font-size: 36px;">
+<%for(int i=0;i<grade.getAvg();i++){%>
+<span style="font-size: 24px;">⭐</span>
+<%} %><img src="/Resources/img/pencil.png" width=30; height=30;><%= cnt %></span>
 <br>
 <br>
 

@@ -7,7 +7,8 @@
 
     
    <% List<SeoulGrade> list = (List<SeoulGrade>)request.getAttribute("list"); %>
-   
+      <% String[] str = {"https://source.unsplash.com/collection/8774409","https://source.unsplash.com/collection/9689180.jpg","https://source.unsplash.com/collection/4817197.jpg"}; %>
+      
 <script type="text/javascript">
 
    
@@ -17,20 +18,22 @@
 <div>
 		  <img alt="" src="/Resources/img/맛집리스트.png" style="width: 20%; margin:0 auto; margin-top: 80px;">
 <table class="table table-striped">
+	<%int k = 0; %>
 	<%for(int i=0;i<list.size();i++){ %>
-
 	<tr>
 		<td style="font-size: 50px; width: 150px;" >#<%=i+1 %></td>
 		
 		<td style="height: 100px;width: 300px; height: 150px;">
 		<div class="row">
   			<div class="col-xs-6 col-md-10">
-   			 <a href="http://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/039/143/medium/IMG_5649%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC.jpg?2019" class="thumbnail">
-     		 <img src="http://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/039/143/medium/IMG_5649%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC.jpg?2019" alt="...">
+   			 <a href = <%=str[k]%> class="thumbnail">
+     		 <img src=<%=str[k]%> alt="...">
+     		 <%System.out.println(k);%>
    			 </a>
+   			 <%k++; %>
+   			 <%if(k > 2) 	k=0; %>
   		</div>
   		</td>
-		
 		<td style="font-size: 16px; width: 300px; text-align: left;">
 							이름:<%=list.get(i).getUpso_nm() %><a onclick="location.href='/detail?upso_sno=<%=list.get(i).getUpso_sno() %>'"><span style="float: right;" id="moreBtn">자세히보기..</span></a>
 							
@@ -41,7 +44,6 @@
 		</td>
 	</tr>
 	<%} %>
-</table>
 </div>  
 
 

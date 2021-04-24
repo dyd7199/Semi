@@ -8,6 +8,7 @@
     
    <% List<SeoulGrade> list = (List<SeoulGrade>)request.getAttribute("list"); %>
    <% String[] str = {"https://source.unsplash.com/collection/8774409","https://source.unsplash.com/collection/9689180.jpg","https://source.unsplash.com/collection/4817197.jpg"}; %>
+
    
    
 <div>

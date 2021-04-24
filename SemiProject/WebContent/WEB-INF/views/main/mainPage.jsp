@@ -21,7 +21,33 @@
 				color: white;
 				
 			}
+			#followquick{
+				position:absolute;
+				top: 80px;
+				right: 50%;
+				margin-right:-800px;
+				background-color: orange;
+				padding: 40px;
+				font-size: 20px;
+				color: white;
+				font-weight: bold;
+				line-height: 180px;
+			
+			}
+			
 		</style>
+		
+		<script type="text/javascript">
+		$(window).scroll(function(){
+			var scrollTop = $(document).scrollTop();
+			if (scrollTop < 80) {
+			 scrollTop = 80;
+			}
+			$("#followquick").stop();
+			$("#followquick").animate( { "top" : scrollTop });
+			});
+		</script>
+		
 
         <!-- Masthead-->
         <header class="padding-top bg-oranged text-white text-center">
@@ -37,7 +63,14 @@
             </div>
         </header>
         <!--  -->
+       <div id="followquick">
        
+       <div><a href="#">맛객</a></div>
+		<div><a href="#">맛지도</a></div>       
+		<div><a href="#">테마별리스트</a></div>       
+		<div><a href="#">맛집리스트</a></div>       
+       
+       </div>
 
      
        <!-- 본문입니다! -->
