@@ -102,6 +102,12 @@ public interface NoticeDao {
 	 * @return
 	 */
 	public int deleteNotice(Connection conn, HttpServletRequest req);
+
+	
+	public int update(Connection conn, Notice adminNotice);
+
+	
+	public int updateFile(Connection conn, NoticeFile noticeFile);
 	
 
 

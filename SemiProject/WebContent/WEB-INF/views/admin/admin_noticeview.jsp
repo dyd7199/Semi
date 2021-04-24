@@ -19,9 +19,12 @@ $(document).ready(function() {
 		$(location).attr("href", "/admin/noticelist");
 	});
 	
+	$("#btnUpdate").click(function() {
+		$(location).attr("href", "/admin/noticeupdate?postno=<%=list.getPostno() %>");
+	});
 	
 	$("#btnDelete").click(function() {
-		$(location).attr("href", "/admin/noticeDelete?postno=<%=noticefile.getPostno() %>");
+		$(location).attr("href", "/admin/noticeDelete?postno=<%=list.getPostno() %>");
 		
 		
 	});

@@ -410,6 +410,64 @@ public class NoticeDaoImpl implements NoticeDao {
 		return res;
 	}
 
+	
+	@Override
+	public int update(Connection conn, Notice adminNotice) {
+
+		String sql = "";
+		sql += "UPDATE notice";
+		sql += " SET title = ?, inq_content = ?";
+		sql += " WHERE postno = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, adminNotice.getTitle());
+			ps.setString(2, adminNotice.getInq_content());
+			ps.setInt(3, adminNotice.getPostno());
+			
+			res = ps.executeUpdate();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
+
+
+
+
+	@Override
+	public int updateFile(Connection conn, NoticeFile noticeFile) {
+
+		String sql = "";
+		sql += "UPDATE noticefile";
+		sql += " SET originname = ?, storedname = ?";
+		sql += " WHERE postno = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, noticeFile.getOriginName());
+			ps.setString(2, noticeFile.getStoredName());
+			ps.setInt(3, noticeFile.getPostno());
+			
+			res = ps.executeUpdate();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
+
 
 
 

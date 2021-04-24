@@ -4,7 +4,17 @@
     pageEncoding="UTF-8"%>
     
 <% Notice list = (Notice) request.getAttribute("viewNotice"); %>
-<%@include file="/WEB-INF/views/header/header.jsp" %>
+<%@include file="/WEB-INF/views/board/notice/noticeheader.jsp" %>
+
+
+
+<ul class="nav nav-pills" style="margin-top: 90px; margin-left: 10px;">
+  <li role="presentation" ><a href="/recipe/list">레시피공유</a></li>
+  <li role="presentation" class="active"><a href="/notice/list">공지사항</a></li>
+  <li role="presentation" ><a href="/faq">FAQ</a></li>
+</ul>
+
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
 
@@ -23,31 +33,25 @@ $(document).ready(function() {
 <div class="table">
 <h1>공지사항 상세보기 </h1>
 
-<div>
-<table>
+<div class="table ">
+
+<table style="margin-top: 40px; margin-left: 13%; width:80%;">
 <tr>
-<td>글번호 </td><td><%=list.getPostno() %></td>
+<th class="table-warning">글제목 </th><td colspan=5><%=list.getTitle() %></td>
 </tr>
 
 <tr>
-<td>글제목 </td><td><%=list.getTitle() %></td>
+<th width="13%" class="table-warning">글번호 </th><td width="15%"><%=list.getPostno() %></td>
+<td width="19%%" class="table-warning">작성 날짜 </td><td width="25%"><%=list.getCreate_date() %></td>
+<td width="16%" class="table-warning">조회수 </td><td><%=list.getHit() %></td>
 </tr>
 
 <tr>
-<td>사용자번호 </td>
-<td><%=list.getUserno() %></td>
+<td colspan=6>글내용 </td>
 </tr>
 
 <tr>
-<td>작성 날짜 </td><td><%=list.getCreate_date() %></td>
-</tr>
-
-<tr>
-<td>조회수 </td><td><%=list.getHit() %></td>
-</tr>
-
-<tr>
-<td>글내용 </td><td><%=list.getInq_content() %></td>
+<td colspan=6><%=list.getInq_content() %></td>
 </tr>
 
 </table>
