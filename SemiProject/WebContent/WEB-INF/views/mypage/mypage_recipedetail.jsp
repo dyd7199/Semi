@@ -86,7 +86,7 @@ body {
             <ul class="sub">
                 <li><a href="#">찜한 식당</a></li>
                 <li><a href="#">최근 본 식당</a></li>
-                <li><a href="#">내가 작성한 후기</a></li>
+                <li><a href="/mypage/review">내가 작성한 후기</a></li>
                 <li><a href="/mypage/recipe">내가 작성한 레시피</a></li>
             </ul>
         </li>
