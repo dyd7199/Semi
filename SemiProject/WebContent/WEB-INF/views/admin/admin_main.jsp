@@ -87,6 +87,7 @@ ul.sub li:hover {
        	<ul class="sub">
             <li><a href="/admin/recipelist">전체 레시피 관리</a></li>
             <li><a href="/admin/noticelist">공지사항</a></li>
+            <li><a href="/admin/faqlist">FAQ</a></li>
             <li><a href="/admin/inqlist">문의하기</a></li>
        	</ul>
     </li>

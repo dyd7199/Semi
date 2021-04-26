@@ -354,16 +354,16 @@ public class MemberDaoImpl implements MemberDao {
 
 
 	@Override
-	public int delete(Connection conn, Object userid) {
+	public int delete(Connection conn, Object userno) {
 		
 		String sql="";
-		sql +="DELETE FROM user_table";
-		sql +=" WHERE userid = ?";
+		sql +="UPDATE user_table SET username=null, userid=null, userpw=null, nick=null, email=null";
+		sql +=" WHERE userno = ?";
 		int res = -1;
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, (String)userid);
+			ps.setInt(1,(Integer)userno);
 			
 			res = ps.executeUpdate();
 			
@@ -521,7 +521,7 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(payment.toString());
 		String sql = "";
 		sql +="UPDATE user_table SET"; 
-		sql +=" grade = 1 WHERE USERID = ?";
+		sql +=" grade = 프리미엄 WHERE USERID = ?";
 		
 		int res = 0;
 		

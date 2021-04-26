@@ -47,6 +47,7 @@ public interface AdminNoticeDao {
 	public int selectCntAll(Connection conn);
 	
 
+	public int update(Connection conn, Notice adminNotice);
 
 
 	

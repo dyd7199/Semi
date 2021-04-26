@@ -83,6 +83,10 @@ public interface AdminNoticeService {
 	 */
 	public void deleteNotice(HttpServletRequest req);
 
+	
+	
+	public void update(HttpServletRequest req);
+
 
 	
 	

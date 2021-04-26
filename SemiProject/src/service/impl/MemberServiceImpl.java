@@ -148,8 +148,8 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	@Override
-	public void secession(Object userid) {
-		if(memberDao.delete(JDBCTemplate.getConnection(), userid) > 0) {
+	public void secession(Object userno) {
+		if(memberDao.delete(JDBCTemplate.getConnection(), userno) > 0) {
 			JDBCTemplate.commit(JDBCTemplate.getConnection());
 		} else {
 			JDBCTemplate.rollback(JDBCTemplate.getConnection());

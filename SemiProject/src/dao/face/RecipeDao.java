@@ -151,6 +151,16 @@ public interface RecipeDao {
 	 */
 	List<Recipe> getRecipe(Connection conn);
 
+	/**
+	 * 검색어를 포함하는 모든 리스트를 반환한다
+	 * 
+	 * @param conn
+	 * @param req
+	 * @param paging 
+	 * @return
+	 */
+	List<Recipe> getRecipeList(Connection conn, HttpServletRequest req, Paging paging);
+
 
 
 }

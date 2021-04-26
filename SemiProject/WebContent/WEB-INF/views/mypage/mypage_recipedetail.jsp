@@ -78,23 +78,22 @@ body {
 <% UploadFile uf = (UploadFile) request.getAttribute("uploadfile"); %>
 
 <ul id="navi">
- 		<li class="group">
+	
+	<li class="group">
             <div class="maintitle">나의맛객</div>
         </li>
         <li class="group">
             <div class="title">My페이지</div>
             <ul class="sub">
-                <li><a href="#">찜한 식당</a></li>
-                <li><a href="#">최근 본 식당</a></li>
-                <li><a href="#">내가 작성한 후기</a></li>
-                <li><a href="/mypage/recipe">내가 작성한 레시피</a></li>
+                <li><a href="/mypage/review"">내가 작성한 후기</a></li>
+                <li><a href="/mypage/recipelist">내가 작성한 레시피</a></li>
             </ul>
         </li>
         <li class="group">
             <div class="title">MY혜택</div>
             <ul class="sub">
-                <li><a href="#">프리미엄 가입하기</a></li>                
-                <li><a href="#">프리미엄 혜택보기</a></li>                
+                <li><a href="/payment">프리미엄 가입하기</a></li>                
+                <li><a href="/payment/service">프리미엄 혜택보기</a></li>                
             </ul>
         </li>
         <li class="group">
@@ -108,7 +107,6 @@ body {
             <div class="title">MY 회원정보</div>
             <ul class="sub">
                 <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
-                <li><a href="#">결제 수단 관리</a></li>    
             </ul>
         </li>        
 </ul>
@@ -154,15 +152,15 @@ body {
 
 <button id="btnUpdate" name="update" onclick='location.href="/mypage/recipeupdate?userno=<%=recipe.getUserno() %>&postno=<%=recipe.getPostno() %>";'>수정</button>
 <button id="btnDelete" name="delete" onclick='location.href="/mypage/recipedelete?userno=<%=recipe.getUserno() %>&postno=<%=recipe.getPostno() %>";'>삭제</button>
-<button id="btnList" name="btnReturn" onclick='location.href="/mypage/recipe";'>목록으로</button>
+<button id="btnList" name="btnReturn" onclick='location.href="/mypage/recipelist";'>목록으로</button>
 
-</div>
-
-<div style="width: 500px; height: 400px">
+<div style="width: 305px; height: 205px; margin-left :200px">
 	<a href="/upload/<%=uf.getStoredName() %>"  download="/upload/<%=uf.getOriginName() %>">
-	<img src="/upload/<%=uf.getStoredName() %>" style="width: 500px; height: 334px;" />
+	<img src="/upload/<%=uf.getStoredName() %>" style="width: 300px; height: 200px;" />
 	</a>
 </div> 
+</div>
+
 
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>

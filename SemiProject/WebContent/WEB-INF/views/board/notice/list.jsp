@@ -4,28 +4,36 @@
     pageEncoding="UTF-8"%>
     
 <% List<Notice> list = (List) request.getAttribute("noticeList"); %>    
-<%@include file="/WEB-INF/views/header/header.jsp" %>
+<%@include file="/WEB-INF/views/board/notice/noticeheader.jsp" %>
+
+
+
+<ul class="nav nav-tabs" style="margin: 10px; margin-top: 100px;">
+  <li role="presentation"><a href="/recipe/list">레시피공유</a></li>
+  <li role="presentation" class="active"><a href="/notice/list">공지사항</a></li>
+  <li role="presentation"><a href="/faq/view">FAQ</a></li>
+</ul>
+
+
+
 
 <style>
-.totalnotice {
-margin-top: 250px;
-margin-bottom: 250px;
-text-align: center;
 
-}
+
+
+
 </style>
 
+<div id="content" style="height: 548px;">
+<div class ="table table-hover">
 
-<div class ="table totalnotice">
-<h1>공지사항 목록 </h1>
-
-<table>
+<table style="margin-top: 40px; margin-left: 10px; width:95%;">
 <tr>
-	<th>글번호 </th>
-	<th>글제목 </th>
-	<th>사용자번호 </th>
-	<th>작성 날짜 </th>
-	<th>조회수 </th>
+	<th width="8%" class="table-warning">글번호 </th>
+	<th width="62%" class="table-warning">글제목 </th>
+	<th width="10%" class="table-warning">사용자번호 </th>
+	<th width="12%" class="table-warning">작성 날짜 </th>
+	<th width="8%" class="table-warning"> 조회수 </th>
 </tr>
 <% for(int i=0; i<list.size(); i++) { %>
 <tr>
@@ -39,7 +47,7 @@ text-align: center;
 </table>
 
 </div>
-
+</div>
 
 
 <%@ include file="/WEB-INF/views/board/notice/paging.jsp" %>

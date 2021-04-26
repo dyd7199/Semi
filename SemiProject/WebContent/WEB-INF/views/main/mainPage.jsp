@@ -5,6 +5,7 @@
     
 <%@include file="/WEB-INF/views/header/header.jsp" %>
 
+
 			<link href="/Resources/se2/css/slider/slider.css" rel="stylesheet"/>
 			<script type="text/javascript" src ="/Resources/se2/js/slider_edit.js"></script>
 
@@ -24,15 +25,24 @@
 			#followquick{
 				position:absolute;
 				top: 80px;
-				right: 50%;
+				right: 48.5%;
 				margin-right:-800px;
-				background-color: orange;
-				padding: 40px;
+				padding: 10px;
 				font-size: 20px;
 				color: white;
 				font-weight: bold;
 				line-height: 180px;
+				border-radius: 20px;
+				z-index: 90999;
 			
+			}
+			#followquick div a {
+				color: #1abc9c;
+				background-color: #FBF5EF;
+				border: 5px solid #1abc9c;
+				border-radius: 15px;
+				padding: 15px;
+				
 			}
 			
 		</style>
@@ -65,16 +75,16 @@
         <!--  -->
        <div id="followquick">
        
-       <div><a href="#">맛객</a></div>
-		<div><a href="#">맛지도</a></div>       
-		<div><a href="#">테마별리스트</a></div>       
-		<div><a href="#">맛집리스트</a></div>       
+       <div><a href="#" style="padding-left: 60px; padding-right: 60px">맛객</a></div>
+		<div><a href="#foodmap" style="padding-left: 50px; padding-right: 50px">맛지도</a></div>       
+		<div><a href="#theme" style="padding-left: 22px; padding-right: 22px">테마별리스트</a></div>       
+		<div><a href="#foodlist" style="padding-left: 30px; padding-right: 30px">맛집리스트</a></div>       
        
        </div>
 
      
        <!-- 본문입니다! -->
-       <section>
+       <section id="foodmap">
 <!-- 	      	 <h1 style="margin-top: 100px; text-align: left; color: orange;">맛지도</h1> -->
 	      	 <img alt="" src="/Resources/img/mapLogo.png" style="width: 20%; margin:0 auto;">
 			<div id="wrapper" style="margin: 0 auto; width: 830px; height: 650px;">
@@ -105,7 +115,8 @@ border-radius: 7px;
 		 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 		 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 		 <link href="/Resources/se2/css/slider/slider2.css" rel="stylesheet"/>
-        <section>
+		 <%if("프리미엄".equals(userGrade)){ %>
+        <section id="theme">
 		
 		  <!-- Swiper -->
 		  <img alt="" src="/Resources/img/테마별맛집.png" style="width: 20%; margin:0 auto; margin-top: 10px;">
@@ -189,8 +200,9 @@ border-radius: 7px;
        </section>
        
              <hr size="10px" width="100%" style="border-top: 1px solid #ccc; margin-top: 100px;">
+        <%} %>
        
-       <section>
+       <section id="foodlist">
 		  <img alt="" src="/Resources/img/맛집리스트.png" style="width: 20%; margin:0 auto; margin-top: 10px;">
 		<h3 ></h3>
 		  <!-- Swiper -->
@@ -201,7 +213,7 @@ border-radius: 7px;
 		      	<h3>#뜨끈한탕</h3>
 				<span>#갈비탕#매운탕#설렁탕</span>
 		      </div>
-		      <a href="/main/foodlist?food=탕"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
+		      <a href="/main/foodlist?food=탕"><img class="slide_img" src="https://i.pinimg.com/564x/1f/79/67/1f7967d9949090d332cb5a6383da8514.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -209,7 +221,7 @@ border-radius: 7px;
 		      	<h3>#칼칼한국수</h3>
 				<span>#칼국수#메밀국수</span>
 		      </div>
-		      <a href="/main/foodlist?food=국수"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
+		      <a href="/main/foodlist?food=국수"><img class="slide_img" src="https://i.pinimg.com/564x/12/a8/9c/12a89cd40e778fa31fbaaca892717020.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -217,7 +229,7 @@ border-radius: 7px;
 		      	<h3>#보글보글찌개</h3>
 				<span>#된장찌개#부대찌개#김치찌개</span>
 		      </div>
-		      <a href="/main/foodlist?food=찌개"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
+		      <a href="/main/foodlist?food=찌개"><img class="slide_img" src="https://i.pinimg.com/564x/e9/53/90/e953907735dae7ff61547fab84b7a91f.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -225,7 +237,7 @@ border-radius: 7px;
 		      	<h3>#분위기좀 내볼까?</h3>
 				<span>#스테이크#스프#샐러드</span>
 		      </div>
-		      <a href="/main/foodlist?food=스프"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
+		      <a href="/main/foodlist?food=스프"><img class="slide_img" src="https://i.pinimg.com/564x/1f/a4/cd/1fa4cdf0a100af43295db29f37757fee.jpg"></a>
 		      </div>
 		      
 		       <div class="swiper-slide">
@@ -233,7 +245,7 @@ border-radius: 7px;
 		      	<h3>#중화요리어때?</h3>
 				<span>#짬뽕#짜장면#탕수육</span>
 		      </div>
-		      <a href="/main/foodlist?food=짬뽕"><img class="slide_img" src="https://i.pinimg.com/564x/5f/82/12/5f8212ae7708a9c32413dc163f4e830c.jpg"></a>
+		      <a href="/main/foodlist?food=짬뽕"><img class="slide_img" src="https://i.pinimg.com/564x/62/1f/c7/621fc70a243f0ea3c82f298c77220093.jpg"></a>
 		      </div>
 		      
 		      
@@ -271,6 +283,15 @@ border-radius: 7px;
 
 
        </section>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
        
      <%@include file="/WEB-INF/views/footer/footer.jsp" %> 
        

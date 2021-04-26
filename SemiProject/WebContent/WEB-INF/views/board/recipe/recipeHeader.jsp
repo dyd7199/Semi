@@ -55,7 +55,6 @@
 			padding-bottom: 0;
 		}
 		.bodysize {
-			width: 1200px;
 			margin: 0 auto;
 			text-align: center;
 		}
@@ -90,7 +89,7 @@
     
     <body id="page-top" class="bodysize">
         <!-- Navigation-->
-        <nav class="navbar2 navbar-expand-lg bg-oranged text-uppercase " id="mainNav">
+        <nav class="navbar2 navbar-expand-lg bg-oranged text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="/">맛객</a>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

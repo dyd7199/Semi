@@ -77,7 +77,7 @@
 <button class="btn btn-default" onclick='location.href="/recipe/search";' style="margin-left: 20px;">검색</button>
 </form>
 </div>
-<%@include file="/WEB-INF/views/board/recipe/paging.jsp" %>
+<%@include file="/WEB-INF/views/board/recipe/searchPaging.jsp" %>
 </div>
 </div>
     

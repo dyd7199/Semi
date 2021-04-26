@@ -114,5 +114,14 @@ public interface RecipeService {
 	 */
 	Paging getPaging(HttpServletRequest req, int userno);
 
+	/**
+	 * 해당 검색어로 검색된 모든 레시피 리스트를 가져온다
+	 * 
+	 * @param req
+	 * @param paging 
+	 * @return
+	 */
+	List<Recipe> getRecipeList(HttpServletRequest req, Paging paging);
+
 
 }

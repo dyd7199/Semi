@@ -67,29 +67,33 @@ body {
     ul.sub li:hover {
         background:#FFCC33;
 }
+
+a:link {text-decoration: none; color: black;}
+a:visited {text-decoration: none; color: black;}
+a:active {text-decoration: none; color: black;}
+a:hover {text-decoration: underline; color: black;}
 </style>
 
 <% List<Recipe> rlist = (List) request.getAttribute("rList"); %>
 <% List<Recipe> list = (List) request.getAttribute("list"); %>
 
 <ul id="navi">
- 		<li class="group">
+	
+	<li class="group">
             <div class="maintitle">나의맛객</div>
         </li>
         <li class="group">
             <div class="title">My페이지</div>
             <ul class="sub">
-                <li><a href="#">찜한 식당</a></li>
-                <li><a href="#">최근 본 식당</a></li>
-                <li><a href="#">내가 작성한 후기</a></li>
-                <li><a href="/mypage/recipe">내가 작성한 레시피</a></li>
+                <li><a href="/mypage/review"">내가 작성한 후기</a></li>
+                <li><a href="/mypage/recipelist">내가 작성한 레시피</a></li>
             </ul>
         </li>
         <li class="group">
             <div class="title">MY혜택</div>
             <ul class="sub">
-                <li><a href="#">프리미엄 가입하기</a></li>                
-                <li><a href="#">프리미엄 혜택보기</a></li>                
+                <li><a href="/payment">프리미엄 가입하기</a></li>                
+                <li><a href="/payment/service">프리미엄 혜택보기</a></li>                
             </ul>
         </li>
         <li class="group">
@@ -103,7 +107,6 @@ body {
             <div class="title">MY 회원정보</div>
             <ul class="sub">
                 <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
-                <li><a href="#">결제 수단 관리</a></li>    
             </ul>
         </li>        
 </ul>
@@ -129,10 +132,10 @@ body {
 </table>
 <table class="table table-hover" style="width: 83%; margin-top: 20px;">
 	<tr class="active">
-		<th style="text-align: center;">글 번호</th>
-		<th style="text-align: center;">제목</th>
-		<th style="text-align: center;">작성일</th>
-		<th style="text-align: center;">조회수</th>
+		<th style="text-align: center; width: 15%;">글 번호</th>
+		<th style="text-align: center; width: 55%;">제목</th>
+		<th style="text-align: center; width: 15%;">작성일</th>
+		<th style="text-align: center; width: 15%;">조회수</th>
 	</tr>
 	<% for(int i=0; i<rlist.size(); i++) { %>
 	<tr>
@@ -143,8 +146,8 @@ body {
 	</tr>
 	<% } %>
 </table>
+<%@include file="/WEB-INF/views/mypage/mypage_recipepaging.jsp" %>
 </div>
 
-<%@include file="/WEB-INF/views/mypage/mypage_recipepaging.jsp" %>
 
 <%@include file="/WEB-INF/views/footer/footer.jsp" %>

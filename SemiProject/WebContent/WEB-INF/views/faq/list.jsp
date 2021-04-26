@@ -39,6 +39,15 @@ $(document).ready(function() {
 })
 </script>
 
+
+<ul class="nav nav-tabs" style="margin: 10px; margin-top: 100px;">
+  <li role="presentation"><a href="/recipe/list">레시피공유</a></li>
+  <li role="presentation" ><a href="/notice/list">공지사항</a></li>
+  <li role="presentation" class="active"><a href="/faq/view">FAQ</a></li>
+</ul>
+
+
+
 <div class="faq_container">
 
 <h1>자주 묻는 질문</h1>

@@ -1,6 +1,7 @@
 <%@page import="dto.UploadFile"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.Recipe"%>
+
 <%@include file="/WEB-INF/views/board/recipe/recipeHeader.jsp" %>
 
 <% Recipe recipe = (Recipe) request.getAttribute("recipe"); %>
@@ -49,33 +50,35 @@ $(document).ready(function() {
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<style type="text/css">
+#content {
+	/* width: 100%; */
+	width: 98%;
+}
+input .title{
+	width: 98%;
+}
+</style>
 
-<div style="text-align: left; height:15px;">
-<h3>레시피 글 수정</h3><br>
-</div>
 
 <hr style="boarder: 0; height:1px; background: black;"><br>
 
+<div style="width: 1200px; height: 800px; margin:0 auto;">
+<div id="area" style="height: 350px;">
 
-<div id="area" style="height: 590px;">
+<h3 style="text-align: left; margin-top: 45px;">레시피 글수정</h3>
+<hr>
+
+
 <form action="/recipe/update" method="post" >
 <table class="table table=bordered">
 
 	<tr>
-		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
+		<td style="background-color: #fbf8e3">제목</td><td><input type="text" name="title" style="width:100%;" value="<%=recipe.getTitle() %>"/></td>
 	</tr>
 	<tr>
-		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
-	</tr>
-	<tr>
-		<td>제목</td><td><input type="text" name="title" style="width:100%;" value="<%=recipe.getTitle() %>"/></td>
-	</tr>
-	<tr>		
-		<td colspan="2" style="height:600px;"><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
-	</tr>
-	<tr>
-		<td>첨부파일</td>
-		<td>
+		<td style="background-color: #fbf8e3">첨부파일</td>
+		<td style="text-align: left;">
 			<% for(int j=0; j<fList.size(); j++) {%>
 				<% if( recipe.getPostno() == fList.get(j).getPostno() ){%>
 					<%=fList.get(j).getStoredName() %>
@@ -87,15 +90,18 @@ $(document).ready(function() {
 		<input type="hidden" name="views" value="<%=recipe.getViews() %>"/>
 		</td>
 	</tr>
+	<tr>		
+		<td colspan="2" style="height:300px;"><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
+	</tr>
 </table>
+<div>
+	<button type="button" id="btnUpdate">완료</button>
+	<button type="button" id="btnCancel">취소</button>
+</div>
 </form>
 </div>
 
-<div>
-	<button type="button" id="btnUpdate">수정 완료</button>
-	<button type="button" id="btnCancel">취소</button>
 </div>
-
 
 <script type="text/javascript">
 var oEditors = [];

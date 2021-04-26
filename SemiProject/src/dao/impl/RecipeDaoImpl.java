@@ -440,7 +440,6 @@ public class RecipeDaoImpl implements RecipeDao {
 			while( rs.next() ) {
 				
 				Recipe r = new Recipe();
-				
 				r.setPostno( rs.getInt("postno"));
 				r.setCreate_date( rs.getDate("create_date"));
 				r.setTitle( rs.getString("title"));
@@ -567,6 +566,54 @@ public class RecipeDaoImpl implements RecipeDao {
 				list.add(recipe);
 			}
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<Recipe> getRecipeList(Connection conn, HttpServletRequest req, Paging paging) {
+
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, R.* FROM (";
+		sql += "		SELECT * FROM recipe";
+		sql += "		WHERE regexp_like(title, ?) OR regexp_like(inq_content, ?)";
+		sql += "		ORDER BY postno DESC";
+		sql += "	) R";
+		sql += " ) RECIPE";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		List<Recipe> list = new ArrayList<>();
+		String search = req.getParameter("search");
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, search);
+			ps.setString(2, search);
+			ps.setInt(3, paging.getStartNo());
+			ps.setInt(4, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				Recipe r = new Recipe();
+				
+				r.setCreate_date( rs.getDate("create_date"));
+				r.setInq_content( rs.getString("inq_content"));
+				r.setPostno( rs.getInt("postno"));
+				r.setTitle( rs.getString("title"));
+				r.setUserno( rs.getInt("userno"));
+				r.setViews( rs.getInt("views"));
+				
+				list.add(r);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

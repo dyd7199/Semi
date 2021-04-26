@@ -28,7 +28,7 @@ public class MemberSecessionController extends HttpServlet {
 		System.out.println("/member/secession [POST]");
 
 
-		memberService.secession(req.getSession().getAttribute("userid"));
+		memberService.secession(req.getSession().getAttribute("userno"));
 
 		//세션 객체
 		HttpSession session = req.getSession();

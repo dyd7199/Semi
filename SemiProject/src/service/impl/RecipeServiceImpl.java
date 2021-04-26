@@ -534,4 +534,12 @@ public class RecipeServiceImpl implements RecipeService {
 		return paging;
 	}
 
+	@Override
+	public List<Recipe> getRecipeList(HttpServletRequest req, Paging paging) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return recipeDao.getRecipeList(conn, req, paging);
+	}
+
 }

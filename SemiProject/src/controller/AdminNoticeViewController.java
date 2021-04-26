@@ -38,11 +38,13 @@ public class AdminNoticeViewController extends HttpServlet {
 		NoticeFile noticeFile = adminNoticeService.viewFile(post);
 		System.out.println("noticeFIle : " + noticeFile.getFileno());
 		
-		req.setAttribute("noticeFile", noticeFile);
-		
-		
+		System.out.println("NoticeFile 확인하기 : " + noticeFile);
+		System.out.println("오리진네임 : " + noticeFile.getOriginName());
+		System.out.println("스토어네임 : " + noticeFile.getStoredName());
 		//조회결과 MODEL값 전달    
 		req.setAttribute("viewNotice", viewNotice); // jsp로 데이터 전달
+		
+		req.setAttribute("noticeFile", noticeFile);
 		
 		//VIEW 지정 및 응답   
 		req.getRequestDispatcher("/WEB-INF/views/admin/admin_noticeview.jsp").forward(req, resp);

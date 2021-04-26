@@ -119,8 +119,8 @@ ul.sub li:hover {
        	<ul class="sub">
             <li><a href="#">레시피 공유</a></li>
             <li><a href="#">공지사항</a></li>
-            <li><a href="/admin/inqlist">문의하기</a></li>
             <li><a href="/admin/faqlist">FAQ</a></li>
+            <li><a href="/admin/inqlist">문의하기</a></li>
        	</ul>
     </li>
     <li class="group">

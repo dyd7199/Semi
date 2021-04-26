@@ -77,7 +77,7 @@ body {
         <li class="group">
             <div class="title">My페이지</div>
             <ul class="sub">
-                <li><a href="/review/list"">내가 작성한 후기</a></li>
+                <li><a href="/mypage/review"">내가 작성한 후기</a></li>
                 <li><a href="/mypage/recipelist">내가 작성한 레시피</a></li>
             </ul>
         </li>

@@ -19,9 +19,12 @@ $(document).ready(function() {
 		$(location).attr("href", "/admin/noticelist");
 	});
 	
+	$("#btnUpdate").click(function() {
+		$(location).attr("href", "/admin/noticeupdate?postno=<%=list.getPostno() %>");
+	});
 	
 	$("#btnDelete").click(function() {
-		$(location).attr("href", "/admin/noticeDelete?postno=<%=noticefile.getPostno() %>");
+		$(location).attr("href", "/admin/noticeDelete?postno=<%=list.getPostno() %>");
 		
 		
 	});
@@ -31,34 +34,29 @@ $(document).ready(function() {
 </script>
 
 
-<div class="table">
+<div class="table" style="height: 548px;">
 <h1>공지사항 상세보기 </h1>
 
 <div>
-<table>
+<table style="margin-top: 40px; margin-left: 13%; width:80%;">
 <tr>
-<td>글번호 </td><td><%=list.getPostno() %></td>
+<td class="table-warning">글제목 </td><td colspan=5><%=list.getTitle() %></td>
 </tr>
 
 <tr>
-<td>글제목 </td><td><%=list.getTitle() %></td>
+<td width="13%" class="table-warning">글번호 </td><td colspan=5><%=list.getPostno() %></td>
+<td width="19%" class="table-warning">작성 날짜 </td><td width="25%"><%=list.getCreate_date() %></td>
+<td width="16%" class="table-warning">조회수 </td><td><%=list.getHit() %></td>
+</tr>
+
+
+
+<tr>
+<td colspan=10>글내용 </td>
 </tr>
 
 <tr>
-<td>사용자번호 </td>
-<td><%=list.getUserno() %></td>
-</tr>
-
-<tr>
-<td>작성 날짜 </td><td><%=list.getCreate_date() %></td>
-</tr>
-
-<tr>
-<td>조회수 </td><td><%=list.getHit() %></td>
-</tr>
-
-<tr>
-<td>글내용 </td><td><%=list.getInq_content() %></td>
+<td colspan=10><%=list.getInq_content() %></td>
 </tr>
 
 <tr>

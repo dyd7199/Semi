@@ -100,6 +100,13 @@ margin-bottom: 250px;
 text-align: center;
 
 }
+.admininqList_container {
+	width: 80%;
+	padding: 30px;
+	
+	float: right;
+}
+
 
 </style>
 
@@ -111,33 +118,34 @@ text-align: center;
     <li class="group">
         <div class="title">게시판 관리</div>
        	<ul class="sub">
-            <li><a href="#">레시피 공유</a></li>
+            <li><a href="/admin/recipelist">전체 레시피 관리</a></li>
             <li><a href="/admin/noticelist">공지사항</a></li>
+            <li><a href="/admin/faqlist">FAQ</a></li>
             <li><a href="/admin/inqlist">문의하기</a></li>
        	</ul>
     </li>
     <li class="group">
         <div class="title">데이터 관리</div>
         <ul class="sub">
-            <li><a href="#">회원 관리</a></li>                
+            <li><a href="/admin/member">회원 관리</a></li>                
             <li><a href="#">식당관리</a></li>                
         </ul>
     </li>
 </ul>
 
 
+<div class="admininqList_container">
 
-
-<div class ="table totalnotice">
 <h1>공지사항 목록 </h1>
+<div class ="table table-hover">
 
-<table>
+<table style="margin-top: 40px; margin-left: 10px; width:95%;">
 <tr>
-	<th>글번호 </th>
-	<th>글제목 </th>
-	<th>사용자번호 </th>
-	<th>작성 날짜 </th>
-	<th>조회수 </th>
+	<th width="8%" class="table-warning">글번호 </th>
+	<th width="62%" class="table-warning">글제목 </th>
+	<th width="10%" class="table-warning">사용자번호 </th>
+	<th width="12%" class="table-warning">작성 날짜 </th>
+	<th width="8%" class="table-warning"> 조회수 </th>
 </tr>
 <% for(int i=0; i<list.size(); i++) { %>
 <tr>
@@ -152,8 +160,9 @@ text-align: center;
 
 
 <div>
-<button id="btnWrite">글쓰기</button>
+<button id="btnWrite" style="float: right;">글쓰기</button>
 </div> <!--  버 -->
+</div>
 
 </div>
 
@@ -161,4 +170,3 @@ text-align: center;
 
 <%@ include file="/WEB-INF/views/board/notice/paging.jsp" %>
 
-<%@ include file="/WEB-INF/views/footer/footer.jsp" %>

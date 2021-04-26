@@ -70,7 +70,7 @@ public class FaqDaoImpl implements FaqDao {
 			Faq f = new Faq();
 				
 				f.setPostno( rs.getInt("postno" ));
-				f.setCreate_date( rs.getDate("create_date") );
+//				f.setCreate_date( rs.getDate("create_date") );
 				f.setInq_content( rs.getString("inq_content") );
 				f.setTitle( rs.getString("title") );
 				f.setUserno( rs.getInt("userno") );
@@ -108,7 +108,7 @@ public class FaqDaoImpl implements FaqDao {
 					
 					v = new Faq(); 
 					
-					v.setCreate_date( rs.getDate("create_date") );
+//					v.setCreate_date( rs.getDate("create_date") );
 					v.setInq_content( rs.getString("inq_content") );
 					v.setPostno( rs.getInt("postno") );
 					v.setTitle( rs.getString("title") );

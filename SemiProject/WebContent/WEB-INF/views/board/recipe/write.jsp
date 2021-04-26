@@ -55,22 +55,22 @@ input .title{
 }
 </style>
 
-
-<div style="text-align: left; height:15px;">
-<h3>레시피 글쓰기</h3><br>
-</div>
-
 <hr style="boarder: 0; height:1px; background: black;"><br>
 
+<div style="width: 1200px; height: 800px; margin:0 auto;">
 <div id="area" style="height: 350px;">
+
+<h3 style="text-align: left; margin-top: 45px;">레시피 글쓰기</h3>
+<hr>
+
 <form action="/recipe/write" method="post" enctype="multipart/form-data" >
 <table class="table table-bordered">
 
 	<tr>
-		<td>제목</td><td><input type="text" name="title" style="width: 100%;"/></td>
+		<td style="background-color: #fbf8e3">제목</td><td><input type="text" name="title" style="width: 100%;"/></td>
 	</tr>
 	<tr>
-		<td>파일 첨부</td>
+		<td style="background-color: #fbf8e3">파일 첨부</td>
 		<td>
 			<input type="file" name="upfile" id="image" accept="image/*" onchange="setThumbnail(event);"/> 
 			<script> function setThumbnail(event) { 
@@ -79,7 +79,7 @@ input .title{
 				reader.onload = function(event) { 
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result); 
-					img.setAttribute("style", "width: 500px; height: 334px;" );
+					img.setAttribute("style", "width: 300px; height: 200px;" );
 					document.querySelector("div#image_container").appendChild(img);
 					
 				}; 
@@ -90,18 +90,19 @@ input .title{
 		</td>
 	</tr>
 	<tr>		
-		<td colspan="2" style="height: 600px;"><textarea id="content" name="content"></textarea></td>
+		<td colspan="2" style="height: 300px;"><textarea id="content" name="content"></textarea></td>
 	</tr>
 </table>
-</form>
-</div>
-
 <div>
 	<button type="button" id="btnWrite">완료</button>
 	<button type="button" id="btnCancel">취소</button>
 </div>
+</form>
+<div id="image_container" style="width: 300px; height: 200px"></div> 
+</div>
+</div>
 
-<div id="image_container" style="width: 500px; height: 400px"></div> 
+
 
 <script type="text/javascript">
 var oEditors = [];

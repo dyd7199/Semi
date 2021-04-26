@@ -74,6 +74,41 @@ body {
 <% Recipe recipe = (Recipe) request.getAttribute("recipe"); %>
 <% List<UploadFile> fList = (List) request.getAttribute("fileList"); %>
 
+
+<ul id="navi">
+	
+	<li class="group">
+            <div class="maintitle">나의맛객</div>
+        </li>
+        <li class="group">
+            <div class="title">My페이지</div>
+            <ul class="sub">
+                <li><a href="/mypage/review"">내가 작성한 후기</a></li>
+                <li><a href="/mypage/recipelist">내가 작성한 레시피</a></li>
+            </ul>
+        </li>
+        <li class="group">
+            <div class="title">MY혜택</div>
+            <ul class="sub">
+                <li><a href="/payment">프리미엄 가입하기</a></li>                
+                <li><a href="/payment/service">프리미엄 혜택보기</a></li>                
+            </ul>
+        </li>
+        <li class="group">
+            <div class="title">MY 활동</div>
+            <ul class="sub">
+                <li><a href="/mypage/inqwrite">문의하기</a></li>                
+                <li><a href="/mypage/inqlist">문의내역 확인</a></li>    
+            </ul>
+        </li>        
+    	<li class="group">
+            <div class="title">MY 회원정보</div>
+            <ul class="sub">
+                <li><a href="/member/chg">회원정보 변경/탈퇴</a></li>                
+            </ul>
+        </li>        
+</ul>
+
 <!-- 스마트에디터 2 -->
 <script type="text/javascript"
  src="/Resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -114,27 +149,22 @@ $(document).ready(function() {
 </script>
  
 
-<div style="text-align: left; height:15px;">
+<div style="margin-left: 220px; text-align: left; height:15px;">
 <h3>레시피 글 수정</h3><br>
 </div>
 
 <hr style="boarder: 0; height:1px; background: black;"><br>
 
 
-<div id="area" style="height: 590px;">
+<div id="area" style="height: 710px;">
 <form action="/mypage/recipeupdate" method="post" >
-<table class="table table=bordered">
+<table class="table table=bordered" style="margin-left: 300px; margin: 0; width: 1000px;">
+
 	<tr>
-		<td>아이디</td><td><%=session.getAttribute("userid") %></td>
-	</tr>
-	<tr>
-		<td>닉네임</td><td><%=session.getAttribute("usernick") %>
-	</tr>
-	<tr>
-		<td>제목</td><td><input type="text" name="title" style="width:100%;" value="<%=recipe.getTitle() %>"/></td>
+		<td style="background: #fbf8e3;">제목</td><td><input type="text" name="title" style="width:100%;" value="<%=recipe.getTitle() %>"/></td>
 	</tr>
 	<tr>		
-		<td colspan="2" ><textarea id="content" name="content"><%=recipe.getInq_content() %></textarea></td>
+		<td colspan="2" ><textarea id="content" name="content" style="width: 100%;"><%=recipe.getInq_content() %></textarea></td>
 	</tr>
 	<tr>
 		<td>첨부파일</td>
@@ -150,17 +180,18 @@ $(document).ready(function() {
 		<input type="hidden" name="views" value="<%=recipe.getViews() %>"/>
 		</td>
 	</tr>
-	<tr>
-		<td><a href="/upload/<%=fList.get(0).getStoredName() %>"  download="/upload/<%=fList.get(0).getOriginName() %>"></a></td>
-	</tr> 
+
 </table>
+<div>
+	<button type="button" id="btnUpdate">수정</button>
+	<button type="button" id="btnCancel">취소</button>
+</div>
+<div>
+<a href="/upload/<%=fList.get(0).getStoredName() %>"  download="/upload/<%=fList.get(0).getOriginName() %>"></a>
+</div>
 </form>
 </div>
 
-<div>
-	<button type="button" id="btnUpdate">수정 완료</button>
-	<button type="button" id="btnCancel">취소</button>
-</div>
 
 
 <script type="text/javascript">
