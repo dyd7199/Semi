@@ -40,7 +40,7 @@
 							<br><br><br>
 							평점:<%for(int j=0;j<list.get(i).getAvg();j++) {%>
 									<span>⭐</span>
-							<%} %><br><br><br>주소:<%=list.get(i).getRdn_code_nm() %><br><br><br>전화번호:<%=list.get(i).getTel_no() %>
+							<%} %><br><br><br>주소:<%=list.get(i).getRdn_code_nm() %><br><br><br>전화번호:<%=list.get(i).getTel_no() %><br><br><br>대표메뉴:<%=list.get(i).getFood_menu() %>
 		</td>
 	</tr>
 	<%} %>

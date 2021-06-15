@@ -122,8 +122,9 @@ h3 {
     <li class="group">
         <div class="title">게시판 관리</div>
        	<ul class="sub">
-            <li><a href="/admin/recipelist">레시피 공유</a></li>
+            <li><a href="/admin/recipelist">전체 레시피 관리</a></li>
             <li><a href="/admin/noticelist">공지사항</a></li>
+            <li><a href="/admin/faqlist">FAQ</a></li>
             <li><a href="/admin/inqlist">문의하기</a></li>
        	</ul>
     </li>
@@ -131,11 +132,9 @@ h3 {
         <div class="title">데이터 관리</div>
         <ul class="sub">
             <li><a href="/admin/member">회원 관리</a></li>                
-            <li><a href="#">식당관리</a></li>                
         </ul>
     </li>
 </ul>
-
 
 
 <div class="admininqView_container">

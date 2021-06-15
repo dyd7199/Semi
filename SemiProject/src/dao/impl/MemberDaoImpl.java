@@ -521,7 +521,7 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(payment.toString());
 		String sql = "";
 		sql +="UPDATE user_table SET"; 
-		sql +=" grade = 프리미엄 WHERE USERID = ?";
+		sql +=" grade = '프리미엄' WHERE USERID = ?";
 		
 		int res = 0;
 		

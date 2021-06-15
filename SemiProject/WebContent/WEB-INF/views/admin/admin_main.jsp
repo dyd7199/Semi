@@ -95,7 +95,6 @@ ul.sub li:hover {
         <div class="title">데이터 관리</div>
         <ul class="sub">
             <li><a href="/admin/member">회원 관리</a></li>                
-            <li><a href="#">식당관리</a></li>                
         </ul>
     </li>
 </ul>
